@@ -1,0 +1,14 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: testDB
+  app:
+    build: .
+    image: backend-services
+    ports:
+      - "5555:5555"
+
