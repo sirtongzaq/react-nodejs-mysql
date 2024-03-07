@@ -14,4 +14,7 @@
     <li>npm run dev</li>
     <li>use api get /setup for set database</li>
   </ui>
+
+  <img src="https://avatars.githubusercontent.com/u/52501489?v=4" width="350" title="hover text">
+
 </div>
