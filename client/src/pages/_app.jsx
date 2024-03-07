@@ -1,6 +1,6 @@
-import Layout from "@/components/templates/layout";
+
 import "@/styles/components/index.scss"
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout ?? ((page) => page)
