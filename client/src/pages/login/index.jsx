@@ -1,3 +1,5 @@
+import Layout from "@/components/templates/layout";
+import AuthLayout from "@/components/templates/authLayout";
 import { Fragment } from "react";
 
 export default function LoginPage() {
@@ -9,3 +11,11 @@ export default function LoginPage() {
         </Fragment>
     )
 }
+
+LoginPage.getLayout = function getLayout(page) {
+    return (
+      <AuthLayout>
+        {page}
+      </AuthLayout>
+    )
+  }
