@@ -7,9 +7,27 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: testDB
       POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
   app:
-    build: .
+    build: ./
     image: backend-services
+    restart: always
     ports:
       - "5555:5555"
+    depends_on:
+      - db
 
+volumes:
+  postgres-data:

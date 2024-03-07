@@ -29,12 +29,18 @@ app.use("/auth", authRouter);
 app.get("/setup", async (req, res) => {
   // create table users
   try {
+    await pool.query('CREATE EXTENSION IF NOT EXISTS "postgres_fdw"');
+    await pool.query(`
+      CREATE SERVER db
+      FOREIGN DATA WRAPPER postgres_fdw
+      OPTIONS (host 'db', dbname 'postgres', port '5432');
+    `);
     await pool.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await pool.query(
       "CREATE TABLE Users (id UUID DEFAULT uuid_generate_v4() PRIMARY KEY, username TEXT, password TEXT)"
     );
     res.status(200).send({
-      message: "Table Users created successfully!",
+      message: "DATABASE CREATE SERVER , DB AND TABLE",
     });
   } catch (e) {
     res.status(500).send({
