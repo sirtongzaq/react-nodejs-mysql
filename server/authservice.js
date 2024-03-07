@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
           { expiresIn: "1h" }
         );
         res.setHeader("Authorization", `Bearer ${token}`);
-        res.status(200).json({ message: "Login successful" });
+        res.status(200).json({ message: "Login successful", token });
       } else {
         res.status(401).json({ message: "Invalid username or password" });
       }
