@@ -12,5 +12,6 @@ export default function CardDept() {
                     <div className="dept-delete">delete</div>
                 </div>
             </div>
+            
         </Fragment>)
 }

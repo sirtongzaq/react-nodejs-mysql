@@ -1,0 +1,21 @@
+.dept-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dept-search-container{
+    background-color: white;
+    padding-block: 10px;
+    width: 300px;
+    border-radius: 10px;
+    padding-inline: 10px;
+    input{
+        border: none;
+        outline: none;
+        width: 85%;
+        height: 20px;
+        background-color: white;
+    }
+}

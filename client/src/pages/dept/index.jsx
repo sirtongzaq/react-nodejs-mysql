@@ -1,20 +1,36 @@
 import CardDept from "@/components/components/card_dept"
+import SearchDept from "@/components/components/search_dept"
 import Layout from "@/components/templates/layout"
 import { useRouter } from "next/router"
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
 
 export default function Dept() {
     const router = useRouter()
+    const [dept, setDept] = useState([])
+    const [filterDept,setFilterDept] = useState([])
+
+    const onChageSearch = () => {
+        
+    }
+
+    const onChangeDeptList =(value)=>{
+        setFilterDept(value)
+    }
+
     return (
         <Fragment>
             <div onClick={() => router.push('/dept/add_dept')} className="">
                 add page
             </div>
-            <div>
-                input
+            <div className="dept-page-search">
+                <SearchDept onChangeDeptList={onChangeDeptList}  />
             </div>
             <div className="dept-list">
-                <CardDept />
+                {/* {filterDept.map(()=>(
+                <Fragment>
+                    <CardDept/>
+                </Fragment>))} */}
+                      <CardDept/>
             </div>
         </Fragment>
     )
