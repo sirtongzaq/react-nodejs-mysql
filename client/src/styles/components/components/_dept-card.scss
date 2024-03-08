@@ -1,0 +1,24 @@
+.dept-card {
+    background-color: #00176985;
+    border-radius: 10px;
+    padding-block: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dept-action {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.dept-name{
+    padding-left: 10px;
+    width: 200px;
+}
+
+.dept-delete,
+.dept-edit{
+    padding-right: 10px;
+}

@@ -8,8 +8,11 @@ import Aside from "../components/aside";
 export default function Layout({ children }) {
     return (
         <Fragment>
-            <Header />
-            <Aside> <main>{children}</main></Aside>
+            <section className="main-layout">
+                <Header />
+                <Aside />
+                <main className="main-content">{children}</main>
+            </section>
         </Fragment>
     )
 }

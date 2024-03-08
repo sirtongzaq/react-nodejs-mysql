@@ -4,4 +4,35 @@ body {
   margin: 0;
   height: 100%;
   background-color: $primary_2;
+  // font-family: Arial, Helvetica, sans-serif;
+  
 }
+
+.main-layout{
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template: 
+  "hnav hnav" 56px
+  "aside ct"  / 200px
+}
+
+
+.aside{
+  background-color: #00176985;
+  grid-area: aside;
+}
+
+.header-container{
+  grid-area: hnav;
+}
+
+.main-content{
+  grid-area: ct;
+  padding-inline: 20px;
+  padding-block: 20px;
+}
+
+
+
+
