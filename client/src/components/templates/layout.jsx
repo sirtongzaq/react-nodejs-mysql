@@ -33,6 +33,7 @@ export default function Layout({ children, getUserByToken }) {
       router.push("/login");
     } else {
       const expirationTime = user?.userExp * 1000;
+      const currentTime = Date.now();
       const timeDifference = expirationTime - currentTime;
       if (timeDifference < 10000) {
         setTimeout(() => {
