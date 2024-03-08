@@ -1,9 +1,9 @@
 import { http } from "./http.endpoint";
 
 const authService = {
-  fetchDataUser: async () => {
+  getUserFromToken: async (token) => {
     try {
-      const response = await http.get("/users");
+      const response = await http.get(`/auth/getuserfromtoken?token=${token}`);
       return response;
     } catch (e) {
       console.error("Error:", e);

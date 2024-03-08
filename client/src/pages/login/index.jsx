@@ -3,11 +3,10 @@ import AuthLayout from "@/components/templates/authLayout";
 import { Fragment, useEffect, useState } from "react";
 import authService from "@/services/authservice";
 import LoginForm from "@/components/components/login_from";
+import { useRouter } from "next/router";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
+  const router = useRouter();
   const handleLogin = async (e, username, password) => {
     e.preventDefault();
     try {
@@ -15,32 +14,14 @@ export default function LoginPage() {
         username,
         password,
       });
-      getToken();
+      router.push("/");
     } catch (error) {
       console.log("Invalid username or password");
     }
   };
 
-  const getToken = async () => {
-    const token = await authService.getTokenFromUser();
-    setToken(token);
-  };
-
-  const logout = async () => {
-    await authService.removeTokenFromUser();
-    getToken();
-  };
-
-  useEffect(() => {
-    getToken();
-  }, []);
-
   return (
     <Fragment>
-      <h1>Token : {token}</h1>
-      <button className="logout-btn" onClick={logout}>
-        Logout
-      </button>
       <LoginForm handleLogin={handleLogin} />
     </Fragment>
   );

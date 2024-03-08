@@ -1,18 +1,55 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Header from "../components/header";
 import Aside from "../components/aside";
+import { useRouter } from "next/router";
+export default function Layout({ children, getUserByToken }) {
+  const [userToken, setUserToken] = useState("");
+  const [user, setUser] = useState("");
+  const router = useRouter();
 
+  const logout = async () => {
+    localStorage.removeItem("token");
+    router.reload();
+  };
 
+  const getUserFromToken = async (userToken) => {
+    const res = await getUserByToken(userToken);
+    setUser(res);
+  };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login");
+    } else {
+      setUserToken(token);
+      getUserFromToken(userToken);
+    }
+  }, [userToken]);
 
-export default function Layout({ children }) {
-    return (
-        <Fragment>
-            <section className="main-layout">
-                <Header />
-                <Aside />
-                <main className="main-content">{children}</main>
-            </section>
-        </Fragment>
-    )
+  useEffect(() => {
+    if (user === null) {
+      localStorage.removeItem("token");
+      router.push("/login");
+    } else {
+      const expirationTime = user?.userExp * 1000;
+      const timeDifference = expirationTime - currentTime;
+      if (timeDifference < 10000) {
+        setTimeout(() => {
+          localStorage.removeItem("token");
+          router.push("/login");
+        }, 10000);
+      }
+    }
+  }, [user]);
+
+  return (
+    <Fragment>
+      <section className="main-layout">
+        <Header logout={logout} user={user} />
+        <Aside />
+        <main className="main-content">{children}</main>
+      </section>
+    </Fragment>
+  );
 }

@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
         const token = jwt.sign(
           { userId: user.id, username: user.username },
           "your_secret_key",
-          { expiresIn: "1h" }
+          { expiresIn: "1hr" }
         );
         res.setHeader("Authorization", `Bearer ${token}`);
         res.status(200).json({ message: "Login successful", token });
@@ -79,6 +79,33 @@ router.get("/user", async (req, res) => {
   } catch (e) {
     res.status(500).send({
       message: `User not found`,
+    });
+  }
+});
+
+router.get("/getuserfromtoken", async (req, res) => {
+  const secretKey = "your_secret_key";
+  try {
+    const { token } = req.query;
+    const decodedToken = jwt.verify(token, secretKey);
+    const userId = decodedToken.userId;
+    const userExp = decodedToken.exp;
+    const result = await pool.query('SELECT * FROM "users" WHERE id = $1', [
+      userId,
+    ]);
+
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      res.status(200).send({ user, userExp });
+    } else {
+      res.status(404).send({
+        message: `User with ID ${userId} not found`,
+      });
+    }
+  } catch (e) {
+    // Handle token verification errors
+    res.status(500).send({
+      message: `Error retrieving user: ${e.message}`,
     });
   }
 });

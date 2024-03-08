@@ -58,7 +58,7 @@ export default function LoginForm({ handleLogin }) {
             />
           </div>
           <div className="group">
-            <button type="submit">Login</button>
+            <button className="login-btn" type="submit">Login</button>
           </div>
         </form>
       </div>
