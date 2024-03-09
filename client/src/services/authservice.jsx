@@ -34,6 +34,15 @@ const authService = {
       throw e;
     }
   },
+  userRegisterWithUsernamePassword: async (body) => {
+    try {
+      const response = await http.post("/auth/register", body);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
 };
 
 export default authService;

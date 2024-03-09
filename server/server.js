@@ -1,9 +1,8 @@
 const express = require("express");
 const pool = require("./db");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const authRouter = require("./authservice");
+const depRouter = require("./depservice");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -25,6 +24,7 @@ pool.connect((err, client, release) => {
 });
 
 app.use("/auth", authRouter);
+app.use("/dep", depRouter);
 
 app.get("/setup", async (req, res) => {
   // create table users
@@ -38,6 +38,9 @@ app.get("/setup", async (req, res) => {
     await pool.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await pool.query(
       "CREATE TABLE Users (id UUID DEFAULT uuid_generate_v4() PRIMARY KEY, username TEXT, password TEXT)"
+    );
+    await pool.query(
+      "CREATE TABLE Departments (id UUID DEFAULT uuid_generate_v4() PRIMARY KEY, dep_name TEXT)"
     );
     res.status(200).send({
       message: "DATABASE CREATE SERVER , DB AND TABLE",

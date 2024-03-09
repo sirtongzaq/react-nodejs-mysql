@@ -1,14 +1,26 @@
 import React, { Fragment, useState } from "react";
 
-export default function LoginForm({ handleLogin, handleRegister }) {
+export default function RegisterForm({ handleRegister, handleBack, error }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password === confirmPassword) {
+      handleRegister(e, username, password);
+    } else {
+      error("Passwords do not match");
+      setPassword("");
+      setConfirmPassword("");
+    }
+  };
 
   return (
     <Fragment>
       <div className="login-container">
-        <form onSubmit={(e) => handleLogin(e, username, password)}>
-          <div className="group-header">ROPA</div>
+        <form onSubmit={handleSubmit}>
+          <div className="group-header">ROPA Register</div>
           <div className="group">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,18 +69,41 @@ export default function LoginForm({ handleLogin, handleRegister }) {
               required
             />
           </div>
+          <div className="group">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="icon"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+              />
+            </svg>
+            <input
+              type="password"
+              placeholder="ยืนยันรหัสผ่าน"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
           <div className="group-btn">
             <button className="login-btn" type="submit">
-              ล็อคอิน
+              สมัครสมาชิก
             </button>
             <button
               onClick={() => {
-                handleRegister();
+                handleBack();
               }}
               className="login-btn"
-              type="register"
+              type="back"
             >
-              สมัครสมาชิก
+              กลับ
             </button>
           </div>
         </form>
