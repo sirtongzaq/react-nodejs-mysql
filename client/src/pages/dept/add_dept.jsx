@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import Layout from "@/components/templates/layout";
 import authService from "@/services/authservice";
 import depService from "@/services/depservice";
-import AddDeptForm from "@/components/components/adddept_from";
+import AddDeptForm from "@/components/components/adddept_form";
 import toastNoti from "@/components/components/toast";
 
 export default function AddDept() {
