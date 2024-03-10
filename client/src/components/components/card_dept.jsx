@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 export default function CardDept({ dep_name, handleDel }) {
   return (

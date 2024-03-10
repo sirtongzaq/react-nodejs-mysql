@@ -7,11 +7,20 @@ export default function Aside() {
         <Fragment>
             <div className="aside">
                 <div className="aside-content">
-                    <ul>
+                    {/* <ul className="test">
                         <li onClick={() => router.push('/')}>หน้าแรก</li>
                         <li onClick={() => router.push('/dept')}>แผนกในหน่วยงาน</li>
                         <li>แสดงข้อมูลส่วนบุคคล</li>
-                    </ul>
+                    </ul> */}
+                    <div className="aside-home" onClick={() => router.push('/')}>
+                        หน้าแรก
+                    </div>
+                    <div className="aside-dept" onClick={() => router.push('/dept')}>
+                        แผนกในหน่วยงาน
+                    </div>
+                    <div className="aside-profile">
+                        แสดงข้อมูลส่วนบุคคล
+                    </div>
 
                 </div>
             </div>
