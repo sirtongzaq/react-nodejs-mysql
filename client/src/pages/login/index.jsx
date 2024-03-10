@@ -50,8 +50,11 @@ export default function LoginPage() {
 
   return (
     <Fragment>
-      <ToastContainer />
-      <LoginForm handleLogin={handleLogin} handleRegister={handleRegister} error={toasterror} />
+      <LoginForm
+        handleLogin={handleLogin}
+        handleRegister={handleRegister}
+        error={toasterror}
+      />
     </Fragment>
   );
 }

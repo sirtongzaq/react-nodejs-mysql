@@ -53,7 +53,6 @@ export default function RegisterPage() {
 
   return (
     <Fragment>
-      <ToastContainer />;
       <RegisterForm
         handleRegister={handleRegister}
         handleBack={handleBack}
