@@ -1,36 +1,11 @@
 import CardDept from "@/components/components/card_dept";
 import SearchDept from "@/components/components/search_dept";
+import toastNoti from "@/components/components/toast";
 import Layout from "@/components/templates/layout";
 import authService from "@/services/authservice";
 import depService from "@/services/depservice";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const toastsuccess = (text) =>
-  toast.success(text, {
-    position: "top-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-
-const toasterror = (text) =>
-  toast.error(text, {
-    position: "top-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
 
 export default function Dept() {
   const router = useRouter();
@@ -64,10 +39,10 @@ export default function Dept() {
     try {
       await depService.delDepFromId(id);
       getDep();
-      toastsuccess("Delete dep successfuly");
+      toastNoti.toastsuccess("Delete dep successfuly");
     } catch (e) {
       console.log("error", e);
-      toasterror(e);
+      toastNoti.toasterror(e);
     }
   };
 
@@ -76,9 +51,9 @@ export default function Dept() {
     setOnSearch(false);
   }, []);
 
-  useEffect(() => {
-    console.log("dep", dept);
-  }, [dept]);
+  // useEffect(() => {
+  //   console.log("dep", dept);
+  // }, [dept]);
   // useEffect(() => {
   //   console.log("f", filterDept);
   // }, [filterDept]);

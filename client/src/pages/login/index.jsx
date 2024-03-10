@@ -2,33 +2,9 @@ import Layout from "@/components/templates/layout";
 import AuthLayout from "@/components/templates/authLayout";
 import { Fragment, useEffect, useState } from "react";
 import authService from "@/services/authservice";
-import LoginForm from "@/components/components/login_from";
+import LoginForm from "@/components/components/login_form";
 import { useRouter } from "next/router";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-const toastsuccess = (text) =>
-  toast.success(text, {
-    position: "top-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-
-const toasterror = (text) =>
-  toast.error(text, {
-    position: "top-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
+import toastNoti from "@/components/components/toast";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -44,17 +20,13 @@ export default function LoginPage() {
       });
       router.push("/");
     } catch (error) {
-      toasterror("Invalid username or password");
+      toastNoti.toasterror("Invalid username or password");
     }
   };
 
   return (
     <Fragment>
-      <LoginForm
-        handleLogin={handleLogin}
-        handleRegister={handleRegister}
-        error={toasterror}
-      />
+      <LoginForm handleLogin={handleLogin} handleRegister={handleRegister} />
     </Fragment>
   );
 }

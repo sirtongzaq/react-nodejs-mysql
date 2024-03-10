@@ -66,7 +66,7 @@ export default function LoginForm({ handleLogin, handleRegister }) {
                 handleRegister();
               }}
               className="login-btn"
-              type="register"
+              type="button"
             >
               สมัครสมาชิก
             </button>

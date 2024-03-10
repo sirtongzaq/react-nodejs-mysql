@@ -4,31 +4,7 @@ import { Fragment, useEffect, useState } from "react";
 import authService from "@/services/authservice";
 import { useRouter } from "next/router";
 import RegisterForm from "@/components/components/register_form";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-const toastsuccess = (text) =>
-  toast.success(text, {
-    position: "top-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-
-const toasterror = (text) =>
-  toast.error(text, {
-    position: "top-right",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
+import toastNoti from "@/components/components/toast";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -42,12 +18,12 @@ export default function RegisterPage() {
         username,
         password,
       });
-      toastsuccess("Account registered successfully");
+      toastNoti.toastsuccess("Account registered successfully");
       setTimeout(() => {
         router.push("/login");
       }, 2000);
     } catch (error) {
-      toasterror("Username is already taken");
+      toastNoti.toasterror("Username is already taken");
     }
   };
 
@@ -56,7 +32,7 @@ export default function RegisterPage() {
       <RegisterForm
         handleRegister={handleRegister}
         handleBack={handleBack}
-        error={toasterror}
+        error={toastNoti.toasterror}
       />
     </Fragment>
   );

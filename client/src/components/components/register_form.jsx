@@ -101,7 +101,7 @@ export default function RegisterForm({ handleRegister, handleBack, error }) {
                 handleBack();
               }}
               className="login-btn"
-              type="back"
+              type="button"
             >
               กลับ
             </button>

@@ -20,6 +20,15 @@ const depService = {
       throw e;
     }
   },
+  createDep: async (body) => {
+    try {
+      const response = await http.post("/dep/create", body);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
 };
 
 export default depService;
