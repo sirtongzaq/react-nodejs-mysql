@@ -2,19 +2,61 @@ import CardDept from "@/components/components/card_dept";
 import SearchDept from "@/components/components/search_dept";
 import Layout from "@/components/templates/layout";
 import authService from "@/services/authservice";
+import depService from "@/services/depservice";
 import { useRouter } from "next/router";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 export default function Dept() {
   const router = useRouter();
   const [dept, setDept] = useState([]);
   const [filterDept, setFilterDept] = useState([]);
-
-  const onChageSearch = () => {};
+  const [onSearch, setOnSearch] = useState(false);
 
   const onChangeDeptList = (value) => {
-    setFilterDept(value);
+    if (value === "") {
+      setFilterDept([]);
+      setOnSearch(false);
+    } else {
+      setOnSearch(true);
+      const filteredDepartments = dept.filter((department) =>
+        department.dep_name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilterDept(filteredDepartments);
+    }
   };
+
+  const getDep = async () => {
+    try {
+      const response = await depService.getDep();
+      setDept(response);
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
+  const delDep = async (id) => {
+    try {
+      await depService.delDepFromId(id);
+      getDep();
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
+  useEffect(() => {
+    getDep();
+    setOnSearch(false);
+  }, []);
+
+  useEffect(() => {
+    console.log("dep", dept);
+  }, [dept]);
+  // useEffect(() => {
+  //   console.log("f", filterDept);
+  // }, [filterDept]);
+  // useEffect(() => {
+  //   console.log("ons", onSearch);
+  // }, [onSearch]);
 
   return (
     <Fragment>
@@ -25,11 +67,34 @@ export default function Dept() {
         <SearchDept onChangeDeptList={onChangeDeptList} />
       </div>
       <div className="dept-list">
-        {/* {filterDept.map(()=>(
-                <Fragment>
-                    <CardDept/>
-                </Fragment>))} */}
-        <CardDept />
+        {onSearch == true ? (
+          <>
+            {filterDept.length > 0 ? (
+              filterDept.map((d) => (
+                <p key={d.id}>
+                  <CardDept dep_name={d.dep_name} handleDel={delDep(d.id)} />
+                </p>
+              ))
+            ) : (
+              <p>no data search</p>
+            )}
+          </>
+        ) : (
+          <>
+            {dept.length > 0 ? (
+              dept.map((d) => (
+                <p key={d.id}>
+                  <CardDept
+                    dep_name={d.dep_name}
+                    handleDel={() => delDep(d.id)}
+                  />
+                </p>
+              ))
+            ) : (
+              <p>no data dept</p>
+            )}
+          </>
+        )}
       </div>
     </Fragment>
   );
