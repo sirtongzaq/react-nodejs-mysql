@@ -2,8 +2,8 @@ import Layout from "@/components/templates/layout";
 import AuthLayout from "@/components/templates/authLayout";
 import { Fragment, useEffect, useState } from "react";
 import authService from "@/services/authservice";
-import LoginForm from "@/components/components/login_from";
 import { useRouter } from "next/router";
+import RegisterForm from "@/components/components/register_form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const toastsuccess = (text) =>
@@ -30,32 +30,39 @@ const toasterror = (text) =>
     theme: "light",
   });
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
-  const handleRegister = () => {
-    router.push("/register");
+  const handleBack = () => {
+    router.back();
   };
-  const handleLogin = async (e, username, password) => {
+  const handleRegister = async (e, username, password) => {
     e.preventDefault();
     try {
-      await authService.userLoginWithUsernamePassword({
+      await authService.userRegisterWithUsernamePassword({
         username,
         password,
       });
-      router.push("/");
+      toastsuccess("Account registered successfully");
+      setTimeout(() => {
+        router.push("/login");
+      }, 2000);
     } catch (error) {
-      toasterror("Invalid username or password");
+      toasterror("Username is already taken");
     }
   };
 
   return (
     <Fragment>
-      <ToastContainer />
-      <LoginForm handleLogin={handleLogin} handleRegister={handleRegister} error={toasterror} />
+      <ToastContainer />;
+      <RegisterForm
+        handleRegister={handleRegister}
+        handleBack={handleBack}
+        error={toasterror}
+      />
     </Fragment>
   );
 }
 
-LoginPage.getLayout = function getLayout(page) {
+RegisterPage.getLayout = function getLayout(page) {
   return <AuthLayout>{page}</AuthLayout>;
 };

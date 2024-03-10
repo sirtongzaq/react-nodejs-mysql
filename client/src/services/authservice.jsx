@@ -1,9 +1,9 @@
 import { http } from "./http.endpoint";
 
 const authService = {
-  fetchDataUser: async () => {
+  getUserFromToken: async (token) => {
     try {
-      const response = await http.get("/users");
+      const response = await http.get(`/auth/getuserfromtoken?token=${token}`);
       return response;
     } catch (e) {
       console.error("Error:", e);
@@ -28,6 +28,15 @@ const authService = {
       const token = response.token;
       localStorage.setItem("token", token);
       console.log("Token stored:", token);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
+  userRegisterWithUsernamePassword: async (body) => {
+    try {
+      const response = await http.post("/auth/register", body);
       return response;
     } catch (e) {
       console.error("Error:", e);
