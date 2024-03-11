@@ -29,16 +29,16 @@ services:
     depends_on:
       - db
 
-  client:
-    # build: ../client
-    # image: client-ropa
-    build:
-      context: ../client
-      dockerfile: dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
+  # client:
+  #   # build: ../client
+  #   # image: client-ropa
+  #   build:
+  #     context: ../client
+  #     dockerfile: dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
 
 volumes:
   postgres-data:

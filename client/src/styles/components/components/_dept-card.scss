@@ -21,5 +21,14 @@
 
 .dept-delete,
 .dept-edit{
-    padding-right: 10px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.dept-delete{
+    color: rgb(224, 89, 89);
+    &:hover{
+        color: rgb(223, 69, 69);
+    }
+
 }

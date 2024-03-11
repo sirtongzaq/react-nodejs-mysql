@@ -4,14 +4,21 @@ import toastNoti from "@/components/components/toast";
 import Layout from "@/components/templates/layout";
 import authService from "@/services/authservice";
 import depService from "@/services/depservice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
+
+import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
+
+
+
 
 export default function Dept() {
   const router = useRouter();
   const [dept, setDept] = useState([]);
   const [filterDept, setFilterDept] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
+  const [openModal, setOpenModal] = useState(false)
 
   const onChangeDeptList = (value) => {
     if (value === "") {
@@ -51,6 +58,8 @@ export default function Dept() {
     setOnSearch(false);
   }, []);
 
+
+
   // useEffect(() => {
   //   console.log("dep", dept);
   // }, [dept]);
@@ -63,12 +72,18 @@ export default function Dept() {
 
   return (
     <Fragment>
-      <div onClick={() => router.push("/dept/add_dept")} className="">
-        add page
+      <div className="dept-add-search">
+        <div className="dept-page-search">
+          <SearchDept onChangeDeptList={onChangeDeptList} />
+        </div>
+        <div onClick={() => router.push("/dept/add_dept")} className="dept-page-add">
+          <div className="dept-add-text">
+            <span>เพิ่มแผนก</span>
+            <span><FontAwesomeIcon icon={SolidIcon.faPlus} /></span>
+          </div>
+        </div>
       </div>
-      <div className="dept-page-search">
-        <SearchDept onChangeDeptList={onChangeDeptList} />
-      </div>
+
       <div className="dept-list">
         {onSearch == true ? (
           <>

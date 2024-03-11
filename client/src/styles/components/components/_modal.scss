@@ -1,0 +1,34 @@
+.box-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background-color: white;
+    border: '2px solid #000';
+    box-shadow: 24;
+}
+
+.box-modal-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.box-modal-delete-button{
+    background-color: rgb(233, 136, 136);
+    padding-inline: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    &:hover{
+        background-color: rgb(223, 69, 69);
+    }
+}
+
+.box-modal-cancel-button{
+    padding-inline: 10px;
+    border-radius: 10px;
+    background-color: rgb(238, 238, 238);
+    cursor: pointer;
+}
