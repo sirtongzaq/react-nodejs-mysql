@@ -14,7 +14,11 @@ export default function Layout({ children, getUserByToken }) {
 
   const getUserFromToken = async (userToken) => {
     const res = await getUserByToken(userToken);
-    setUser(res);
+    if (res) {
+      setUser(res);
+    } else {
+      setUser("noUser");
+    }
   };
 
   useEffect(() => {
@@ -23,25 +27,33 @@ export default function Layout({ children, getUserByToken }) {
       router.push("/login");
     } else {
       setUserToken(token);
-      getUserFromToken(userToken);
+      getUserFromToken(token);
     }
   }, [userToken]);
 
   useEffect(() => {
-    if (user === null) {
+    if (user === "noUser") {
       localStorage.removeItem("token");
       router.push("/login");
-    } else {
-      const expirationTime = user?.userExp * 1000;
+    } else if (user && user.userExp) {
+      const expirationTime = user.userExp * 1000;
       const currentTime = Date.now();
       const timeDifference = expirationTime - currentTime;
-      if (timeDifference) {
-        setTimeout(() => {
+      if (timeDifference > 0) {
+        const timeout = setTimeout(() => {
           localStorage.removeItem("token");
           router.push("/login");
         }, timeDifference);
+        return () => clearTimeout(timeout);
+      } else {
+        localStorage.removeItem("token");
+        router.push("/login");
       }
     }
+  }, [user]);
+
+  useEffect(() => {
+    console.log("User", user);
   }, [user]);
 
   return (

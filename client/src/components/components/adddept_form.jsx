@@ -6,7 +6,7 @@ export default function AddDeptForm({ handleSubmit }) {
   return (
     <Fragment>
       <div className="adddept-conrainer">
-        <div>เพิ่มแผนก</div>
+        <div className="adddept-header">เพิ่มแผนก</div>
         <form
           className="adddept-card"
           onSubmit={(e) => {

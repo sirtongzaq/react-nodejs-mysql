@@ -1,6 +1,14 @@
 .adddept-conrainer {
   display: flex;
   flex-direction: column;
+  .adddept-header {
+    display: flex;
+    width: 100px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+  }
   .adddept-card {
     display: flex;
     flex-direction: column;
