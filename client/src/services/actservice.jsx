@@ -1,36 +1,36 @@
 import { http } from "./http.endpoint";
 
-const depService = {
-  getDep: async () => {
+const actService = {
+  getAct: async () => {
     try {
-      const response = await http.get("/dep/departments");
+      const response = await http.get("/dep/activitys");
       return response;
     } catch (e) {
       console.error("Error:", e);
       throw e;
     }
   },
-  getDepFromId: async (id) => {
+  getActFromId: async (id) => {
     try {
-      const response = await http.get(`/dep/getbyid?id=${id}`);
+      const response = await http.get(`/act/getbyid?id=${id}`);
       return response;
     } catch (e) {
       console.error("Error:", e);
       throw e;
     }
   },
-  delDepFromId: async (id) => {
+  getActFromDeptId: async (id) => {
     try {
-      const response = await http.del(`/dep/delete?id=${id}`);
+      const response = await http.get(`/act/getbydeptid?id=${id}`);
       return response;
     } catch (e) {
       console.error("Error:", e);
       throw e;
     }
   },
-  createDep: async (body) => {
+  createAct: async (body) => {
     try {
-      const response = await http.post("/dep/create", body);
+      const response = await http.post("/act/create", body);
       return response;
     } catch (e) {
       console.error("Error:", e);
@@ -39,4 +39,4 @@ const depService = {
   },
 };
 
-export default depService;
+export default actService;
