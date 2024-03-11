@@ -21,8 +21,12 @@ services:
       - db
 
   app:
-    build: ./
-    image: backend-services
+    container_name: server
+    build: ./server
+    # build:
+    #   context: ./server
+    #   dockerfile: dockerfile
+    # image: backend-services
     restart: always
     ports:
       - "5555:5555"
@@ -30,15 +34,16 @@ services:
       - db
 
   client:
-    # build: ../client
-    # image: client-ropa
-    build:
-      context: ../client
-      dockerfile: dockerfile
+    container_name: client-ropa
+    build: ./client
+    # build:
+    #   context: ./client
+    #   dockerfile: dockerfile
     ports:
       - "3000:3000"
     depends_on:
       - db
+
 
 volumes:
   postgres-data:
