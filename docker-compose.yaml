@@ -1,24 +1,43 @@
 version: "3"
 services:
-  db:
-    image: postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: testDB
-      POSTGRES_HOST_AUTH_METHOD: trust
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+  # db:
+  #   image: postgres
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: admin
+  #     POSTGRES_DB: testDB
+  #     POSTGRES_HOST_AUTH_METHOD: trust
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
 
-  pgadmin:
-    image: dpage/pgadmin4
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: postgres@example.com
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #   ports:
+  #     - "5050:80"
+  #   depends_on:
+  #     - db
+  db:
+    image: mysql
+    container_name: db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: postgres@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      # MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: testDB
     ports:
-      - "5050:80"
-    depends_on:
-      - db
+      - "3306:3306"
+    volumes:
+      - "mysqldata:/var/lib/mysql"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
   app:
     container_name: server
@@ -45,6 +64,6 @@ services:
       - db
       - app
 
-
 volumes:
-  postgres-data:
+  mysqldata: 
+  # postgres-data:
