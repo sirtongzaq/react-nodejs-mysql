@@ -95,7 +95,7 @@ export default function Dept() {
               filterDept.map((d) => (
                 <p key={d.dept_id}>
                   <CardDept
-                    dep_name={d.dept_name}
+                    dept={d}
                     handleDel={() => {
                       delDep(d.dept_id);
                     }}
@@ -112,7 +112,7 @@ export default function Dept() {
               dept.map((d) => (
                 <p key={d.dept_id}>
                   <CardDept
-                    dep_name={d.dept_name}
+                    dept={d}
                     handleDel={() => delDep(d.dept_id)}
                   />
                 </p>
