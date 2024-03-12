@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 
 export default function AddDeptForm({ handleSubmit }) {
-  const [depName, setDepName] = useState("");
+  const [deptName, setDeptName] = useState("");
 
   return (
     <Fragment>
@@ -10,16 +10,16 @@ export default function AddDeptForm({ handleSubmit }) {
         <form
           className="adddept-card"
           onSubmit={(e) => {
-            handleSubmit(e, depName);
-            setDepName("");
+            handleSubmit(e, deptName);
+            setDeptName("");
           }}
         >
           <div>ชื่อแผนก</div>
           <input
             type="text"
-            placeholder="รหัสผ่าน"
-            value={depName}
-            onChange={(e) => setDepName(e.target.value)}
+            placeholder=""
+            value={deptName}
+            onChange={(e) => setDeptName(e.target.value)}
             required
           />
           <button type="submit">บันทึก</button>

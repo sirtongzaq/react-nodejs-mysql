@@ -3,7 +3,7 @@ import { http } from "./http.endpoint";
 const actService = {
   getAct: async () => {
     try {
-      const response = await http.get("/dep/activitys");
+      const response = await http.get("/act/activitys");
       return response;
     } catch (e) {
       console.error("Error:", e);
@@ -12,7 +12,7 @@ const actService = {
   },
   getActFromId: async (id) => {
     try {
-      const response = await http.get(`/act/getbyid?id=${id}`);
+      const response = await http.get(`/act/activity?id=${id}`);
       return response;
     } catch (e) {
       console.error("Error:", e);
@@ -21,7 +21,7 @@ const actService = {
   },
   getActFromDeptId: async (id) => {
     try {
-      const response = await http.get(`/act/getbydeptid?id=${id}`);
+      const response = await http.get(`/act/getactivitybydept?id=${id}`);
       return response;
     } catch (e) {
       console.error("Error:", e);

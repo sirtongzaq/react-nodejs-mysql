@@ -3,22 +3,19 @@ import SearchDept from "@/components/components/search_dept";
 import toastNoti from "@/components/components/toast";
 import Layout from "@/components/templates/layout";
 import authService from "@/services/authservice";
-import depService from "@/services/depservice";
+import depService from "@/services/deptservice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
 
-
-
-
 export default function Dept() {
   const router = useRouter();
   const [dept, setDept] = useState([]);
   const [filterDept, setFilterDept] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
 
   const onChangeDeptList = (value) => {
     if (value === "") {
@@ -27,7 +24,7 @@ export default function Dept() {
     } else {
       setOnSearch(true);
       const filteredDepartments = dept.filter((department) =>
-        department.dep_name.toLowerCase().includes(value.toLowerCase())
+        department.dept_name.toLowerCase().includes(value.toLowerCase())
       );
       setFilterDept(filteredDepartments);
     }
@@ -58,7 +55,9 @@ export default function Dept() {
     setOnSearch(false);
   }, []);
 
-
+  useEffect(() => {
+    console.log("dept", dept);
+  }, [dept]);
 
   // useEffect(() => {
   //   console.log("dep", dept);
@@ -76,10 +75,15 @@ export default function Dept() {
         <div className="dept-page-search">
           <SearchDept onChangeDeptList={onChangeDeptList} />
         </div>
-        <div onClick={() => router.push("/dept/add_dept")} className="dept-page-add">
+        <div
+          onClick={() => router.push("/dept/add_dept")}
+          className="dept-page-add"
+        >
           <div className="dept-add-text">
             <span>เพิ่มแผนก</span>
-            <span><FontAwesomeIcon icon={SolidIcon.faPlus} /></span>
+            <span>
+              <FontAwesomeIcon icon={SolidIcon.faPlus} />
+            </span>
           </div>
         </div>
       </div>
@@ -89,11 +93,11 @@ export default function Dept() {
           <>
             {filterDept.length > 0 ? (
               filterDept.map((d) => (
-                <p key={d.id}>
+                <p key={d.dept_id}>
                   <CardDept
-                    dep_name={d.dep_name}
+                    dep_name={d.dept_name}
                     handleDel={() => {
-                      delDep(d.id);
+                      delDep(d.dept_id);
                     }}
                   />
                 </p>
@@ -106,10 +110,10 @@ export default function Dept() {
           <>
             {dept.length > 0 ? (
               dept.map((d) => (
-                <p key={d.id}>
+                <p key={d.dept_id}>
                   <CardDept
-                    dep_name={d.dep_name}
-                    handleDel={() => delDep(d.id)}
+                    dep_name={d.dept_name}
+                    handleDel={() => delDep(d.dept_id)}
                   />
                 </p>
               ))

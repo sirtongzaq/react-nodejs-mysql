@@ -1,14 +1,14 @@
 import { Fragment, useState } from "react";
 import Layout from "@/components/templates/layout";
 import authService from "@/services/authservice";
-import depService from "@/services/depservice";
+import depService from "@/services/deptservice";
 import AddDeptForm from "@/components/components/adddept_form";
 import toastNoti from "@/components/components/toast";
 
 export default function AddDept() {
-  const handleSubmit = async (e, depName) => {
+  const handleSubmit = async (e, deptName) => {
     const body = {
-      depname: depName,
+      dept_name: deptName,
     };
     e.preventDefault();
     try {

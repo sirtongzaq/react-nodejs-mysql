@@ -1,14 +1,11 @@
-const { Pool } = require("pg");
+const mysql = require("mysql2");
 
-const pool = new Pool({
-  //docker build
-  host: "db", 
-  //local build
-  // host: "localhost", 
-  port: 5432,
-  user: "postgres",
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
   password: "admin",
-  database: "testDB",
+  database: "ropa",
+  port: 3306,
 });
 
-module.exports = pool
+module.exports = db;

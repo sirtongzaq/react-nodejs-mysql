@@ -3,7 +3,7 @@ import { http } from "./http.endpoint";
 const depService = {
   getDep: async () => {
     try {
-      const response = await http.get("/dep/departments");
+      const response = await http.get("/dept/departments");
       return response;
     } catch (e) {
       console.error("Error:", e);
@@ -12,7 +12,7 @@ const depService = {
   },
   getDepFromId: async (id) => {
     try {
-      const response = await http.get(`/dep/getbyid?id=${id}`);
+      const response = await http.get(`/dept/getdept?id=${id}`);
       return response;
     } catch (e) {
       console.error("Error:", e);
@@ -21,7 +21,7 @@ const depService = {
   },
   delDepFromId: async (id) => {
     try {
-      const response = await http.del(`/dep/delete?id=${id}`);
+      const response = await http.del(`/dept/delete?id=${id}`);
       return response;
     } catch (e) {
       console.error("Error:", e);
@@ -30,7 +30,7 @@ const depService = {
   },
   createDep: async (body) => {
     try {
-      const response = await http.post("/dep/create", body);
+      const response = await http.post("/dept/create", body);
       return response;
     } catch (e) {
       console.error("Error:", e);

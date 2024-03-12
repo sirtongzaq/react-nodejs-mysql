@@ -11,12 +11,22 @@ export default function RegisterPage() {
   const handleBack = () => {
     router.back();
   };
-  const handleRegister = async (e, username, password) => {
+  const handleRegister = async (
+    e,
+    username,
+    password,
+    user_email,
+    user_firstname,
+    user_lastname
+  ) => {
     e.preventDefault();
     try {
       await authService.userRegisterWithUsernamePassword({
         username,
         password,
+        user_email,
+        user_firstname,
+        user_lastname,
       });
       toastNoti.toastsuccess("Account registered successfully");
       setTimeout(() => {

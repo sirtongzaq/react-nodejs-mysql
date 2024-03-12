@@ -1,0 +1,84 @@
+const express = require("express");
+const db = require("./db");
+
+const router = express.Router();
+
+router.post("/create", async (req, res) => {
+  const { dept_name } = req.body;
+  const checkQuery = `SELECT * FROM departments WHERE dept_name = ?`;
+  db.query(checkQuery, [dept_name], async (err, result) => {
+    if (err) {
+      console.error("Error checking dept_name:", err);
+      res.status(500).json({ message: "Error checking dept_name" });
+      return;
+    }
+    if (result.length > 0) {
+      console.log("Department already exists");
+      res.status(401).json({ message: "Department already exists" });
+      return;
+    }
+    const insertQuery = `INSERT INTO departments (dept_name) VALUES (?)`;
+    db.query(insertQuery, [dept_name], (err, result) => {
+      if (err) {
+        console.error("Error inserting departments data:", err);
+        res.status(500).json({ message: "Error inserting departments data" });
+        return;
+      }
+      console.log("departments data inserted successfully");
+      res.status(200).json({ message: "User data inserted successfully" });
+    });
+  });
+});
+
+router.get("/departments", async (req, res) => {
+  const query = "SELECT * FROM departments";
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      res.status(500).json({ message: "Error retrieving users" });
+      return;
+    }
+    res.status(200).json(result);
+  });
+});
+
+router.delete("/delete", async (req, res) => {
+  const { id } = req.query;
+  const deleteQuery = `DELETE FROM departments WHERE dept_id= ?`;
+  db.query(deleteQuery, [id], (err, result) => {
+    if (err) {
+      console.error("Error checking dept_id:", err);
+      res.status(500).json({ message: "Error checking dept_id" });
+      return;
+    }
+    if (result.affectedRows > 0) {
+      res.status(200).json({ message: "Department deleted successfully" });
+      return;
+    } else {
+      res.status(404).json({ message: "Department not found" });
+      return;
+    }
+  });
+});
+
+router.get("/getdept", async (req, res) => {
+  const { id } = req.query;
+  const query = `SELECT * FROM departments WHERE dept_id = ?`;
+
+  db.query(query, [id], (err, result) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      res.status(500).json({ message: "Error retrieving department" });
+      return;
+    }
+    if (result.length === 0) {
+      res.status(404).json({ message: "Department not found" });
+      return;
+    } else {
+      res.status(200).json(result[0]);
+      return;
+    }
+  });
+});
+
+module.exports = router;
