@@ -135,4 +135,23 @@ router.get("/getactivitybydept", async (req, res) => {
   });
 });
 
+router.delete("/delete", async (req, res) => {
+  const { id } = req.query;
+  const deleteQuery = `DELETE FROM activitys WHERE act_id= ?`;
+  db.query(deleteQuery, [id], (err, result) => {
+    if (err) {
+      console.error("Error deleting activitys:", err);
+      res.status(500).json({ message: "Error deleting activitys" });
+      return;
+    }
+    if (result.affectedRows > 0) {
+      res.status(200).json({
+        message: "Activities deleted successfully",
+      });
+    } else {
+      res.status(404).json({ message: "Activities not found" });
+    }
+  });
+});
+
 module.exports = router;

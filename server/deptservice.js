@@ -47,16 +47,33 @@ router.delete("/delete", async (req, res) => {
   const deleteQuery = `DELETE FROM departments WHERE dept_id= ?`;
   db.query(deleteQuery, [id], (err, result) => {
     if (err) {
-      console.error("Error checking dept_id:", err);
-      res.status(500).json({ message: "Error checking dept_id" });
+      console.error("Error deleting department:", err);
+      res.status(500).json({ message: "Error deleting department" });
       return;
     }
     if (result.affectedRows > 0) {
-      res.status(200).json({ message: "Department deleted successfully" });
-      return;
+      const deleteQueryActivity = `DELETE FROM activitys WHERE dept_id= ?`;
+      db.query(deleteQueryActivity, [id], (err, activityResult) => {
+        if (err) {
+          console.error("Error deleting activities:", err);
+          res.status(500).json({ message: "Error deleting activities" });
+          return;
+        }
+
+        if (activityResult.affectedRows > 0) {
+          res.status(200).json({
+            message:
+              "Department and associated activities deleted successfully",
+          });
+        } else {
+          res.status(200).json({
+            message:
+              "Department deleted successfully, no associated activities",
+          });
+        }
+      });
     } else {
       res.status(404).json({ message: "Department not found" });
-      return;
     }
   });
 });
