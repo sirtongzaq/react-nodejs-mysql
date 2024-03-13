@@ -37,6 +37,15 @@ const actService = {
       throw e;
     }
   },
+  delActFromId: async (id) => {
+    try {
+      const response = await http.del(`/dept/delete?id=${id}`);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
 };
 
 export default actService;
