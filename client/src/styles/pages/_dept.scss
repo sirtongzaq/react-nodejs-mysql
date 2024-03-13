@@ -1,6 +1,6 @@
 @import "../core/varibles";
 
-.dept-add-search{
+.dept-add-search {
     padding-block: 10px;
     display: flex;
     flex-direction: row;
@@ -10,27 +10,28 @@
 }
 
 
-.dept-search-container{
-margin-inline: auto;
+.dept-search-container {
+    margin-inline: auto;
 }
 
 
-.dept-page-search{
-    margin-inline:auto;
+.dept-page-search {
+    margin-inline: auto;
 }
 
-.dept-page-add{
+.dept-page-add {
     background-color: $card;
     padding-inline: 20px;
     padding-block: 5px;
     border-radius: 10px;
     transition: background-color 0.5s ease;
-    &:hover{
+
+    &:hover {
         background-color: $card_hover;
     }
 }
 
-.dept-add-text{
+.dept-add-text {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

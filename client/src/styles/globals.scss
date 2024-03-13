@@ -49,7 +49,7 @@ body {
 
 .main-layout {
   height: 100vh;
-  width: 100vw;
+  // width: 100vw;
   // display: grid;
   // grid-template:
   //   "hnav hnav" 56px
@@ -72,13 +72,13 @@ body {
   padding-block: 20px;
 }
 
-@media only screen and (max-width: 550px) {
-  .main-layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: 56px 1fr 0.1fr;
-    grid-template-areas:
-      "hnav"
-      "ct"
-      "aside";
-  }
-}
+// @media only screen and (max-width: 550px) {
+//   .main-layout {
+//     grid-template-columns: 1fr;
+//     grid-template-rows: 56px 1fr 0.1fr;
+//     grid-template-areas:
+//       "hnav"
+//       "ct"
+//       "aside";
+//   }
+// }
