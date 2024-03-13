@@ -60,7 +60,7 @@ export default function Layout({ children, getUserByToken }) {
     <Fragment>
       <section className="main-layout">
         <Header logout={logout} user={user} />
-        <Aside />
+        {/* <Aside /> */}
         <main className="main-content">{children}</main>
       </section>
     </Fragment>

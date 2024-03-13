@@ -8,7 +8,7 @@ export default function EditDept() {
   const { id } = router.query;
   return (
     <>
-      <h1>Edit Department {id}</h1>
+      <h1>แผนก {id}</h1>
     </>
   );
 }

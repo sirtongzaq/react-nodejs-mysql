@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const authRouter = require("./authservice");
 const depRouter = require("./deptservice");
 const actRouter = require("./activityservice");
-
+const createTables =require("./schema")
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -18,6 +18,31 @@ db.connect((err) => {
     return;
   }
   console.log(`Database connection is successful`);
+
+  db.query(createTables.createUsersTable(), (err) => {
+    if (err) {
+      console.error('Error creating users table:', err.message);
+    } else {
+      console.log('Users table created successfully');
+    }
+  });
+
+  db.query(createTables.createDepartmentsTable(), (err) => {
+    if (err) {
+      console.error('Error creating departments table:', err.message);
+    } else {
+      console.log('Departments table created successfully');
+    }
+  });
+
+  db.query(createTables.createActivitysTable(), (err) => {
+    if (err) {
+      console.error('Error creating activitys table:', err.message);
+    } else {
+      console.log('Activitys table created successfully');
+    }
+  });
+
   // Register routes after establishing database connection
   app.use("/auth", authRouter);
   app.use("/dept", depRouter);

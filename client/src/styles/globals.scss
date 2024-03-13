@@ -50,11 +50,11 @@ body {
 .main-layout {
   height: 100vh;
   width: 100vw;
-  display: grid;
-  grid-template:
-    "hnav hnav" 56px
-    "aside ct" / 200px;
-  grid-template-columns: 1;
+  // display: grid;
+  // grid-template:
+  //   "hnav hnav" 56px
+  //   "aside ct" / 200px;
+  // grid-template-columns: 1;
 }
 
 .aside {

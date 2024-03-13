@@ -1,8 +1,14 @@
 import Layout from "@/components/templates/layout";
 import authService from "@/services/authservice";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Page() {
-  return <div>test</div>;
+  const router = useRouter()
+  useEffect(()=>{
+    router.push('/dept')
+  },[])
+  return (<></>)
 }
 
 Page.getLayout = function getLayout(page) {

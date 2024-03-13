@@ -103,7 +103,7 @@ export default function Dept() {
                 </p>
               ))
             ) : (
-              <p>no data search</p>
+              <div>ไม่พบแผนกที่ค้นหา</div>
             )}
           </>
         ) : (

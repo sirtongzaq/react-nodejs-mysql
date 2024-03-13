@@ -4,24 +4,14 @@ import { Fragment, useEffect, useState } from "react";
 import modalStyle from "./modalstyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+
 export default function CardDept({ dept, handleDel }) {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   return (
     <Fragment>
       <div className="dept-card">
-        <div className="dept-name">{dept.dept_name}</div>
+        <div className="dept-name"  onClick={()=>router.push(`/dept/activity_dept?id=${dept.dept_id}`)} >{dept.dept_name}</div>
         <div className="dept-action">
           <div
             className="dept-edit"

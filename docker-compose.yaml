@@ -28,7 +28,7 @@ services:
       # MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_PASSWORD: admin
-      MYSQL_DATABASE: testDB
+      MYSQL_DATABASE: ropa
     ports:
       - "3306:3306"
     volumes:
@@ -38,6 +38,8 @@ services:
     restart: always
     ports:
       - 8080:8080
+    depends_on:
+      - db
 
   app:
     container_name: server
@@ -52,17 +54,17 @@ services:
     depends_on:
       - db
 
-  client:
-    container_name: client-ropa
-    build: ./client
-    # build:
-    #   context: ./client
-    #   dockerfile: dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-      - app
+  # client:
+  #   container_name: client-ropa
+  #   build: ./client
+  #   # build:
+  #   #   context: ./client
+  #   #   dockerfile: dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
+  #     - app
 
 volumes:
   mysqldata: 
