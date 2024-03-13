@@ -39,11 +39,13 @@ export default function RegisterPage() {
 
   return (
     <Fragment>
-      <RegisterForm
-        handleRegister={handleRegister}
-        handleBack={handleBack}
-        error={toastNoti.toasterror}
-      />
+      <div className="bg-login">
+        <RegisterForm
+          handleRegister={handleRegister}
+          handleBack={handleBack}
+          error={toastNoti.toasterror}
+        />
+      </div>
     </Fragment>
   );
 }

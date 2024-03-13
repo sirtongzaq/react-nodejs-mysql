@@ -26,7 +26,9 @@ export default function LoginPage() {
 
   return (
     <Fragment>
-      <LoginForm handleLogin={handleLogin} handleRegister={handleRegister} />
+      <div className="bg-login">
+        <LoginForm handleLogin={handleLogin} handleRegister={handleRegister} />
+      </div>
     </Fragment>
   );
 }

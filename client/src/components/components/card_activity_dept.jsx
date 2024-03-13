@@ -27,7 +27,7 @@ export default function CardActiDept({
                 <div className="dept-action">
                     <div
                         className="dept-edit"
-                        onClick={() => router.push(`/dept/edit_dept?id=${""}`)}
+                        onClick={() => router.push(`/dept/edit_activity?id=${act.act_id}`)}
                     >
                         <FontAwesomeIcon icon={SolidIcon.faPen} />
                     </div>

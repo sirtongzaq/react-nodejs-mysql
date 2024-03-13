@@ -1,11 +1,16 @@
 .dept-card {
-    background-color: white;
+    background-color: $card;
     border-radius: 10px;
     padding-block: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-block: 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    &:hover{
+        background-color: $card_hover;
+    }
 }
 
 .dept-action {
@@ -26,9 +31,9 @@
 }
 
 .dept-delete{
-    color: rgb(224, 89, 89);
+    color: $red;
     &:hover{
-        color: rgb(223, 69, 69);
+        color: $red_hover;
     }
 
 }

@@ -1,17 +1,18 @@
 import Layout from "@/components/templates/layout";
 import authService from "@/services/authservice";
 import { useRouter } from "next/router";
-export default function EditDept() {
+
+export default function EditAct() {
   const router = useRouter();
   const { id } = router.query;
   return (
     <>
-      <h1>แผนก {id}</h1>
+      <h1>กิจกรรม {id}</h1>
     </>
   );
 }
 
-EditDept.getLayout = function getLayout(page) {
+EditAct.getLayout = function getLayout(page) {
   const getUserByToken = async (token) => {
     try {
       const response = await authService.getUserFromToken(token);

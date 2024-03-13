@@ -43,7 +43,7 @@ export default function Dept() {
     try {
       await depService.delDepFromId(id);
       getDep();
-      toastNoti.toastsuccess("Delete dep successfuly");
+      toastNoti.toastsuccess("Delete department successfuly");
     } catch (e) {
       console.log("error", e);
       toastNoti.toasterror(e);

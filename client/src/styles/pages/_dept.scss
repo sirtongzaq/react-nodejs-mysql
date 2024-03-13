@@ -1,3 +1,5 @@
+@import "../core/varibles";
+
 .dept-add-search{
     padding-block: 10px;
     display: flex;
@@ -18,10 +20,14 @@ margin-inline: auto;
 }
 
 .dept-page-add{
-    background-color: white;
+    background-color: $card;
     padding-inline: 20px;
     padding-block: 5px;
     border-radius: 10px;
+    transition: background-color 0.5s ease;
+    &:hover{
+        background-color: $card_hover;
+    }
 }
 
 .dept-add-text{
