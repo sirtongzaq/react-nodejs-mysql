@@ -1,6 +1,8 @@
+
 import { useRouter } from "next/router";
 import { Fragment } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
 export default function Header({ logout, user }) {
   const router = useRouter()
   return (
@@ -26,6 +28,7 @@ export default function Header({ logout, user }) {
           }} className="header-logout">
             <span>              
               ออกจากระบบ
+             <span> <FontAwesomeIcon icon={SolidIcon.faRightFromBracket}></FontAwesomeIcon></span>
             </span>
           </div>
         </div>

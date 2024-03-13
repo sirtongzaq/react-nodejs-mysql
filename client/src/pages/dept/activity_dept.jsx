@@ -21,7 +21,7 @@ export default function ActivityDept() {
       const res = await depService.getDepFromId(id);
       setDept(res)
     } catch (e) {
-      router.back()
+      setDept([])
     }
   }
 
@@ -30,7 +30,7 @@ export default function ActivityDept() {
       const response = await actService.getActFromDeptId(id);
       setActivity(response);
     } catch (e) {
-      console.log("err",e)
+      setActivity([])
     }
   };
 
@@ -50,9 +50,9 @@ export default function ActivityDept() {
 
   const onDeleteAct = async (id) => {
     try {
-      // const res = await actService.d
+      const res = await actService.delActFromId(id)
       console.log('delete', id)
-      // getActivity()
+      getActivity()
     } catch (err) {
       console.log("err==>", err)
     }
@@ -63,7 +63,7 @@ export default function ActivityDept() {
   }, [filterAct])
 
   useEffect(() => {
-    console.log("dept", dept)
+    setDept(dept)
   }, [dept])
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function ActivityDept() {
         <SearchActiDept onChangeActList={onChangeSearch} />
       </div>
       <div
-        onClick={() => router.push("/dept/add_dept")}
+        onClick={() => router.push("/dept/add_activity_dept")}
         className="dept-page-add"
       >
         <div className="dept-add-text">

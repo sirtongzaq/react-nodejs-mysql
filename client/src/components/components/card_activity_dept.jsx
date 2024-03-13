@@ -14,6 +14,7 @@ export default function CardActiDept({
 
     const handleDeleteAct = (id) => {
         onDelete(id)
+        setOpenModal(false)
     }
 
     useEffect(() => {
