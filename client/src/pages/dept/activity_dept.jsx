@@ -10,6 +10,7 @@ import actService from "@/services/actservice";
 import depService from "@/services/deptservice";
 import toastNoti from "@/components/components/toast";
 import ActMeasure from "@/components/components/activity_measure";
+import ActInfoTable from "@/components/components/acitivity_info_table";
 export default function ActivityDept() {
   const router = useRouter();
   const { id, name } = router.query;
@@ -100,7 +101,7 @@ export default function ActivityDept() {
       <div className="dept-list">
         {onSearch ? (
           <Fragment>
-            {filterAct.length > 0 ? (<span>ค้นพบ {filterAct.length } กิจกรรม</span>):(<Fragment></Fragment>)}
+            {filterAct.length > 0 ? (<span>ค้นพบ {filterAct.length} กิจกรรม</span>) : (<Fragment></Fragment>)}
             {filterAct.length > 0 ? (
               <Fragment>
                 {filterAct.map((data, index) => (
@@ -129,7 +130,10 @@ export default function ActivityDept() {
           </Fragment>
         )}
       </div>
-    <ActMeasure></ActMeasure>
+      <ActMeasure ></ActMeasure>
+      <div className="actTable">
+        <ActInfoTable></ActInfoTable>
+      </div>
     </Fragment>
   );
 }
