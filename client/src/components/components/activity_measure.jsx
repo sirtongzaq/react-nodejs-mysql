@@ -13,9 +13,6 @@ export default function ActMeasure() {
     const [newValueOption, setNewValueOption] = useState('')
     const [selectValue, setSelectValue] = useState({})
 
-
-
-
     const handleInputChage = (value) => {
         console.log(value.toLowerCase().replace(/\W/g, ''))
         setNewValueOption(value)

@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, use, useEffect, useMemo, useState } from "react";
 
-export default function AddActInfoForm({ dept, handleSubmit }) {
+export default function AddActInfoForm({ dept, handleSubmit, currPage }) {
   const [formData, setFormData] = useState({
     act_name: "",
     datacontroller_firstname: "",
@@ -21,6 +21,9 @@ export default function AddActInfoForm({ dept, handleSubmit }) {
     recordreviewer_lastname: "",
   });
 
+  const [previousFormData, setPreviousFormData] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0)
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -38,6 +41,18 @@ export default function AddActInfoForm({ dept, handleSubmit }) {
       }));
     }
   }, [dept]);
+
+  useEffect(() => {
+    console.log("currPage", currPage)
+    setCurrentPage(currPage)
+  }, [currPage])
+
+
+  useEffect(() => {
+    console.log("f", formData)
+    setPreviousFormData(formData)
+  }, [formData])
+
   return (
     <Fragment>
       <div className="add-act-dept-container">

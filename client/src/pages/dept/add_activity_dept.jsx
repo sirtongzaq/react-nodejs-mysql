@@ -1,3 +1,5 @@
+import ActInfoTable from "@/components/components/acitivity_info_table";
+import ActMeasure from "@/components/components/activity_measure";
 import AddActInfoForm from "@/components/components/add_act_info_form";
 import toastNoti from "@/components/components/toast";
 import Layout from "@/components/templates/layout";
@@ -69,195 +71,33 @@ export default function AddActDept() {
   };
 
   useEffect(() => {
+    if (page == 0) {
+      router.back()
+    } else if (page > 3) {
+      setPage(page - 1)
+    }
+  }, [page]);
+
+  useEffect(() => {
     getDept();
     // setPage(1);
   }, [id]);
 
   return (
     <Fragment>
-      {/* <div className="add-act-dept-container">
-        <h1>เพิ่มกิจกรรม ของ department {id}</h1>
-        <form
-          onSubmit={handleSubmit}
-          className="act-dept-form"
-          id="add-dept-form"
-        >
-          <div className="add-act-card">
-            <h3>รายละเอียดกิจกรรม</h3>
-            <label>
-              act_name:
-              <input
-                type="text"
-                name="act_name"
-                value={formData.act_name}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              dept_name:
-              <input
-                type="text"
-                name="dept_name"
-                value={formData.dept_name}
-                onChange={handleChange}
-                required
-                disabled
-              />
-            </label>
-            <label>
-              recorder_firstname:
-              <input
-                type="text"
-                name="recorder_firstname"
-                value={formData.recorder_firstname}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              recorder_lastname:
-              <input
-                type="text"
-                name="recorder_lastname"
-                value={formData.recorder_lastname}
-                onChange={handleChange}
-                required
-              />
-            </label>
+      {page === 1 && <AddActInfoForm dept={dept} handleSubmit={handleSubmit} currPage={page} />}
+      {page == 2 && (
+        <Fragment>
+          <div className="actTable">
+            <ActInfoTable></ActInfoTable>
           </div>
-          <div className="add-act-card">
-            <h3>รายละเอียดผู้ควบคุมข้อมูลส่วนบุคคล</h3>
-            <label>
-              datacontroller_firstname:
-              <input
-                type="text"
-                name="datacontroller_firstname"
-                value={formData.datacontroller_firstname}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              datacontroller_lastname:
-              <input
-                type="text"
-                name="datacontroller_lastname"
-                value={formData.datacontroller_lastname}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              datacontroller_email:
-              <input
-                type="text"
-                name="datacontroller_email"
-                value={formData.datacontroller_email}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              datacontroller_number:
-              <input
-                type="text"
-                name="datacontroller_number"
-                value={formData.datacontroller_number}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              datacontroller_contact_place:
-              <input
-                type="text"
-                name="datacontroller_contact_place"
-                value={formData.datacontroller_contact_place}
-                onChange={handleChange}
-                required
-              />
-            </label>
+        </Fragment>)}
+      {page == 3 && (
+        <Fragment>
+          <div className="actTable">
+            <ActMeasure></ActMeasure>
           </div>
-          <div className="add-act-card">
-            <h3>รายละเอียดเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล</h3>
-            <label>
-              dpo_firstname:
-              <input
-                type="text"
-                name="dpo_firstname"
-                value={formData.dpo_firstname}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              dpo_lastname:
-              <input
-                type="text"
-                name="dpo_lastname"
-                value={formData.dpo_lastname}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              dpo_contact_place:
-              <input
-                type="text"
-                name="dpo_contact_place"
-                value={formData.dpo_contact_place}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              dpo_email:
-              <input
-                type="text"
-                name="dpo_email"
-                value={formData.dpo_email}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              dpo_phone:
-              <input
-                type="text"
-                name="dpo_phone"
-                value={formData.dpo_phone}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
-          <div className="add-act-card">
-            <h3>รายละเอียดผู้ตรวจสอบบันทึกรายการ</h3>
-            <label>
-              recordreviewer_firstname:
-              <input
-                type="text"
-                name="recordreviewer_firstname"
-                value={formData.recordreviewer_firstname}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              recordreviewer_lastname:
-              <input
-                type="text"
-                name="recordreviewer_lastname"
-                value={formData.recordreviewer_lastname}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
-        </form>
-      </div> */}
-      {page === 1 && <AddActInfoForm dept={dept} handleSubmit={handleSubmit} />}
+        </Fragment>)}
 
       <div className="flex-row">
         <button
@@ -267,14 +107,14 @@ export default function AddActDept() {
         >
           กลับ
         </button>
-        <button
+        {page != 3 ? (<button
           className="btn-submit-activity"
           type="submit"
           form="add-dept-form"
           onClick={nextPage}
         >
           ถัดไป
-        </button>
+        </button>) : (<Fragment></Fragment>)}
       </div>
     </Fragment>
   );
