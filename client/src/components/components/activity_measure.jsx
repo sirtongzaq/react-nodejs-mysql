@@ -10,24 +10,26 @@ export default function ActMeasure() {
 
 
     const [measureOptions, setMeasureOptions] = useState(options)
-    const [newValueOption,setNewValueOption] =useState('')
+    const [newValueOption, setNewValueOption] = useState('')
     const [selectValue, setSelectValue] = useState({})
 
 
-    const handleInputChage =(value)=>{
+
+
+    const handleInputChage = (value) => {
         console.log(value.toLowerCase().replace(/\W/g, ''))
         setNewValueOption(value)
     }
 
     const handleSelectChange = (selectValue) => {
-        console.log("selectValue",selectValue)
+        console.log("selectValue", selectValue)
         setSelectValue(selectValue)
     }
 
     const handleCreate = () => {
         const newOPtion = setMeasureOptions((prev) => [...prev, { value: newValueOption, label: newValueOption }])
         console.log(newOPtion, "newOprin")
-        setSelectValue({value: newValueOption, label: newValueOption})
+        setSelectValue({ value: newValueOption, label: newValueOption })
     }
 
     useEffect(() => {

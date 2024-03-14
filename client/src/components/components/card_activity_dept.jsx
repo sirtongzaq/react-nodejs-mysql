@@ -22,8 +22,9 @@ export default function CardActiDept({
     }, [act])
     return (
         <Fragment>
+            {/* onClick={() => router.push(`/dept/activity_dept?id=${""}`) */}
             <div className="dept-card">
-                <div className="dept-name" onClick={() => router.push(`/dept/activity_dept?id=${""}`)}>กิจกรรม {act.act_name}</div>
+                <div className="dept-name">กิจกรรม {act.act_name}</div>
                 <div className="dept-action">
                     <div
                         className="dept-edit"
