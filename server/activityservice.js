@@ -10,6 +10,7 @@ router.post("/create", async (req, res) => {
     datacontroller_lastname,
     datacontroller_email,
     datacontroller_number,
+    datacontroller_contact_place,
     recorder_firstname,
     recorder_lastname,
     dept_id,
@@ -27,6 +28,7 @@ router.post("/create", async (req, res) => {
       datacontroller_lastname,
       datacontroller_email,
       datacontroller_number,
+      datacontroller_contact_place,
       recorder_firstname,
       recorder_lastname,
       dept_id,
@@ -38,7 +40,7 @@ router.post("/create", async (req, res) => {
       dpo_number,
       recordreviewer_firstname,
       recordreviewer_lastname) 
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
   db.query(
     insertQuery,
     [
@@ -47,6 +49,7 @@ router.post("/create", async (req, res) => {
       datacontroller_lastname,
       datacontroller_email,
       datacontroller_number,
+      datacontroller_contact_place,
       recorder_firstname,
       recorder_lastname,
       dept_id,
@@ -77,7 +80,7 @@ router.get("/activitys", async (req, res) => {
   db.query(query, (err, result) => {
     if (err) {
       console.error("Error executing query:", err);
-      res.status(500).json({ message: "Error retrieving users" });
+      res.status(500).json({ message: "Error retrieving activitys" });
       return;
     }
     res.status(200).json(result);

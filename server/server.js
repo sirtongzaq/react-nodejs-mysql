@@ -6,7 +6,9 @@ const bodyParser = require("body-parser");
 const authRouter = require("./authservice");
 const depRouter = require("./deptservice");
 const actRouter = require("./activityservice");
-const createTables =require("./schema")
+const dataInActRouter = require("./datainactivityservice");
+const measRouter = require("./measuresservice");
+const createTables = require("./schema");
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -21,25 +23,41 @@ db.connect((err) => {
 
   db.query(createTables.createUsersTable(), (err) => {
     if (err) {
-      console.error('Error creating users table:', err.message);
+      console.error("Error creating users table:", err.message);
     } else {
-      console.log('Users table created successfully');
+      console.log("Users table created successfully");
     }
   });
 
   db.query(createTables.createDepartmentsTable(), (err) => {
     if (err) {
-      console.error('Error creating departments table:', err.message);
+      console.error("Error creating departments table:", err.message);
     } else {
-      console.log('Departments table created successfully');
+      console.log("Departments table created successfully");
     }
   });
 
   db.query(createTables.createActivitysTable(), (err) => {
     if (err) {
-      console.error('Error creating activitys table:', err.message);
+      console.error("Error creating activitys table:", err.message);
     } else {
-      console.log('Activitys table created successfully');
+      console.log("Activitys table created successfully");
+    }
+  });
+
+  db.query(createTables.createDataInActivityTable(), (err) => {
+    if (err) {
+      console.error("Error creating datainactivity table:", err.message);
+    } else {
+      console.log("Datainactivity table created successfully");
+    }
+  });
+
+  db.query(createTables.createMeasuresTable(), (err) => {
+    if (err) {
+      console.error("Error creating measures table:", err.message);
+    } else {
+      console.log("Measures table created successfully");
     }
   });
 
@@ -47,7 +65,8 @@ db.connect((err) => {
   app.use("/auth", authRouter);
   app.use("/dept", depRouter);
   app.use("/act", actRouter);
-
+  app.use("/datainact", dataInActRouter);
+  app.use("/meas", measRouter);
   // Start the server
   app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
