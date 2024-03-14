@@ -1,17 +1,6 @@
-import AddActInfoForm from "@/components/components/add_act_info_form";
-import toastNoti from "@/components/components/toast";
-import Layout from "@/components/templates/layout";
-import actService from "@/services/actservice";
-import authService from "@/services/authservice";
-import depService from "@/services/deptservice";
-import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
-export default function AddActDept() {
-  const router = useRouter();
-  const { id } = router.query;
-  const [dept, setDept] = useState([]);
-  const [page, setPage] = useState(1);
+export default function AddActInfoForm({ dept, handleSubmit }) {
   const [formData, setFormData] = useState({
     act_name: "",
     datacontroller_firstname: "",
@@ -40,45 +29,21 @@ export default function AddActDept() {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await actService.createAct(formData);
-      console.log(response.data);
-      toastNoti.toastsuccess("Activity create succesfuly");
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toastNoti.toasterror("Activity create fail");
-    }
-  };
-
-  const getDept = async () => {
-    try {
-      const res = await depService.getDepFromId(id);
-      setDept(res);
-    } catch (e) {
-      setDept([]);
-    }
-  };
-  const nextPage = () => {
-    setPage(page + 1);
-  };
-
-  const prevPage = () => {
-    setPage(page - 1);
-  };
-
   useEffect(() => {
-    getDept();
-    // setPage(1);
-  }, [id]);
-
+    if (dept) {
+      setFormData((prevState) => ({
+        ...prevState,
+        dept_id: dept.dept_id,
+        dept_name: dept.dept_name,
+      }));
+    }
+  }, [dept]);
   return (
     <Fragment>
-      {/* <div className="add-act-dept-container">
-        <h1>เพิ่มกิจกรรม ของ department {id}</h1>
+      <div className="add-act-dept-container">
+        <h1>เพิ่มกิจกรรม ของ department {dept.dept_id}</h1>
         <form
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           className="act-dept-form"
           id="add-dept-form"
         >
@@ -256,38 +221,19 @@ export default function AddActDept() {
             </label>
           </div>
         </form>
-      </div> */}
-      {page === 1 && <AddActInfoForm dept={dept} handleSubmit={handleSubmit} />}
-
-      <div className="flex-row">
-        <button
-          className="btn-submit-activity"
-          type="submit"
-          onClick={prevPage}
-        >
-          กลับ
-        </button>
-        <button
-          className="btn-submit-activity"
-          type="submit"
-          form="add-dept-form"
-          onClick={nextPage}
-        >
-          ถัดไป
-        </button>
+        {/* <div className="flex-row">
+          <button className="btn-submit-activity" type="submit">
+            กลับ
+          </button>
+          <button
+            className="btn-submit-activity"
+            type="submit"
+            form="add-dept-form"
+          >
+            ถัดไป
+          </button>
+        </div> */}
       </div>
     </Fragment>
   );
 }
-
-AddActDept.getLayout = function getLayout(page) {
-  const getUserByToken = async (token) => {
-    try {
-      const response = await authService.getUserFromToken(token);
-      return response;
-    } catch (e) {
-      console.log("error", e);
-    }
-  };
-  return <Layout getUserByToken={getUserByToken}>{page}</Layout>;
-};
