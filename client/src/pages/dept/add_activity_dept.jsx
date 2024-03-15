@@ -15,24 +15,26 @@ export default function AddActDept() {
   const [dept, setDept] = useState([]);
   const [page, setPage] = useState(1);
   const [formData, setFormData] = useState(null);
+  const [formDataInfo, setFormDataInfo] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  const getsaveDataLocalStorage = async () => {
+    try {
+      const prvdept = localStorage.getItem("deptDataInfo");
+      const formDataJson = JSON.parse(prvdept);
+      if (formDataJson) {
+        setFormDataInfo(formDataJson);
+      }
+    } catch (e) {
+      console.log("err", e);
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const saveDataLocalStorage = () => {
     try {
-      const response = await actService.createAct(formData);
-      console.log(response.data);
-      toastNoti.toastsuccess("Activity create succesfuly");
+      const formDataJson = JSON.stringify(formData);
+      localStorage.setItem("deptDataInfo", formDataJson);
     } catch (error) {
-      console.error("Error submitting form:", error);
-      toastNoti.toasterror("Activity create fail");
+      console.error("Error saving data to localStorage:", error);
     }
   };
 
@@ -53,26 +55,27 @@ export default function AddActDept() {
   };
 
   const handlePrevFrom = (formData) => {
-    setFormData(formData)
-  }
+    setFormData(formData);
+  };
 
   const onPageChange = (formData) => {
-    setFormData(formData)
-  }
+    setFormData(formData);
+  };
 
   useEffect(() => {
-    console.log("formData", formData)
-  }, [formData])
+    // console.log("formData", formData);
+  }, [formData]);
 
   useEffect(() => {
-    setFormData(formData)
-  }, [formData])
+    setFormData(formData);
+  }, [formData]);
 
   useEffect(() => {
+    getsaveDataLocalStorage();
     if (page == 0) {
-      router.back()
+      router.back();
     } else if (page > 3) {
-      setPage(page - 1)
+      setPage(page - 1);
     }
   }, [page]);
 
@@ -81,21 +84,39 @@ export default function AddActDept() {
     // setPage(1);
   }, [id]);
 
+  useEffect(() => {
+    console.log("formData2", formDataInfo);
+  }, [formDataInfo]);
+
   return (
     <Fragment>
-      {page === 1 && <AddActInfoForm dept={dept} handleSubmit={handleSubmit} currPage={page} handlePrevFrom={handlePrevFrom} />}
+      {page === 1 && (
+        <AddActInfoForm
+          dept={dept}
+          handleSubmit={saveDataLocalStorage}
+          currPage={page}
+          handlePrevFrom={handlePrevFrom}
+          formDataInfo={formDataInfo}
+        />
+      )}
       {page == 2 && (
         <Fragment>
           <div className="actTable">
-            <ActInfoTable formData={formData} onPageChange={onPageChange} currPage={page} ></ActInfoTable>
+            <ActInfoTable
+              formData={formData}
+              onPageChange={onPageChange}
+              currPage={page}
+            ></ActInfoTable>
           </div>
-        </Fragment>)}
+        </Fragment>
+      )}
       {page == 3 && (
         <Fragment>
           <div className="actTable">
             <ActMeasure></ActMeasure>
           </div>
-        </Fragment>)}
+        </Fragment>
+      )}
 
       <div className="flex-row">
         <button
@@ -105,14 +126,18 @@ export default function AddActDept() {
         >
           กลับ
         </button>
-        {page != 3 ? (<button
-          className="btn-submit-activity"
-          type="submit"
-          form="add-dept-form"
-          onClick={nextPage}
-        >
-          ถัดไป
-        </button>) : (<Fragment></Fragment>)}
+        {page != 3 ? (
+          <button
+            className="btn-submit-activity"
+            type="submit"
+            form="add-dept-form"
+            onClick={nextPage}
+          >
+            ถัดไป
+          </button>
+        ) : (
+          <Fragment></Fragment>
+        )}
       </div>
     </Fragment>
   );

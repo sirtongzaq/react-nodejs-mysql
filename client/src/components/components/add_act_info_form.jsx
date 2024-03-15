@@ -1,6 +1,12 @@
 import React, { Fragment, use, useEffect, useMemo, useState } from "react";
 
-export default function AddActInfoForm({ dept, handleSubmit, currPage,handlePrevFrom }) {
+export default function AddActInfoForm({
+  dept,
+  handleSubmit,
+  currPage,
+  handlePrevFrom,
+  formDataInfo,
+}) {
   const [formData, setFormData] = useState({
     act_name: "",
     datacontroller_firstname: "",
@@ -22,7 +28,7 @@ export default function AddActInfoForm({ dept, handleSubmit, currPage,handlePrev
   });
 
   const [previousFormData, setPreviousFormData] = useState(null);
-  const [currentPage, setCurrentPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,26 +46,28 @@ export default function AddActInfoForm({ dept, handleSubmit, currPage,handlePrev
         dept_name: dept.dept_name,
       }));
     }
+    if (formDataInfo) {
+      setFormData(formDataInfo);
+    }
   }, [dept]);
 
   useEffect(() => {
-    console.log("currPage", currPage)
-    setCurrentPage(currPage)
-  }, [currPage])
-
+    // console.log("currPage", currPage);
+    setCurrentPage(currPage);
+  }, [currPage]);
 
   useEffect(() => {
-    console.log("f", formData)
-    setPreviousFormData(formData)
-    handlePrevFrom(formData)
-  }, [formData])
+    // console.log("f", formData)
+    setPreviousFormData(formData);
+    handlePrevFrom(formData);
+  }, [formData]);
 
   return (
     <Fragment>
       <div className="add-act-dept-container">
         <h1>เพิ่มกิจกรรม ของ department {dept.dept_id}</h1>
         <form
-          // onSubmit={handleSubmit}
+          onSubmit={handleSubmit()}
           className="act-dept-form"
           id="add-dept-form"
         >
@@ -203,11 +211,11 @@ export default function AddActInfoForm({ dept, handleSubmit, currPage,handlePrev
               />
             </label>
             <label>
-              dpo_phone:
+              dpo_number:
               <input
                 type="text"
-                name="dpo_phone"
-                value={formData.dpo_phone}
+                name="dpo_number"
+                value={formData.dpo_number}
                 onChange={handleChange}
                 required
               />
@@ -237,18 +245,6 @@ export default function AddActInfoForm({ dept, handleSubmit, currPage,handlePrev
             </label>
           </div>
         </form>
-        {/* <div className="flex-row">
-          <button className="btn-submit-activity" type="submit">
-            กลับ
-          </button>
-          <button
-            className="btn-submit-activity"
-            type="submit"
-            form="add-dept-form"
-          >
-            ถัดไป
-          </button>
-        </div> */}
       </div>
     </Fragment>
   );

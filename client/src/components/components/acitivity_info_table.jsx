@@ -124,14 +124,14 @@ export default function ActInfoTable({ formData, currPage, onPageChange }) {
     //    }
     // },[currPage])
 
-    useEffect(() => {
-        console.log("form", form)
-    }, [form])
+    // useEffect(() => {
+    //     console.log("form", form)
+    // }, [form])
 
-    useEffect(() => {
-        setForm(formData)
-        console.log("formDataTable", formData)
-    }, [formData])
+    // useEffect(() => {
+    //     setForm(formData)
+    //     console.log("formDataTable", formData)
+    // }, [formData])
 
     return (
         <Fragment>
