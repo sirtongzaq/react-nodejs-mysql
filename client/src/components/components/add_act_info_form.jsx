@@ -1,6 +1,6 @@
 import React, { Fragment, use, useEffect, useMemo, useState } from "react";
 
-export default function AddActInfoForm({ dept, handleSubmit, currPage }) {
+export default function AddActInfoForm({ dept, handleSubmit, currPage,handlePrevFrom }) {
   const [formData, setFormData] = useState({
     act_name: "",
     datacontroller_firstname: "",
@@ -51,6 +51,7 @@ export default function AddActInfoForm({ dept, handleSubmit, currPage }) {
   useEffect(() => {
     console.log("f", formData)
     setPreviousFormData(formData)
+    handlePrevFrom(formData)
   }, [formData])
 
   return (

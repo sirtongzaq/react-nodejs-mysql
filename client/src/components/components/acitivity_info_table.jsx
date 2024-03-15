@@ -1,7 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import DATA from "./data";
-export default function ActInfoTable() {
+export default function ActInfoTable({ formData, currPage, onPageChange }) {
 
     const columns = [
 
@@ -45,18 +45,34 @@ export default function ActInfoTable() {
                 {
                     header: 'บุคคลที่มีสิทธิเข้าถึงข้อมูล',
                     accessorKey: 'task',
+                    style: {
+                        textAlign: "center",
+                        whiteSpace: "unset",
+                    },
                 },
                 {
                     header: 'เงื่อนไขเกี่ยวกับบุคคลที่มีสิทธิเข้าถึงข้อมูล',
                     accessorKey: 'task',
+                    style: {
+                        textAlign: "center",
+                        whiteSpace: "unset",
+                    },
                 },
                 {
                     header: 'วิธัการเข้าถึงข้อมูลส่วนบุคคล',
                     accessorKey: 'task',
+                    style: {
+                        textAlign: "center",
+                        whiteSpace: "unset",
+                    },
                 },
                 {
                     header: 'เงื่อนไขในการเข้าถึงข้อมูล',
                     accessorKey: 'task',
+                    style: {
+                        textAlign: "center",
+                        whiteSpace: "unset",
+                    },
                 },
             ]
         },
@@ -78,27 +94,53 @@ export default function ActInfoTable() {
         },
         {
             header: 'ลบ/แก้ไข',
-            cell: (() => (<Fragment><span>ลบ</span> <span>แก้ไข</span></Fragment>))
+            cell: (() => (
+                <Fragment>
+                    <div className="edit-delete-row">
+                        <span className="edit-row-table">แก้ไข</span>
+                        <span className="delete-row-table">ลบ</span> 
+                    </div>
+                </Fragment>))
         },
 
     ]
 
 
-    const [data, setData] = useState(DATA)
+    const data = useMemo(() => DATA, [])
+    const [form, setForm] = useState(null)
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel()
     })
 
+    // const handlePageChange =()=>{
+    //     onPageChange(form)
+    // }
+
+    // useEffect(()=>{
+    //    if(currPage == 2){
+    //     handlePageChange()
+    //    }
+    // },[currPage])
+
+    useEffect(() => {
+        console.log("form", form)
+    }, [form])
+
+    useEffect(() => {
+        setForm(formData)
+        console.log("formDataTable", formData)
+    }, [formData])
+
     return (
         <Fragment>
             <table>
                 <thead>
                     {table.getHeaderGroups().map((headerG) => (
-                        <tr >
+                        <tr key={headerG.id} >
                             {headerG.headers.map((header) =>
-                                <th >
+                                <th colSpan={header.colSpan} >
                                     {header.isPlaceholder ? null : flexRender(
                                         header.column.columnDef.header,
                                         header.getContext()

@@ -14,25 +14,7 @@ export default function AddActDept() {
   const { id } = router.query;
   const [dept, setDept] = useState([]);
   const [page, setPage] = useState(1);
-  const [formData, setFormData] = useState({
-    act_name: "",
-    datacontroller_firstname: "",
-    datacontroller_lastname: "",
-    datacontroller_email: "",
-    datacontroller_number: "",
-    datacontroller_contact_place: "",
-    recorder_firstname: "",
-    recorder_lastname: "",
-    dept_id: "",
-    dept_name: "",
-    dpo_firstname: "",
-    dpo_lastname: "",
-    dpo_contact_place: "",
-    dpo_email: "",
-    dpo_number: "",
-    recordreviewer_firstname: "",
-    recordreviewer_lastname: "",
-  });
+  const [formData, setFormData] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,6 +52,22 @@ export default function AddActDept() {
     setPage(page - 1);
   };
 
+  const handlePrevFrom = (formData) => {
+    setFormData(formData)
+  }
+
+  const onPageChange = (formData) => {
+    setFormData(formData)
+  }
+
+  useEffect(() => {
+    console.log("formData", formData)
+  }, [formData])
+
+  useEffect(() => {
+    setFormData(formData)
+  }, [formData])
+
   useEffect(() => {
     if (page == 0) {
       router.back()
@@ -85,11 +83,11 @@ export default function AddActDept() {
 
   return (
     <Fragment>
-      {page === 1 && <AddActInfoForm dept={dept} handleSubmit={handleSubmit} currPage={page} />}
+      {page === 1 && <AddActInfoForm dept={dept} handleSubmit={handleSubmit} currPage={page} handlePrevFrom={handlePrevFrom} />}
       {page == 2 && (
         <Fragment>
           <div className="actTable">
-            <ActInfoTable></ActInfoTable>
+            <ActInfoTable formData={formData} onPageChange={onPageChange} currPage={page} ></ActInfoTable>
           </div>
         </Fragment>)}
       {page == 3 && (
