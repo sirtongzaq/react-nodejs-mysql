@@ -49,7 +49,7 @@ export default function AddActInfoForm({
     if (formDataInfo) {
       setFormData(formDataInfo);
     }
-  }, [dept]);
+  }, [formDataInfo, dept]);
 
   useEffect(() => {
     // console.log("currPage", currPage);

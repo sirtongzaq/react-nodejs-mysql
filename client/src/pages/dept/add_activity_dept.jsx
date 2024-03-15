@@ -53,6 +53,12 @@ export default function AddActDept() {
     }
   };
   const nextPage = () => {
+    for (const key in formData) {
+      if (formData.hasOwnProperty(key) && formData[key] === "") {
+        toastNoti.toasterror("Please fill all the fields in the form");
+        return;
+      }
+    }
     setPage(page + 1);
   };
 
