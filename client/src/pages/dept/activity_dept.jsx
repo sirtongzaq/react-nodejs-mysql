@@ -11,6 +11,7 @@ import depService from "@/services/deptservice";
 import toastNoti from "@/components/components/toast";
 import ActMeasure from "@/components/components/activity_measure";
 import ActInfoTable from "@/components/components/acitivity_info_table";
+import MeasuresService from "@/services/measuresservice";
 export default function ActivityDept() {
   const router = useRouter();
   const { id, name } = router.query;
@@ -18,6 +19,7 @@ export default function ActivityDept() {
   const [dept, setDept] = useState([]);
   const [filterAct, setFilterAct] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
+  const [actId,setId] =useState("")
 
   const getDept = async () => {
     try {
@@ -61,13 +63,9 @@ export default function ActivityDept() {
     }
   };
 
-  useEffect(() => {
-    console.log("ac", filterAct);
-  }, [filterAct]);
 
   useEffect(() => {
     setDept(dept);
-    console.log("dept", dept);
   }, [dept]);
 
   useEffect(() => {
@@ -129,10 +127,6 @@ export default function ActivityDept() {
             )}
           </Fragment>
         )}
-      </div>
-      <ActMeasure ></ActMeasure>
-      <div className="actTable">
-        <ActInfoTable></ActInfoTable>
       </div>
     </Fragment>
   );

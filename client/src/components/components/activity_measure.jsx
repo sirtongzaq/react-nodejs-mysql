@@ -1,3 +1,4 @@
+import MeasuresService from "@/services/measuresservice";
 import { Fragment, useEffect, useState } from "react";
 import CreatableSelect from 'react-select/creatable';
 
@@ -6,12 +7,13 @@ const options = [
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' }
 ]
-export default function ActMeasure() {
+export default function ActMeasure({measure}) {
 
 
     const [measureOptions, setMeasureOptions] = useState(options)
     const [newValueOption, setNewValueOption] = useState('')
     const [selectValue, setSelectValue] = useState({})
+    const [measureArr, setMeasureArr] = useState([])
 
     const handleInputChage = (value) => {
         console.log(value.toLowerCase().replace(/\W/g, ''))
@@ -29,6 +31,18 @@ export default function ActMeasure() {
         setSelectValue({ value: newValueOption, label: newValueOption })
     }
 
+   
+
+    useEffect(() => {
+        setMeasureArr(measure)
+    }, [measure])
+
+    // useEffect(()=>{
+    //     filterOr()
+    //     filtertech()
+    //     filterPhy()
+    // },[measureArr])
+
     useEffect(() => {
         console.log(selectValue)
     }, [selectValue])
@@ -36,12 +50,12 @@ export default function ActMeasure() {
         <Fragment>
             <div>
                 <CreatableSelect isClearable
-                    options={measureOptions}
+                    options={measureArr}
                     onInputChange={handleInputChage}
                     onChange={handleSelectChange}
                     onCreateOption={handleCreate}
                     value={selectValue}
                 />
-            </div>
+            </div>     
         </Fragment>)
 }
