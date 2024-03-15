@@ -6,8 +6,9 @@ import Layout from "@/components/templates/layout";
 import actService from "@/services/actservice";
 import authService from "@/services/authservice";
 import depService from "@/services/deptservice";
+import MeasuresService from "@/services/measuresservice";
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, use, useEffect, useState } from "react";
 
 export default function AddActDept() {
   const router = useRouter();
@@ -16,6 +17,11 @@ export default function AddActDept() {
   const [page, setPage] = useState(1);
   const [formData, setFormData] = useState(null);
   const [formDataInfo, setFormDataInfo] = useState(null);
+  const [measure, setMeasure] = useState([]);
+  const [actId, setId] = useState("");
+  const [orMeasure, setOrMeasure] = useState([]);
+  const [techMeasure, setTechMearue] = useState([]);
+  const [phyMeasure, setPhyMearue] = useState([]);
 
   const getsaveDataLocalStorage = async () => {
     try {
@@ -62,6 +68,55 @@ export default function AddActDept() {
     setFormData(formData);
   };
 
+  const getMeasure = async () => {
+    try {
+      const res = await MeasuresService.getMeasures();
+      setMeasure(res);
+    } catch (e) {
+      setMeasure([]);
+      console.log(e);
+    }
+  };
+
+  const filterOr = () => {
+    const option = [];
+    measure.map((ele) => {
+      const opt = {
+        value: ele.meas_org,
+        label: ele.meas_org,
+      };
+
+      option.push(opt);
+    });
+    setOrMeasure(option);
+  };
+
+  const filtertech = () => {
+    const option = [];
+    measure.map((ele) => {
+      const opt = {
+        value: ele.meas_technical,
+        label: ele.meas_technical,
+      };
+
+      option.push(opt);
+    });
+    setTechMearue(option);
+  };
+
+  const filterPhy = () => {
+    const option = [];
+    measure.map((ele) => {
+      const opt = {
+        value: ele.meas_physic,
+        label: ele.meas_physic,
+      };
+
+      option.push(opt);
+    });
+    setPhyMearue(option);
+  };
+
   useEffect(() => {
     // console.log("formData", formData);
   }, [formData]);
@@ -81,12 +136,19 @@ export default function AddActDept() {
 
   useEffect(() => {
     getDept();
-    // setPage(1);
+    getMeasure();
   }, [id]);
 
   useEffect(() => {
     console.log("formData2", formDataInfo);
   }, [formDataInfo]);
+
+  useEffect(() => {
+    console.log(measure);
+    filterOr();
+    filtertech();
+    filterPhy();
+  }, [measure]);
 
   return (
     <Fragment>
@@ -112,8 +174,10 @@ export default function AddActDept() {
       )}
       {page == 3 && (
         <Fragment>
-          <div className="actTable">
-            <ActMeasure></ActMeasure>
+          <div className="">
+            <ActMeasure measure={orMeasure}></ActMeasure>
+            <ActMeasure measure={techMeasure}></ActMeasure>
+            <ActMeasure measure={phyMeasure}></ActMeasure>
           </div>
         </Fragment>
       )}
