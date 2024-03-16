@@ -1,0 +1,60 @@
+.add-new-row-form-card {
+    padding: 10px;
+    margin: 5px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 700px;
+
+    label {}
+
+    input {
+        height: 44px;
+        background-color: rgba(5, 6, 15, 0.0392156863);
+        border-radius: 0.5rem;
+        padding: 0 1rem;
+        border: 2px solid transparent;
+        font-size: 1rem;
+        outline: none;
+        width: 300px;
+
+    }
+
+    input:focus {
+        border-color: $primary-1;
+    }
+
+    .add-new-row-submit-btn {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background-color: #001769;
+        padding: 10px 20px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        border-radius: 5px;
+        transition: all ease 0.1s;
+        box-shadow: 0px 5px 0px 0px rgba(0, 23, 105, 0.3137254902);
+        margin-block: 10px;
+    }
+}
+
+.close-button-new-role {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color:  rgb(224, 89, 89);
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+    transition: all ease 0.1s;
+    margin-block: 10px;
+    border-radius: 50%;
+    &:hover{
+        background-color: rgb(223, 69, 69);
+    }
+}

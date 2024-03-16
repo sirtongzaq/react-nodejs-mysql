@@ -4,6 +4,9 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { Box, Modal } from "@mui/material";
+import modalStyle from "./modalstyle";
+import EditRowTable from "./edit_row_table";
 export default function ActInfoTable({
   formData,
   currPage,
@@ -109,7 +112,7 @@ export default function ActInfoTable({
       cell: ({ row }) => (
         <Fragment>
           <div className="edit-delete-row">
-            <span className="edit-row-table">แก้ไข</span>
+            <span className="edit-row-table" onClick={() => { handleClickEdit(row.index) }}>แก้ไข</span>
             <span
               className="delete-row-table"
               onClick={() => handleDeleteRow(row.index)}
@@ -121,6 +124,17 @@ export default function ActInfoTable({
       ),
     },
   ];
+
+  const [openModalCreate, setOpenModalCreate] = useState(false);
+  const [editRow,setEditRow] = useState([])
+
+  const handleClickEdit = (index) => {
+    const newDataArray = [...data];
+    console.log(newDataArray[index])
+    const editData = newDataArray[index]
+    setEditRow(editData)
+    setOpenModalCreate((prev) => !prev)
+  }
 
   const handleDeleteRow = (index) => {
     const newDataArray = [...data];
@@ -173,9 +187,9 @@ export default function ActInfoTable({
                   {header.isPlaceholder
                     ? null
                     : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
                 </th>
               ))}
             </tr>
@@ -194,6 +208,22 @@ export default function ActInfoTable({
           ))}
         </tbody>
       </table>
+
+      <Modal open={openModalCreate}>
+        <Box sx={modalStyle.boxStyle}>
+          <button
+            onClick={() => {
+              setOpenModalCreate(!openModalCreate);
+            }}
+            className="close-button-new-role"
+          >
+            X
+          </button>
+          {/* <EditRowTable onTableData={editRow}>
+
+          </EditRowTable> */}
+        </Box>
+      </Modal>
     </Fragment>
   );
 }

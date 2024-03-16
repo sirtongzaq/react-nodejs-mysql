@@ -69,6 +69,10 @@ export default function AddActDept() {
     }
   };
 
+  const onCloseModal = () => {
+    setOpenModalCreate((prev) => !prev);
+  }
+
   const getsaveDataLocalStorage = async () => {
     try {
       const prvdept = localStorage.getItem("deptDataInfo");
@@ -255,11 +259,13 @@ export default function AddActDept() {
                   onClick={() => {
                     setOpenModalCreate(!openModalCreate);
                   }}
+                  className="close-button-new-role"
                 >
-                  ปิด
+                  X
                 </button>
                 <NewRowTable
                   handleDataTable={onDataTable}
+                  onCloseModal={onCloseModal}
                   onTableData={tableData}
                   actId={actId}
                 />
