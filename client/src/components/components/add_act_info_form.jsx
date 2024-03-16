@@ -65,7 +65,10 @@ export default function AddActInfoForm({
   return (
     <Fragment>
       <div className="add-act-dept-container">
-        <h1>เพิ่มกิจกรรม ของ department {dept.dept_id}</h1>
+        <div className="header-title">
+          <h1>เพิ่มกิจกรรม ของ department {dept.dept_id}</h1>
+        </div>
+
         <form
           onSubmit={handleSubmit()}
           className="act-dept-form"
@@ -74,7 +77,7 @@ export default function AddActInfoForm({
           <div className="add-act-card">
             <h3>รายละเอียดกิจกรรม</h3>
             <label>
-              act_name:
+              กิจกรรมงานที่บันทึกรายการ
               <input
                 type="text"
                 name="act_name"
@@ -84,7 +87,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              dept_name:
+              หน่วยงานที่บันทึกรายการ
               <input
                 type="text"
                 name="dept_name"
@@ -95,7 +98,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              recorder_firstname:
+              ชื่อจริงผู้บันทึกรายการ
               <input
                 type="text"
                 name="recorder_firstname"
@@ -105,7 +108,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              recorder_lastname:
+              นามสกุลผู้บันทึกรายการ
               <input
                 type="text"
                 name="recorder_lastname"
@@ -118,7 +121,7 @@ export default function AddActInfoForm({
           <div className="add-act-card">
             <h3>รายละเอียดผู้ควบคุมข้อมูลส่วนบุคคล</h3>
             <label>
-              datacontroller_firstname:
+              ชื่อจริงผู้ควบคุมข้อมูล
               <input
                 type="text"
                 name="datacontroller_firstname"
@@ -128,7 +131,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              datacontroller_lastname:
+              นามสกุลผู้ควบคุมข้อมูลส่วนบุคคล
               <input
                 type="text"
                 name="datacontroller_lastname"
@@ -138,7 +141,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              datacontroller_email:
+              อีเมลแอดเดรสผู้ควบคุมข้อมูลส่วนบุคคล
               <input
                 type="text"
                 name="datacontroller_email"
@@ -148,7 +151,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              datacontroller_number:
+              หมายเลขโทรศัพท์ผู้ควบคุมข้อมูลส่วนบุคคล
               <input
                 type="text"
                 name="datacontroller_number"
@@ -158,7 +161,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              datacontroller_contact_place:
+              ที่ตั้งของสถานที่ติดต่อผู้ควบคุมข้อมูลส่วนบุคคล
               <input
                 type="text"
                 name="datacontroller_contact_place"
@@ -171,7 +174,7 @@ export default function AddActInfoForm({
           <div className="add-act-card">
             <h3>รายละเอียดเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล</h3>
             <label>
-              dpo_firstname:
+              ชื่อจริงเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล
               <input
                 type="text"
                 name="dpo_firstname"
@@ -181,7 +184,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              dpo_lastname:
+              นามสกุลเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล
               <input
                 type="text"
                 name="dpo_lastname"
@@ -191,17 +194,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              dpo_contact_place:
-              <input
-                type="text"
-                name="dpo_contact_place"
-                value={formData.dpo_contact_place}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              dpo_email:
+              อีเมลแอดเดรสเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล
               <input
                 type="text"
                 name="dpo_email"
@@ -211,7 +204,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              dpo_number:
+              หมายเลขโทรศัพท์เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล
               <input
                 type="text"
                 name="dpo_number"
@@ -220,11 +213,21 @@ export default function AddActInfoForm({
                 required
               />
             </label>
+            <label>
+              ที่ตั้งของสถานที่ติดต่อเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล
+              <input
+                type="text"
+                name="dpo_contact_place"
+                value={formData.dpo_contact_place}
+                onChange={handleChange}
+                required
+              />
+            </label>
           </div>
           <div className="add-act-card">
             <h3>รายละเอียดผู้ตรวจสอบบันทึกรายการ</h3>
             <label>
-              recordreviewer_firstname:
+              ชื่อจริงผู้ตรวจสอบบันทึกรายการ
               <input
                 type="text"
                 name="recordreviewer_firstname"
@@ -234,7 +237,7 @@ export default function AddActInfoForm({
               />
             </label>
             <label>
-              recordreviewer_lastname:
+              นามสกุลผู้ตรวจสอบบันทึกรายการ
               <input
                 type="text"
                 name="recordreviewer_lastname"

@@ -6,7 +6,9 @@ export default function AddDeptForm({ handleSubmit }) {
   return (
     <Fragment>
       <div className="adddept-conrainer">
-        <div className="adddept-header">เพิ่มแผนก</div>
+        <div className="adddept-header">
+          <h1>เพิ่มแผนก</h1>
+        </div>
         <form
           className="adddept-card"
           onSubmit={(e) => {
@@ -14,7 +16,7 @@ export default function AddDeptForm({ handleSubmit }) {
             setDeptName("");
           }}
         >
-          <div>ชื่อแผนก</div>
+          <label>ชื่อแผนก</label>
           <input
             type="text"
             placeholder=""
@@ -22,7 +24,9 @@ export default function AddDeptForm({ handleSubmit }) {
             onChange={(e) => setDeptName(e.target.value)}
             required
           />
-          <button type="submit">บันทึก</button>
+          <button className="btn-submit-activity" type="submit">
+            บันทึก
+          </button>
         </form>
       </div>
     </Fragment>
