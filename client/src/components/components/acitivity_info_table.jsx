@@ -136,6 +136,14 @@ export default function ActInfoTable({
     setOpenModalCreate((prev) => !prev)
   }
 
+  const onDataTable = (value) => {
+    if (value) {
+      setEditRow(value);
+    } else {
+      console.log("noDataTable");
+    }
+  };
+
   const handleDeleteRow = (index) => {
     const newDataArray = [...data];
     newDataArray.splice(index, 1);
@@ -219,9 +227,9 @@ export default function ActInfoTable({
           >
             X
           </button>
-          {/* <EditRowTable onTableData={editRow}>
+          <EditRowTable onTableData={editRow} handleDataTable={onDataTable}>
 
-          </EditRowTable> */}
+          </EditRowTable>
         </Box>
       </Modal>
     </Fragment>

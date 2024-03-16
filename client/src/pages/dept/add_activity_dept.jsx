@@ -277,6 +277,7 @@ export default function AddActDept() {
               currPage={page}
               newData={tableData}
               onNewData={onDataTable}
+              actId={actId}
             ></ActInfoTable>
           </div>
         </Fragment>
