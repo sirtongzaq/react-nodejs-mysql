@@ -37,6 +37,15 @@ const depService = {
       throw e;
     }
   },
+  updateDep: async (body) => {
+    try {
+      const response = await http.put("/dept/department", body);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
 };
 
 export default depService;

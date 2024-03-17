@@ -142,4 +142,27 @@ router.delete("/delete", async (req, res) => {
   });
 });
 
+router.put("/activity", async (req, res) => {
+  const { id, newData } = req.body;
+
+  if (!newData) {
+    return res.status(400).json({ message: "New data for update is missing" });
+  }
+
+  const query = `UPDATE activitys SET ? WHERE act_id = ?`;
+
+  db.query(query, [newData, id], (err, result) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      res.status(500).json({ message: "Error updating activity" });
+      return;
+    }
+    if (result.affectedRows === 0) {
+      res.status(404).json({ message: "Activity not found" });
+    } else {
+      res.status(200).json({ message: "Activity updated successfully" });
+    }
+  });
+});
+
 module.exports = router;

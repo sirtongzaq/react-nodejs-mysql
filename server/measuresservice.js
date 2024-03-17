@@ -16,15 +16,11 @@ router.post("/create", async (req, res) => {
     (err, result) => {
       if (err) {
         console.error("Error inserting measure data:", err);
-        res
-          .status(500)
-          .json({ message: "Error inserting measure data" });
+        res.status(500).json({ message: "Error inserting measure data" });
         return;
       }
       console.log("Measure data inserted successfully");
-      res
-        .status(200)
-        .json({ message: "Measure data inserted successfully" });
+      res.status(200).json({ message: "Measure data inserted successfully" });
     }
   );
 });
@@ -93,6 +89,29 @@ router.delete("/delete", async (req, res) => {
       });
     } else {
       res.status(404).json({ message: "Measures not found" });
+    }
+  });
+});
+
+router.put("/measure", async (req, res) => {
+  const { id, newData } = req.body;
+
+  if (!newData) {
+    return res.status(400).json({ message: "New data for update is missing" });
+  }
+
+  const query = `UPDATE measures SET ? WHERE meas_id = ?`;
+
+  db.query(query, [newData, id], (err, result) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      res.status(500).json({ message: "Error updating measure" });
+      return;
+    }
+    if (result.affectedRows === 0) {
+      res.status(404).json({ message: "Measure not found" });
+    } else {
+      res.status(200).json({ message: "Measure updated successfully" });
     }
   });
 });

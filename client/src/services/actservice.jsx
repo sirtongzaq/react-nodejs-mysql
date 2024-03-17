@@ -46,6 +46,15 @@ const actService = {
       throw e;
     }
   },
+  updateAct: async (body) => {
+    try {
+      const response = await http.put("/act/activity", body);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
 };
 
 export default actService;

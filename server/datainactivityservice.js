@@ -149,4 +149,27 @@ router.delete("/delete", async (req, res) => {
   });
 });
 
+router.put("/datainactivity", async (req, res) => {
+  const { id, newData } = req.body;
+
+  if (!newData) {
+    return res.status(400).json({ message: "New data for update is missing" });
+  }
+
+  const query = `UPDATE datainactivity SET ? WHERE data_id = ?`;
+
+  db.query(query, [newData, id], (err, result) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      res.status(500).json({ message: "Error updating datainactivity" });
+      return;
+    }
+    if (result.affectedRows === 0) {
+      res.status(404).json({ message: "Datainactivity not found" });
+    } else {
+      res.status(200).json({ message: "Datainactivity updated successfully" });
+    }
+  });
+});
+
 module.exports = router;
