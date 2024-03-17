@@ -18,7 +18,7 @@ export default function CardActiDept({
     }
 
     useEffect(() => {
-        console.log("act", act)
+        // console.log("act", act)
     }, [act])
     return (
         <Fragment>

@@ -7,11 +7,10 @@ const options = [
   { value: "strawberry", label: "Strawberry" },
   { value: "vanilla", label: "Vanilla" },
 ];
-export default function ActMeasure({ measure, handleValue, field }) {
-  const [measureOptions, setMeasureOptions] = useState(options);
+export default function InputNewRow({ data, handleValue, field }) {
   const [newValueOption, setNewValueOption] = useState("");
   const [selectValue, setSelectValue] = useState({});
-  const [measureArr, setMeasureArr] = useState([]);
+  const [dataArr, setDataArr] = useState([]);
 
   const handleInputChage = (value) => {
     setNewValueOption(value);
@@ -23,30 +22,24 @@ export default function ActMeasure({ measure, handleValue, field }) {
   };
 
   const handleCreate = () => {
-    const newOPtion = setMeasureOptions((prev) => [
-      ...prev,
-      { value: newValueOption, label: newValueOption },
-    ]);
     setSelectValue({ value: newValueOption, label: newValueOption });
     handleValue(newValueOption, field);
   };
 
   useEffect(() => {
-    setMeasureArr(measure);
-  }, [measure]);
+    setDataArr(data);
+  }, [data]);
 
-  // useEffect(()=>{
-  //     filterOr()
-  //     filtertech()
-  //     filterPhy()
-  // },[measureArr])
+//   useEffect(() => {
+//     console.log("dataArr", dataArr);
+//   }, [dataArr]);
 
   return (
     <Fragment>
       <div>
         <CreatableSelect
           isClearable
-          options={measureArr}
+          options={dataArr}
           onInputChange={handleInputChage}
           onChange={handleSelectChange}
           onCreateOption={handleCreate}

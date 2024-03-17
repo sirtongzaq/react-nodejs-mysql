@@ -1,8 +1,38 @@
 import { Fragment, useState, useEffect } from "react";
+import InputNewRow from "./input_new_row";
 
-export default function NewRowTable({ handleDataTable, onTableData, actId,onCloseModal }) {
+export default function NewRowTable({
+  handleDataTable,
+  onTableData,
+  actId,
+  onCloseModal,
+  dataInActApproveDestroy,
+}) {
   const [tableData, setTableData] = useState(onTableData);
   const [formDataTable, setFormDataTable] = useState([
+    {
+      act_id: actId,
+      p_data_name: "",
+      p_data_subject: "",
+      p_data_source: "",
+      p_data_type_detail: "",
+      p_data_type: "",
+      p_data_object: "",
+      p_data_legal_base: "",
+      p_data_time_period: "",
+      p_data_storage: "",
+      p_data_name_access: "",
+      p_data_condition_name_access: "",
+      p_data_how_to_access: "",
+      p_data_condition_to_access: "",
+      p_data_whouse_inorg: "",
+      p_data_whouse_outorg: "",
+      p_data_way_destroy: "",
+      p_data_approve_destroy: "",
+    },
+  ]);
+
+  const [formDataTable2, setFormDataTable2] = useState([
     {
       act_id: actId,
       p_data_name: "",
@@ -60,24 +90,46 @@ export default function NewRowTable({ handleDataTable, onTableData, actId,onClos
     ]);
   };
 
+  const onDataInAct = (value, name) => {
+    if (value) {
+      setFormDataTable2((prevState) => {
+        const newData = prevState.map((row) => {
+          if (row.hasOwnProperty(name)) {
+            return { ...row, [name]: value };
+          }
+          return row;
+        });
+        return newData;
+      });
+    } else {
+      console.log("noDataMeasure");
+    }
+  };
 
-  
   useEffect(() => {
     handleDataTable(tableData);
   }, [tableData]);
-  
-  useEffect(()=>{
-    onCloseModal()
-  },[handleDataTable])
 
+  useEffect(() => {
+    onCloseModal();
+  }, [handleDataTable]);
+
+  useEffect(() => {
+    console.log("formDataTable2", formDataTable2);
+  }, [formDataTable2]);
 
   return (
     <Fragment>
       {formDataTable.map((formData, index) => (
-        <form key={index} onSubmit={(e) => handleSubmit(e, index)} className="add-new-row-form">
+        <form
+          key={index}
+          onSubmit={(e) => handleSubmit(e, index)}
+          className="add-new-row-form"
+        >
           <div className="add-new-row-form-card">
-            <label>ข้อมูลส่วนบุคคล ที่มีการเก็บรวม (ข้อมูลที่ประมวลผล)
-              <input
+            <label>
+              ข้อมูลส่วนบุคคล ที่มีการเก็บรวม (ข้อมูลที่ประมวลผล)
+              {/* <input
                 type="text"
                 name="p_data_name"
                 value={formData.p_data_name}
@@ -85,6 +137,11 @@ export default function NewRowTable({ handleDataTable, onTableData, actId,onClos
                 placeholder="ข้อมูลส่วนบุคคล ที่มีการเก็บรวม (ข้อมูลที่ประมวลผล)"
                 maxLength={1000}
                 required
+              /> */}
+              <InputNewRow
+                data={dataInActApproveDestroy}
+                handleValue={onDataInAct}
+                field={"p_data_name"}
               />
             </label>
 
@@ -263,7 +320,9 @@ export default function NewRowTable({ handleDataTable, onTableData, actId,onClos
               />
             </label>
 
-            <button type="submit" className="add-new-row-submit-btn">บันทึกข้อมูล</button>
+            <button type="submit" className="add-new-row-submit-btn">
+              บันทึกข้อมูล
+            </button>
           </div>
         </form>
       ))}

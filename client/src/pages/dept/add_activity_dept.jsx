@@ -36,6 +36,27 @@ export default function AddActDept() {
       meas_physic: "",
     },
   ]);
+  const [dataInAct, setDataInAct] = useState([]);
+  const [dataInActApproveDestroy, setDataInActApproveDestroy] = useState([]);
+  const [dataInActConditionNameAccess, setDataInActConditionNameAccess] =
+    useState([]);
+  const [dataInActConditionToAccess, setDataInActConditionToAccess] = useState(
+    []
+  );
+  const [dataInActHowToAccess, setDataInActHowToAccess] = useState([]);
+  const [dataInActLegalBase, setDataInActLegalBase] = useState([]);
+  const [dataInActName, setDataInActName] = useState([]);
+  const [dataInActNameAccess, setDataInActNameAccess] = useState([]);
+  const [dataInActObject, setDataInActObject] = useState([]);
+  const [dataInActSource, setDataInActSource] = useState([]);
+  const [dataInActtorage, setDataInActStorage] = useState([]);
+  const [dataInActSubject, setDataInActSubject] = useState([]);
+  const [dataInActTimePeriod, setDataInActTimePeriod] = useState([]);
+  const [dataInActType, setDataInActType] = useState([]);
+  const [dataInActTypeDetail, setDataInActTypeDetail] = useState([]);
+  const [dataInActWayDestroy, setDataInActWayDestroy] = useState([]);
+  const [dataInActWhouseInorg, setDataInActWhouseInorg] = useState([]);
+  const [dataInActWhouseOutorg, setDataInActWhouseOutorg] = useState([]);
 
   const submitData = async () => {
     try {
@@ -44,10 +65,10 @@ export default function AddActDept() {
         await dataInActService.createDataInAct(i);
       }
       await MeasuresService.createMeasures(measureForm);
-      toastNoti.toastsuccess('เพิ่มข้อมูลสำเร็จ')
-      setTimeout(()=>{
-        router.push("/")
-      },2000)
+      toastNoti.toastsuccess("เพิ่มข้อมูลสำเร็จ");
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     } catch (e) {
       console.log("error", e);
     }
@@ -74,7 +95,7 @@ export default function AddActDept() {
 
   const onCloseModal = () => {
     setOpenModalCreate((prev) => !prev);
-  }
+  };
 
   const getsaveDataLocalStorage = async () => {
     try {
@@ -104,11 +125,11 @@ export default function AddActDept() {
         const lastIndex = res.length - 1;
         const lastData = res[lastIndex];
         setActId(parseInt(lastData.act_id + 1));
-      }else{
-         setActId(parseInt(1));
+      } else {
+        setActId(parseInt(1));
       }
     } catch (e) {
-      console.log("err",e)
+      console.log("err", e);
     }
   };
 
@@ -121,12 +142,12 @@ export default function AddActDept() {
     }
   };
   const nextPage = () => {
-    for (const key in formData) {
-      if (formData.hasOwnProperty(key) && formData[key] === "") {
-        toastNoti.toasterror("Please fill all the fields in the form");
-        return;
-      }
-    }
+    // for (const key in formData) {
+    //   if (formData.hasOwnProperty(key) && formData[key] === "") {
+    //     toastNoti.toasterror("Please fill all the fields in the form");
+    //     return;
+    //   }
+    // }
     setPage(page + 1);
   };
 
@@ -152,42 +173,373 @@ export default function AddActDept() {
     }
   };
 
+  const getDataInAct = async () => {
+    try {
+      const res = await dataInActService.getDataInAct();
+      console.log("ress", res);
+      setDataInAct(res);
+    } catch (e) {
+      setDataInAct([]);
+      console.log(e);
+    }
+  };
+
+  const filterDataInActApproveDestroy = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_approve_destroy,
+        label: ele.p_data_approve_destroy,
+      };
+      if (!uniqueValues.includes(ele.p_data_approve_destroy)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_approve_destroy);
+      }
+    });
+    setDataInActApproveDestroy(option);
+  };
+
+  const filterDataInActConditionNameAccess = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_condition_name_access,
+        label: ele.p_data_condition_name_access,
+      };
+      if (!uniqueValues.includes(ele.p_data_condition_name_access)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_condition_name_access);
+      }
+    });
+
+    setDataInActConditionNameAccess(option);
+  };
+
+  const filterDataInActConditionToAccess = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_condition_to_access,
+        label: ele.p_data_condition_to_access,
+      };
+      if (!uniqueValues.includes(ele.p_data_condition_to_access)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_condition_to_access);
+      }
+    });
+
+    setDataInActConditionToAccess(option);
+  };
+
+  const filterDataInActHowToAccess = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_how_to_access,
+        label: ele.p_data_how_to_access,
+      };
+      if (!uniqueValues.includes(ele.p_data_how_to_access)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_how_to_access);
+      }
+    });
+
+    setDataInActHowToAccess(option);
+  };
+
+  const filterDataInActLegalBase = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_legal_base,
+        label: ele.p_data_legal_base,
+      };
+      if (!uniqueValues.includes(ele.p_data_legal_base)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_legal_base);
+      }
+    });
+
+    setDataInActLegalBase(option);
+  };
+
+  const filterDataInActName = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_name,
+        label: ele.p_data_name,
+      };
+      if (!uniqueValues.includes(ele.p_data_name)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_name);
+      }
+    });
+
+    setDataInActName(option);
+  };
+
+  const filterDataInActNameAccess = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_name_access,
+        label: ele.p_data_name_access,
+      };
+      if (!uniqueValues.includes(ele.p_data_name_access)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_name_access);
+      }
+    });
+
+    setDataInActNameAccess(option);
+  };
+
+  const filterDataInActObject = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_object,
+        label: ele.p_data_object,
+      };
+      if (!uniqueValues.includes(ele.p_data_object)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_object);
+      }
+    });
+
+    setDataInActObject(option);
+  };
+
+  const filterDataInActSource = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_source,
+        label: ele.p_data_source,
+      };
+      if (!uniqueValues.includes(ele.p_data_source)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_source);
+      }
+    });
+
+    setDataInActSource(option);
+  };
+
+  const filterDataInActStorage = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_storage,
+        label: ele.p_data_storage,
+      };
+      if (!uniqueValues.includes(ele.p_data_storage)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_storage);
+      }
+    });
+
+    setDataInActStorage(option);
+  };
+
+  const filterDataInActSubject = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_subject,
+        label: ele.p_data_subject,
+      };
+      if (!uniqueValues.includes(ele.p_data_subject)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_subject);
+      }
+    });
+
+    setDataInActSubject(option);
+  };
+
+  const filterDataInActTimePeriod = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_time_period,
+        label: ele.p_data_time_period,
+      };
+      if (!uniqueValues.includes(ele.p_data_time_period)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_time_period);
+      }
+    });
+
+    setDataInActTimePeriod(option);
+  };
+
+  const filterDataInActType = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_type,
+        label: ele.p_data_type,
+      };
+      if (!uniqueValues.includes(ele.p_data_type)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_type);
+      }
+    });
+
+    setDataInActType(option);
+  };
+
+  const filterDataInActTypeDetail = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_type_detail,
+        label: ele.p_data_type_detail,
+      };
+      if (!uniqueValues.includes(ele.p_data_type_detail)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_type_detail);
+      }
+    });
+
+    setDataInActTypeDetail(option);
+  };
+
+  const filterDataInActWayDestroy = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_way_destroy,
+        label: ele.p_data_way_destroy,
+      };
+      if (!uniqueValues.includes(ele.p_data_way_destroy)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_way_destroy);
+      }
+    });
+
+    setDataInActWayDestroy(option);
+  };
+
+  const filterDataInActWhouseInorg = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_whouse_inorg,
+        label: ele.p_data_whouse_inorg,
+      };
+      if (!uniqueValues.includes(ele.p_data_whouse_inorg)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_whouse_inorg);
+      }
+    });
+
+    setDataInActWhouseInorg(option);
+  };
+
+  const filterDataInActWhouseOutorg = () => {
+    const option = [];
+    const uniqueValues = [];
+
+    dataInAct.forEach((ele) => {
+      const opt = {
+        value: ele.p_data_whouse_outorg,
+        label: ele.p_data_whouse_outorg,
+      };
+      if (!uniqueValues.includes(ele.p_data_whouse_outorg)) {
+        option.push(opt);
+        uniqueValues.push(ele.p_data_whouse_outorg);
+      }
+    });
+
+    setDataInActWhouseOutorg(option);
+  };
+
   const filterOr = () => {
     const option = [];
+    const uniqueValues = [];
+
     measure.map((ele) => {
       const opt = {
         value: ele.meas_org,
         label: ele.meas_org,
       };
-
-      option.push(opt);
+      if (!uniqueValues.includes(ele.meas_org)) {
+        option.push(opt);
+        uniqueValues.push(ele.meas_org);
+      }
     });
+
     setOrMeasure(option);
   };
 
   const filtertech = () => {
     const option = [];
+    const uniqueValues = [];
+
     measure.map((ele) => {
       const opt = {
         value: ele.meas_technical,
         label: ele.meas_technical,
       };
-
-      option.push(opt);
+      if (!uniqueValues.includes(ele.meas_technical)) {
+        option.push(opt);
+        uniqueValues.push(ele.meas_technical);
+      }
     });
+
     setTechMearue(option);
   };
 
   const filterPhy = () => {
     const option = [];
+    const uniqueValues = [];
+
     measure.map((ele) => {
       const opt = {
         value: ele.meas_physic,
         label: ele.meas_physic,
       };
-
-      option.push(opt);
+      if (!uniqueValues.includes(ele.meas_technical)) {
+        option.push(opt);
+        uniqueValues.push(ele.meas_technical);
+      }
     });
+
     setPhyMearue(option);
   };
 
@@ -203,8 +555,6 @@ export default function AddActDept() {
       }));
     }
   }, [actId]);
-
-
 
   useEffect(() => {
     setFormData(formData);
@@ -223,14 +573,34 @@ export default function AddActDept() {
     getDept();
     getMeasure();
     getActLength();
+    getDataInAct();
   }, [id]);
-
 
   useEffect(() => {
     filterOr();
     filtertech();
     filterPhy();
   }, [measure]);
+
+  useEffect(() => {
+    filterDataInActApproveDestroy();
+    filterDataInActConditionNameAccess();
+    filterDataInActConditionToAccess();
+    filterDataInActHowToAccess();
+    filterDataInActLegalBase();
+    filterDataInActName();
+    filterDataInActNameAccess();
+    filterDataInActObject();
+    filterDataInActSource();
+    filterDataInActStorage();
+    filterDataInActSubject();
+    filterDataInActTimePeriod();
+    filterDataInActType();
+    filterDataInActTypeDetail();
+    filterDataInActWayDestroy();
+    filterDataInActWhouseInorg();
+    filterDataInActWhouseOutorg();
+  }, [dataInAct]);
 
   return (
     <Fragment>
@@ -264,6 +634,7 @@ export default function AddActDept() {
                   X
                 </button>
                 <NewRowTable
+                  dataInActApproveDestroy={dataInActApproveDestroy}
                   handleDataTable={onDataTable}
                   onCloseModal={onCloseModal}
                   onTableData={tableData}
