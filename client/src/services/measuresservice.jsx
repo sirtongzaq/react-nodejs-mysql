@@ -19,7 +19,7 @@ const MeasuresService = {
       throw e;
     }
   },
-  getMeasuresFromDeptId: async (id) => {
+  getMeasuresFromActId: async (id) => {
     try {
       const response = await http.get(`/meas/getmeasuresbyact?id=${id}`);
       return response;

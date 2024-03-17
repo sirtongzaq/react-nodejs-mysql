@@ -19,7 +19,7 @@ const dataInActService = {
       throw e;
     }
   },
-  getDataInActFromDeptId: async (id) => {
+  getDataInActFromActId: async (id) => {
     try {
       const response = await http.get(`/datainact/getdatainactivitysbyact?id=${id}`);
       return response;

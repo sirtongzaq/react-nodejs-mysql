@@ -103,7 +103,7 @@ export default function ActivityDept() {
             {filterAct.length > 0 ? (
               <Fragment>
                 {filterAct.map((data, index) => (
-                  <CardActiDept act={data} onDelete={onDeleteAct} />
+                  <CardActiDept act={data} onDelete={onDeleteAct}  />
                 ))}
               </Fragment>
             ) : (

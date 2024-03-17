@@ -97,11 +97,15 @@ export default function AddActDept() {
   const getActLength = async () => {
     try {
       const res = await actService.getAct();
-      const lastIndex = res.length - 1;
-      const lastData = res[lastIndex];
-      setActId(parseInt(lastData.act_id + 1));
+      if (res.length > 0) {
+        const lastIndex = res.length - 1;
+        const lastData = res[lastIndex];
+        setActId(parseInt(lastData.act_id + 1));
+      }else{
+         setActId(parseInt(1));
+      }
     } catch (e) {
-      setActId(0);
+      console.log("err",e)
     }
   };
 
