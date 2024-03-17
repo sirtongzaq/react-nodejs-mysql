@@ -46,6 +46,15 @@ const MeasuresService = {
       throw e;
     }
   },
+  updateMeasures: async (body) => {
+    try {
+      const response = await http.put("/meas/measure", body);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
 };
 
 export default MeasuresService;

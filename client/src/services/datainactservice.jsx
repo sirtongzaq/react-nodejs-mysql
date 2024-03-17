@@ -46,6 +46,15 @@ const dataInActService = {
       throw e;
     }
   },
+  updateDataInAct: async (body) => {
+    try {
+      const response = await http.put("/datainact/datainactivity", body);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
 };
 
 export default dataInActService;
