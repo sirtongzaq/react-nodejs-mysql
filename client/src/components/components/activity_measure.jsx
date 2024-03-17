@@ -14,12 +14,10 @@ export default function ActMeasure({ measure, handleValue, field }) {
   const [measureArr, setMeasureArr] = useState([]);
 
   const handleInputChage = (value) => {
-    console.log(value.toLowerCase().replace(/\W/g, ""));
     setNewValueOption(value);
   };
 
   const handleSelectChange = (selectValue) => {
-    console.log("selectValue", selectValue);
     setSelectValue(selectValue);
     handleValue(selectValue.value, field);
   };
@@ -29,7 +27,6 @@ export default function ActMeasure({ measure, handleValue, field }) {
       ...prev,
       { value: newValueOption, label: newValueOption },
     ]);
-    console.log(newOPtion, "newOprin");
     setSelectValue({ value: newValueOption, label: newValueOption });
     handleValue(newValueOption, field);
   };
@@ -44,9 +41,6 @@ export default function ActMeasure({ measure, handleValue, field }) {
   //     filterPhy()
   // },[measureArr])
 
-  useEffect(() => {
-    console.log(selectValue);
-  }, [selectValue]);
   return (
     <Fragment>
       <div>

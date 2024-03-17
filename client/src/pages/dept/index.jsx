@@ -55,19 +55,6 @@ export default function Dept() {
     setOnSearch(false);
   }, []);
 
-  useEffect(() => {
-    console.log("dept", dept);
-  }, [dept]);
-
-  // useEffect(() => {
-  //   console.log("dep", dept);
-  // }, [dept]);
-  // useEffect(() => {
-  //   console.log("f", filterDept);
-  // }, [filterDept]);
-  // useEffect(() => {
-  //   console.log("ons", onSearch);
-  // }, [onSearch]);
 
   return (
     <Fragment>

@@ -20,7 +20,6 @@ export default function EditAct() {
   const getActbyId = async () => {
     try{
       const res =await actService.getActFromId(id)
-      console.log("act",res)
       setAct(res)
     }catch(err){
       setAct([])
@@ -31,7 +30,6 @@ export default function EditAct() {
   const getInfoActbyId = async () => {
     try{
       const res =await dataInActService.getDataInActFromActId(id)
-      console.log("test",res)
       // setAct(res)
     }catch(err){
       setInfoAct([])
@@ -42,7 +40,6 @@ export default function EditAct() {
   const getMeasureActbyId = async () => {
     try{
       const res =await MeasuresService.getMeasuresFromActId(id)
-      console.log("mes",res)
       // setAct(res)
     }catch(err){
       setMeasureAct([])

@@ -126,23 +126,35 @@ export default function ActInfoTable({
   ];
 
   const [openModalCreate, setOpenModalCreate] = useState(false);
-  const [editRow,setEditRow] = useState([])
+  const [editRow, setEditRow] = useState([])
+  const [data, setData] = useState(newData);
+  const [editIndex, setIndexEdit] = useState(0)
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
 
   const handleClickEdit = (index) => {
     const newDataArray = [...data];
-    console.log(newDataArray[index])
     const editData = newDataArray[index]
-    setEditRow(editData)
+    setEditRow([editData])
+    setIndexEdit(index)
     setOpenModalCreate((prev) => !prev)
   }
 
-  const onDataTable = (value) => {
+  const onChangeDataTable = (value) => {
     if (value) {
-      setEditRow(value);
+      const newData = [...data]
+      newData[editIndex] = value
+      setData(newData);
+      setOpenModalCreate((prev) => !prev)
     } else {
-      console.log("noDataTable");
+      console.log("noDataTable")
     }
   };
+
 
   const handleDeleteRow = (index) => {
     const newDataArray = [...data];
@@ -150,12 +162,9 @@ export default function ActInfoTable({
     setData(newDataArray);
   };
 
-  const [data, setData] = useState(newData);
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  });
+
+
+
 
   useEffect(() => {
     setData(newData);
@@ -165,24 +174,6 @@ export default function ActInfoTable({
     onNewData(data);
   }, [data]);
 
-  // const handlePageChange =()=>{
-  //     onPageChange(form)
-  // }
-
-  // useEffect(()=>{
-  //    if(currPage == 2){
-  //     handlePageChange()
-  //    }
-  // },[currPage])
-
-  // useEffect(() => {
-  //     console.log("form", form)
-  // }, [form])
-
-  // useEffect(() => {
-  //     setForm(formData)
-  //     console.log("formDataTable", formData)
-  // }, [formData])
 
   return (
     <Fragment>
@@ -227,7 +218,7 @@ export default function ActInfoTable({
           >
             X
           </button>
-          <EditRowTable onTableData={editRow} handleDataTable={onDataTable}>
+          <EditRowTable editTableData={editRow} onChangeDataTable={onChangeDataTable}>
 
           </EditRowTable>
         </Box>

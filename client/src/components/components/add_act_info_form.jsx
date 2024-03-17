@@ -52,12 +52,10 @@ export default function AddActInfoForm({
   }, [formDataInfo, dept]);
 
   useEffect(() => {
-    // console.log("currPage", currPage);
     setCurrentPage(currPage);
   }, [currPage]);
 
   useEffect(() => {
-    // console.log("f", formData)
     setPreviousFormData(formData);
     handlePrevFrom(formData);
   }, [formData]);

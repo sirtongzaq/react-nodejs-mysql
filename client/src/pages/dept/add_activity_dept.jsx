@@ -3,7 +3,7 @@ import ActMeasure from "@/components/components/activity_measure";
 import AddActInfoForm from "@/components/components/add_act_info_form";
 import modalStyle from "@/components/components/modalstyle";
 import toastNoti from "@/components/components/toast";
-import NewRowTable from "@/components/components/ืnew_row_table";
+import NewRowTable from "@/components/components/new_row_table";
 import Layout from "@/components/templates/layout";
 import actService from "@/services/actservice";
 import authService from "@/services/authservice";
@@ -44,7 +44,10 @@ export default function AddActDept() {
         await dataInActService.createDataInAct(i);
       }
       await MeasuresService.createMeasures(measureForm);
-      console.log("Data submitted successfully");
+      toastNoti.toastsuccess('เพิ่มข้อมูลสำเร็จ')
+      setTimeout(()=>{
+        router.push("/")
+      },2000)
     } catch (e) {
       console.log("error", e);
     }
@@ -193,7 +196,6 @@ export default function AddActDept() {
   }, [formData]);
 
   useEffect(() => {
-    console.log("actId", actId);
     if (actId > 0) {
       setMeasureForm((prevState) => ({
         ...prevState,
@@ -202,9 +204,7 @@ export default function AddActDept() {
     }
   }, [actId]);
 
-  useEffect(() => {
-    console.log("measureForm", measureForm);
-  }, [measureForm]);
+
 
   useEffect(() => {
     setFormData(formData);
@@ -225,12 +225,8 @@ export default function AddActDept() {
     getActLength();
   }, [id]);
 
-  // useEffect(() => {
-  //   console.log("formData2", formDataInfo);
-  // }, [formDataInfo]);
 
   useEffect(() => {
-    // console.log(measure);
     filterOr();
     filtertech();
     filterPhy();

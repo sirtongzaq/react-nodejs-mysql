@@ -35,6 +35,7 @@ export default function NewRowTable({ handleDataTable, onTableData, actId,onClos
   const handleSubmit = (e) => {
     e.preventDefault();
     setTableData([...tableData, ...formDataTable]);
+
     setFormDataTable([
       {
         act_id: actId,
@@ -59,10 +60,16 @@ export default function NewRowTable({ handleDataTable, onTableData, actId,onClos
     ]);
   };
 
+
+  
   useEffect(() => {
-    console.log("tableData", tableData);
     handleDataTable(tableData);
   }, [tableData]);
+  
+  useEffect(()=>{
+    onCloseModal()
+  },[handleDataTable])
+
 
   return (
     <Fragment>
@@ -76,6 +83,7 @@ export default function NewRowTable({ handleDataTable, onTableData, actId,onClos
                 value={formData.p_data_name}
                 onChange={(e) => handleInputChange(e, index)}
                 placeholder="ข้อมูลส่วนบุคคล ที่มีการเก็บรวม (ข้อมูลที่ประมวลผล)"
+                maxLength={1000}
                 required
               />
             </label>

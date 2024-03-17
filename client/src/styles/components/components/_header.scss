@@ -6,6 +6,10 @@
   align-items: center;
   background-color: #001769;
   padding-inline: 20px;
+  top: 0;
+  position: fixed;
+  width: 98%;
+  z-index: 2;
 }
 
 .header-subtext {
@@ -13,12 +17,14 @@
   flex-direction: row;
   color: #fff;
 
-  .header-username{
+  .header-username {
     margin-inline-end: 10px;
   }
-  .header-logout{
+
+  .header-logout {
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       color: red;
     }
   }
@@ -29,11 +35,13 @@
   display: flex;
   margin-left: 0;
   margin-right: auto;
+
   .header-dept {
     color: white;
     margin-inline: 20px;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       color: #D1D5E4;
     }
   }
@@ -42,7 +50,8 @@
     color: white;
     margin-inline: 20px;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       color: #D1D5E4;
     }
   }

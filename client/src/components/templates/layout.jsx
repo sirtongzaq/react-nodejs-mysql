@@ -52,9 +52,7 @@ export default function Layout({ children, getUserByToken }) {
     }
   }, [user]);
 
-  useEffect(() => {
-    console.log("User", user);
-  }, [user]);
+
 
   return (
     <Fragment>
