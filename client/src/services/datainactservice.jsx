@@ -21,7 +21,9 @@ const dataInActService = {
   },
   getDataInActFromActId: async (id) => {
     try {
-      const response = await http.get(`/datainact/getdatainactivitysbyact?id=${id}`);
+      const response = await http.get(
+        `/datainact/getdatainactivitysbyact?id=${id}`
+      );
       return response;
     } catch (e) {
       console.error("Error:", e);
@@ -49,6 +51,24 @@ const dataInActService = {
   updateDataInAct: async (body) => {
     try {
       const response = await http.put("/datainact/datainactivity", body);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
+  searchPersonal: async (name) => {
+    try {
+      const response = await http.get(`/datainact/peronalsearch?name=${name}`);
+      return response;
+    } catch (e) {
+      console.error("Error:", e);
+      throw e;
+    }
+  },
+  getPersonal: async (name) => {
+    try {
+      const response = await http.get(`/datainact/peronal`);
       return response;
     } catch (e) {
       console.error("Error:", e);
