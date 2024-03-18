@@ -15,7 +15,8 @@ export default function ActInfoTable({
   currPage,
   onPageChange,
   newData,
-  onNewData
+  onNewData,
+  handleDeleteIdTable,
 }) {
   const columns = [
     {
@@ -135,6 +136,7 @@ export default function ActInfoTable({
     },
   ];
 
+  const [removeArryDataId, setRemoveArryDataId] = useState([]);
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [editRow, setEditRow] = useState([]);
   const [data, setData] = useState(newData);
@@ -165,9 +167,14 @@ export default function ActInfoTable({
   };
 
   const handleDeleteRow = (index) => {
+    const arr = [];
     const newDataArray = [...data];
+
+    arr.push(newDataArray[index].data_id);
     newDataArray.splice(index, 1);
+
     setData(newDataArray);
+    setRemoveArryDataId((prevIds) => [...prevIds, ...arr]);
   };
 
   useEffect(() => {
@@ -177,6 +184,10 @@ export default function ActInfoTable({
   useEffect(() => {
     onNewData(data);
   }, [data]);
+
+  useEffect(() => {
+    handleDeleteIdTable(removeArryDataId);
+  }, [removeArryDataId]);
 
   return (
     <Fragment>
@@ -189,9 +200,9 @@ export default function ActInfoTable({
                   {header.isPlaceholder
                     ? null
                     : flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
                 </th>
               ))}
             </tr>
