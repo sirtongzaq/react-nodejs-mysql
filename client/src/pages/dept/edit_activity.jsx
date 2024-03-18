@@ -617,7 +617,7 @@ export default function EditAct() {
             }}
           >
             เพิ่มแถว
-            <span style={{marginLeft:"5px"}}>
+            <span style={{marginLeft:"5px"}} >
               <FontAwesomeIcon icon={SolidIcon.faPlus} />
             </span>
           </button>
