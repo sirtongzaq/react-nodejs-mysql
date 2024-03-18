@@ -49,7 +49,7 @@ export default function AddActDept() {
   const [dataInActNameAccess, setDataInActNameAccess] = useState([]);
   const [dataInActObject, setDataInActObject] = useState([]);
   const [dataInActSource, setDataInActSource] = useState([]);
-  const [dataInActtorage, setDataInActStorage] = useState([]);
+  const [dataInActStorage, setDataInActStorage] = useState([]);
   const [dataInActSubject, setDataInActSubject] = useState([]);
   const [dataInActTimePeriod, setDataInActTimePeriod] = useState([]);
   const [dataInActType, setDataInActType] = useState([]);
@@ -635,6 +635,22 @@ export default function AddActDept() {
                 </button>
                 <NewRowTable
                   dataInActApproveDestroy={dataInActApproveDestroy}
+                  dataInActConditionNameAccess={dataInActConditionNameAccess}
+                  dataInActConditionToAccess={dataInActConditionToAccess}
+                  dataInActHowToAccess={dataInActHowToAccess}
+                  dataInActLegalBase={dataInActLegalBase}
+                  dataInActName={dataInActName}
+                  dataInActNameAccess={dataInActNameAccess}
+                  dataInActObject={dataInActObject}
+                  dataInActSource={dataInActSource}
+                  dataInActStorage={dataInActStorage}
+                  dataInActSubject={dataInActSubject}
+                  dataInActTimePeriod={dataInActTimePeriod}
+                  dataInActType={dataInActType}
+                  dataInActTypeDetail={dataInActTypeDetail}
+                  dataInActWayDestroy={dataInActWayDestroy}
+                  dataInActWhouseInorg={dataInActWhouseInorg}
+                  dataInActWhouseOutorg={dataInActWhouseOutorg}
                   handleDataTable={onDataTable}
                   onCloseModal={onCloseModal}
                   onTableData={tableData}

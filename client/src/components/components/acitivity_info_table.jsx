@@ -7,6 +7,9 @@ import {
 import { Box, Modal } from "@mui/material";
 import modalStyle from "./modalstyle";
 import EditRowTable from "./edit_row_table";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
+
 export default function ActInfoTable({
   formData,
   currPage,
@@ -112,12 +115,19 @@ export default function ActInfoTable({
       cell: ({ row }) => (
         <Fragment>
           <div className="edit-delete-row">
-            <span className="edit-row-table" onClick={() => { handleClickEdit(row.index) }}>แก้ไข</span>
+            <span
+              className="edit-row-table"
+              onClick={() => {
+                handleClickEdit(row.index);
+              }}
+            >
+              <FontAwesomeIcon icon={SolidIcon.faPen} />
+            </span>
             <span
               className="delete-row-table"
               onClick={() => handleDeleteRow(row.index)}
             >
-              ลบ
+              <FontAwesomeIcon icon={SolidIcon.faTrash} />
             </span>
           </div>
         </Fragment>
@@ -126,45 +136,39 @@ export default function ActInfoTable({
   ];
 
   const [openModalCreate, setOpenModalCreate] = useState(false);
-  const [editRow, setEditRow] = useState([])
+  const [editRow, setEditRow] = useState([]);
   const [data, setData] = useState(newData);
-  const [editIndex, setIndexEdit] = useState(0)
+  const [editIndex, setIndexEdit] = useState(0);
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
-
   const handleClickEdit = (index) => {
     const newDataArray = [...data];
-    const editData = newDataArray[index]
-    setEditRow([editData])
-    setIndexEdit(index)
-    setOpenModalCreate((prev) => !prev)
-  }
+    const editData = newDataArray[index];
+    setEditRow([editData]);
+    setIndexEdit(index);
+    setOpenModalCreate((prev) => !prev);
+  };
 
   const onChangeDataTable = (value) => {
     if (value) {
-      const newData = [...data]
-      newData[editIndex] = value
+      const newData = [...data];
+      newData[editIndex] = value;
       setData(newData);
-      setOpenModalCreate((prev) => !prev)
+      setOpenModalCreate((prev) => !prev);
     } else {
-      console.log("noDataTable")
+      console.log("noDataTable");
     }
   };
-
 
   const handleDeleteRow = (index) => {
     const newDataArray = [...data];
     newDataArray.splice(index, 1);
     setData(newDataArray);
   };
-
-
-
-
 
   useEffect(() => {
     setData(newData);
@@ -173,7 +177,6 @@ export default function ActInfoTable({
   useEffect(() => {
     onNewData(data);
   }, [data]);
-
 
   return (
     <Fragment>
@@ -186,9 +189,9 @@ export default function ActInfoTable({
                   {header.isPlaceholder
                     ? null
                     : flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
                 </th>
               ))}
             </tr>
@@ -218,9 +221,10 @@ export default function ActInfoTable({
           >
             X
           </button>
-          <EditRowTable editTableData={editRow} onChangeDataTable={onChangeDataTable}>
-
-          </EditRowTable>
+          <EditRowTable
+            editTableData={editRow}
+            onChangeDataTable={onChangeDataTable}
+          ></EditRowTable>
         </Box>
       </Modal>
     </Fragment>

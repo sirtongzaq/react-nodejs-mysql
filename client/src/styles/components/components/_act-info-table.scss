@@ -1,14 +1,21 @@
-.edit-delete-row{
-    display: flex;
-    
+.edit-delete-row {
+  display: flex;
 }
 
-
-.delete-row-table
-,.edit-row-table{
-    margin-inline:10px;
+.delete-row-table,
+.edit-row-table {
+  cursor: pointer;
+  margin-inline: 10px;
+  color: $warning;
+  :hover {
+    color: $warning_hover;
+  }
 }
 
-.delete-row-table{
-    color: re;
+.delete-row-table {
+  cursor: pointer;
+  color: $red;
+  :hover {
+    color: $red_hover;
+  }
 }

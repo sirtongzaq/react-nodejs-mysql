@@ -64,7 +64,7 @@ export default function AddActInfoForm({
     <Fragment>
       <div className="add-act-dept-container">
         <div className="header-title">
-          <h1>เพิ่มกิจกรรม ของ department {dept.dept_id}</h1>
+          <h1>เพิ่มกิจกรรม</h1>
         </div>
 
         <form
