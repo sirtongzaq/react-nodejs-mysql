@@ -13,6 +13,8 @@ import MeasuresService from "@/services/measuresservice";
 import { Modal, Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { Fragment, use, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
 
 export default function AddActDept() {
   const router = useRouter();
@@ -635,6 +637,9 @@ export default function AddActDept() {
               }}
             >
               เพิ่มแถว
+              <span style={{ marginLeft: "5px" }}>
+                <FontAwesomeIcon icon={SolidIcon.faPlus} />
+              </span>
             </button>
             <Modal open={openModalCreate}>
               <Box sx={modalStyle.boxStyle}>

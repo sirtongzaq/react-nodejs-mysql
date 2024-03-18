@@ -86,11 +86,11 @@ export default function ActivityDept() {
           onClick={() =>
             router.push(`/dept/add_activity_dept?id=${dept.dept_id}`)
           }
-          className="dept-page-add"
+          className="btn-submit-activity"
         >
           <div className="dept-add-text">
             <span>เพิ่มกิจกรรม</span>
-            <span>
+            <span style={{marginLeft:"5px"}}>
               <FontAwesomeIcon icon={SolidIcon.faPlus} />
             </span>
           </div>

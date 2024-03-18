@@ -11,6 +11,8 @@ import actService from "@/services/actservice";
 import authService from "@/services/authservice";
 import dataInActService from "@/services/datainactservice";
 import MeasuresService from "@/services/measuresservice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
 import { Box, Modal } from "@mui/material";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
@@ -603,18 +605,24 @@ export default function EditAct() {
           ></EditActForm>
         </div>
         <h1>รายละเอียดข้อมูลส่วนบุคคล</h1>
-        <div className="actTable">
+        <div className="add-table-button">
           <button
             className="btn-submit-activity"
             style={{
               marginBottom: "25px",
+              float:"right"
             }}
             onClick={() => {
               setOpenModalCreate(!openModalCreate);
             }}
           >
             เพิ่มแถว
+            <span style={{marginLeft:"5px"}}>
+              <FontAwesomeIcon icon={SolidIcon.faPlus} />
+            </span>
           </button>
+        </div>
+        <div className="actTable">
           <Modal open={openModalCreate}>
             <Box sx={modalStyle.boxStyle}>
               <button

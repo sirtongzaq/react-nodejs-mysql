@@ -64,11 +64,11 @@ export default function Dept() {
         </div>
         <div
           onClick={() => router.push("/dept/add_dept")}
-          className="dept-page-add"
+          className="btn-submit-activity"
         >
           <div className="dept-add-text">
             <span>เพิ่มแผนก</span>
-            <span>
+            <span style={{marginLeft:"5px"}}>
               <FontAwesomeIcon icon={SolidIcon.faPlus} />
             </span>
           </div>

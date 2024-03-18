@@ -25,6 +25,7 @@
     padding-block: 5px;
     border-radius: 10px;
     transition: background-color 0.5s ease;
+    outline: none;
 
     &:hover {
         background-color: $card_hover;
