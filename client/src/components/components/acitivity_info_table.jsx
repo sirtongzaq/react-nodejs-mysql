@@ -15,7 +15,7 @@ export default function ActInfoTable({
   currPage,
   onPageChange,
   newData,
-  onNewData,
+  onNewData
 }) {
   const columns = [
     {
@@ -189,9 +189,9 @@ export default function ActInfoTable({
                   {header.isPlaceholder
                     ? null
                     : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
                 </th>
               ))}
             </tr>
