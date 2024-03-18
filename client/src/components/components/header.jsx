@@ -14,7 +14,7 @@ export default function Header({ logout, user }) {
           <div className="header-dept" onClick={() => router.push('/dept')}>
             แผนกในหน่วยงาน
           </div>
-          <div className="header-profile">
+          <div className="header-profile" onClick={()=>{router.push('/peronal-info')}}>
             แสดงข้อมูลส่วนบุคคล
           </div>
         </div>

@@ -28,7 +28,7 @@ export default function ActInfoTable({
     },
 
     {
-      header: "ไดรับข้อมูลจาก",
+      header: "ได้รับข้อมูลจาก",
       accessorKey: "p_data_source",
     },
 
