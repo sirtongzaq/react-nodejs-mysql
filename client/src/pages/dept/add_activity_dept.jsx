@@ -22,6 +22,7 @@ export default function AddActDept() {
   const [formData, setFormData] = useState(null);
   const [formDataInfo, setFormDataInfo] = useState(null);
   const [tableData, setTableData] = useState([]);
+  const [removeTableDataArr, setRemoveTableDataArr] = useState([]);
   const [measure, setMeasure] = useState([]);
   const [actId, setActId] = useState(0);
   const [orMeasure, setOrMeasure] = useState([]);
@@ -82,6 +83,14 @@ export default function AddActDept() {
       }));
     } else {
       console.log("noDataMeasure");
+    }
+  };
+
+  const onDeleteDataTable = (value) => {
+    if (value) {
+      setRemoveTableDataArr(value);
+    } else {
+      console.log("noDataTable");
     }
   };
 
@@ -617,11 +626,15 @@ export default function AddActDept() {
         <Fragment>
           <div className="actTable">
             <button
+              className="btn-submit-activity"
+              style={{
+                marginBottom: "25px",
+              }}
               onClick={() => {
                 setOpenModalCreate(!openModalCreate);
               }}
             >
-              สร้างแถว
+              เพิ่มแถว
             </button>
             <Modal open={openModalCreate}>
               <Box sx={modalStyle.boxStyle}>
@@ -665,6 +678,7 @@ export default function AddActDept() {
               newData={tableData}
               onNewData={onDataTable}
               actId={actId}
+              handleDeleteIdTable={onDeleteDataTable}
             ></ActInfoTable>
           </div>
         </Fragment>
