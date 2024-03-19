@@ -1,23 +1,43 @@
 import { useRouter } from "next/router";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
 export default function Header({ logout, user }) {
   const router = useRouter();
+  const [userRole, setUserRole] = useState([]);
+
+  const routeHome = () => {
+    if (userRole == "User") {
+      router.push("/peronal-info");
+    } else {
+      router.push("/");
+    }
+  };
+
+  useEffect(() => {
+    setUserRole(user?.user?.user_role);
+  }, [user]);
+
   return (
     <Fragment>
       <div className="header-container">
         <h1
           style={{ color: "white" }}
           onClick={() => {
-            router.push("/");
+            routeHome();
           }}
         >
           ROPA
         </h1>
 
         <div className="header-menu">
-          <div className="header-dept" onClick={() => router.push("/dept")}>
+          <div
+            className="header-dept"
+            style={{
+              display: userRole == "User" ? "none" : "block",
+            }}
+            onClick={() => router.push("/dept")}
+          >
             แผนกในหน่วยงาน
           </div>
           <div
@@ -34,8 +54,7 @@ export default function Header({ logout, user }) {
           <div className="header-username">
             <span>
               {" "}
-              <FontAwesomeIcon icon={SolidIcon.faUser} />{" "}
-              {user?.user?.username}
+              <FontAwesomeIcon icon={SolidIcon.faUser} /> {user?.user?.username}
             </span>
           </div>
           <div

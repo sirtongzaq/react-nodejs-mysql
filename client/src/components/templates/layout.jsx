@@ -52,8 +52,6 @@ export default function Layout({ children, getUserByToken }) {
     }
   }, [user]);
 
-
-
   return (
     <Fragment>
       <section className="main-layout">

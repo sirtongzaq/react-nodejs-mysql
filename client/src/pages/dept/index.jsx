@@ -16,6 +16,37 @@ export default function Dept() {
   const [filterDept, setFilterDept] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [user, setUser] = useState([]);
+
+  const getUserFromToken = async (userToken) => {
+    const res = await authService.getUserFromToken(userToken);
+    if (res) {
+      setUser(res);
+    } else {
+      setUser("noUser");
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login");
+    } else {
+      getUserFromToken(token);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      const userRole = user?.user?.user_role;
+      if(userRole === "User"){
+        router.push("/peronal-info");
+      }
+    } else {
+      router.push("/login");
+    }
+  }, [user]);
+
   const onChangeDeptList = (value) => {
     if (value === "") {
       setFilterDept([]);

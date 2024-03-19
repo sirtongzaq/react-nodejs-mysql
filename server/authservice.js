@@ -126,4 +126,27 @@ router.post("/register", async (req, res) => {
     );
   });
 });
+
+router.put("/user", async (req, res) => {
+  const { id, newData } = req.body;
+
+  if (!newData) {
+    return res.status(400).json({ message: "New data for update is missing" });
+  }
+
+  const query = `UPDATE users SET ? WHERE user_id = ?`;
+  db.query(query, [newData, id], (err, result) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      res.status(500).json({ message: "Error retrieving user" });
+      return;
+    }
+    if (result.length === 0) {
+      res.status(404).json({ message: "User not found" });
+    } else {
+      res.status(200).json({ message: "User update succesfully" });
+    }
+  });
+});
+
 module.exports = router;

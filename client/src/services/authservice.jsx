@@ -27,7 +27,7 @@ const authService = {
       const response = await http.post("/auth/login", body);
       const token = response.token;
       localStorage.setItem("token", token);
-      console.log("Token stored:", token);
+      // console.log("Token stored:", token);
       return response;
     } catch (e) {
       console.error("Error:", e);
