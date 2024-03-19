@@ -3,10 +3,34 @@
   flex-direction: column;
 }
 
-.edit-table-contrainer{
+.edit-table-contrainer {
   height: 300px;
-  .actTable{
+
+  .actTable {
     max-height: 300px;
     overflow-y: scroll;
   }
+}
+
+
+
+.edit-measure-contrainer {
+
+.measure-contriner .css-13cymwt-control{
+  height: fit-content !important;
+}
+
+  .css-1dimb5e-singleValue {
+    grid-area: 1 / 1 / 2 / 3 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    // text-overflow: ellipsis !important;
+    white-space: normal !important;
+    color: hsl(0, 0%, 20%) !important;
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+    box-sizing: border-box !important;
+
+  }
+
 }

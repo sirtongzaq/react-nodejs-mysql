@@ -1,20 +1,13 @@
 <div id="badges">
-  <h1>SET UP COMMAND FOR DOCKER SERVER BUILD</h1>
+    <h1>วิธีติดตั้ง</h1>
+  <span>โหลด node https://nodejs.org/en/download</span>
+ <span>โหลด mysql https://dev.mysql.com/downloads/installer/</span>
   <ui>
-    <li>cd server</li>
-    <li>edit db.js host: "db"</li>
-    <li>docker build -t backend-services .</li>
-    <li>docker-compose up</li>
-    <li>use api get /setup for set database</li>
+  <span>clone project https://github.com/sirtongzaq/react-nodejs-mysql.git</span>
+  <li>cd server folder and client</li>
+    <li>npm i</li>
+    <li>npm run dev for start</li>
+     <li>go on http://localhost:3000/ for start client</li>
   </ui>
-  <h1>SET UP COMMAND FOR LOCAL SERVER BUILD</h1>
-  <ui>
-    <li>cd server</li>
-    <li>edit db.js host: "localhost"</li>
-    <li>npm run dev</li>
-    <li>use api get /setup for set database</li>
-  </ui>
-
-  <img src="https://avatars.githubusercontent.com/u/52501489?v=4" width="350" title="hover text">
 
 </div>

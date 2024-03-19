@@ -70,7 +70,7 @@ export default function AddActDept() {
       await MeasuresService.createMeasures(measureForm);
       toastNoti.toastsuccess("เพิ่มกิจกรรมสำเร็จ");
       setTimeout(() => {
-        router.push("/");
+        router.push("/dept");
       }, 2000);
     } catch (e) {
       console.log("error", e);

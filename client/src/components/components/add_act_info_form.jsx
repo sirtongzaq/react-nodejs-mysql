@@ -152,6 +152,8 @@ export default function AddActInfoForm({
               หมายเลขโทรศัพท์ผู้ควบคุมข้อมูลส่วนบุคคล
               <input
                 type="text"
+                pattern="\d*"
+                maxlength="10"
                 name="datacontroller_number"
                 value={formData.datacontroller_number}
                 onChange={handleChange}
@@ -205,10 +207,13 @@ export default function AddActInfoForm({
               หมายเลขโทรศัพท์เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล
               <input
                 type="text"
+                pattern="\d*"
+                maxlength="10"
                 name="dpo_number"
                 value={formData.dpo_number}
                 onChange={handleChange}
                 required
+
               />
             </label>
             <label>

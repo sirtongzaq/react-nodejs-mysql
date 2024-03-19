@@ -663,7 +663,7 @@ export default function EditAct() {
             handleDeleteIdTable={onDeleteDataTable}
           />
         </div>
-        <div>
+        <div className="edit-measure-contrainer">
           <h1>รายละเอียดมาตรการของกิจกรรม</h1>
           <span>มาตรการเชิงองค์กร (Organizational Measures)</span>
           <EditActMeasure
