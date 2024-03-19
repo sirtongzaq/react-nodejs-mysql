@@ -68,12 +68,13 @@ export default function AddActDept() {
         await dataInActService.createDataInAct(i);
       }
       await MeasuresService.createMeasures(measureForm);
-      toastNoti.toastsuccess("เพิ่มข้อมูลสำเร็จ");
+      toastNoti.toastsuccess("เพิ่มกิจกรรมสำเร็จ");
       setTimeout(() => {
         router.push("/");
       }, 2000);
     } catch (e) {
       console.log("error", e);
+      toastNoti.toasterror("กรุณากรอกข้อมูลในฟอร์มทุกช่อง");
     }
   };
 
@@ -153,12 +154,12 @@ export default function AddActDept() {
     }
   };
   const nextPage = () => {
-    // for (const key in formData) {
-    //   if (formData.hasOwnProperty(key) && formData[key] === "") {
-    //     toastNoti.toasterror("Please fill all the fields in the form");
-    //     return;
-    //   }
-    // }
+    for (const key in formData) {
+      if (formData.hasOwnProperty(key) && formData[key] === "") {
+        toastNoti.toasterror("Please fill all the fields in the form");
+        return;
+      }
+    }
     setPage(page + 1);
   };
 
@@ -187,7 +188,6 @@ export default function AddActDept() {
   const getDataInAct = async () => {
     try {
       const res = await dataInActService.getDataInAct();
-      console.log("ress", res);
       setDataInAct(res);
     } catch (e) {
       setDataInAct([]);

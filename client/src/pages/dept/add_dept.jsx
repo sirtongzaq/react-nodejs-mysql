@@ -4,8 +4,10 @@ import authService from "@/services/authservice";
 import depService from "@/services/deptservice";
 import AddDeptForm from "@/components/components/adddept_form";
 import toastNoti from "@/components/components/toast";
+import { useRouter } from "next/router";
 
 export default function AddDept() {
+  const router = useRouter();
   const handleSubmit = async (e, deptName) => {
     const body = {
       dept_name: deptName,
@@ -13,7 +15,10 @@ export default function AddDept() {
     e.preventDefault();
     try {
       await depService.createDep(body);
-      toastNoti.toastsuccess("Department create successfully");
+      toastNoti.toastsuccess("สร้างแผนกสำเร็จ");
+      setTimeout(() => {
+        router.push("/dept");
+      }, 2000);
     } catch (e) {
       console.log("error", e);
       toastNoti.toasterror("Department name already taken");

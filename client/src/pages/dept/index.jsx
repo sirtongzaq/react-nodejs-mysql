@@ -16,7 +16,6 @@ export default function Dept() {
   const [filterDept, setFilterDept] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
   const onChangeDeptList = (value) => {
     if (value === "") {
       setFilterDept([]);
@@ -55,7 +54,6 @@ export default function Dept() {
     setOnSearch(false);
   }, []);
 
-
   return (
     <Fragment>
       <div className="dept-add-search">
@@ -68,7 +66,7 @@ export default function Dept() {
         >
           <div className="dept-add-text">
             <span>เพิ่มแผนก</span>
-            <span style={{marginLeft:"5px"}}>
+            <span style={{ marginLeft: "5px" }}>
               <FontAwesomeIcon icon={SolidIcon.faPlus} />
             </span>
           </div>
@@ -98,10 +96,7 @@ export default function Dept() {
             {dept.length > 0 ? (
               dept.map((d) => (
                 <p key={d.dept_id}>
-                  <CardDept
-                    dept={d}
-                    handleDel={() => delDep(d.dept_id)}
-                  />
+                  <CardDept dept={d} handleDel={() => delDep(d.dept_id)} />
                 </p>
               ))
             ) : (

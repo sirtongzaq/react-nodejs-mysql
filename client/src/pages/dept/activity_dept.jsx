@@ -19,7 +19,7 @@ export default function ActivityDept() {
   const [dept, setDept] = useState([]);
   const [filterAct, setFilterAct] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
-  const [actId,setId] =useState("")
+  const [actId, setId] = useState("");
 
   const getDept = async () => {
     try {
@@ -57,12 +57,11 @@ export default function ActivityDept() {
       await actService.delActFromId(id);
       console.log("delete", id);
       getActivity();
-      toastNoti.toastsuccess("Delete activity successfuly");
+      toastNoti.toastsuccess("ลบกิจกรรมสำเร็จ");
     } catch (err) {
       console.log("err==>", err);
     }
   };
-
 
   useEffect(() => {
     setDept(dept);
@@ -90,7 +89,7 @@ export default function ActivityDept() {
         >
           <div className="dept-add-text">
             <span>เพิ่มกิจกรรม</span>
-            <span style={{marginLeft:"5px"}}>
+            <span style={{ marginLeft: "5px" }}>
               <FontAwesomeIcon icon={SolidIcon.faPlus} />
             </span>
           </div>
@@ -99,11 +98,15 @@ export default function ActivityDept() {
       <div className="dept-list">
         {onSearch ? (
           <Fragment>
-            {filterAct.length > 0 ? (<span>ค้นพบ {filterAct.length} กิจกรรม</span>) : (<Fragment></Fragment>)}
+            {filterAct.length > 0 ? (
+              <span>ค้นพบ {filterAct.length} กิจกรรม</span>
+            ) : (
+              <Fragment></Fragment>
+            )}
             {filterAct.length > 0 ? (
               <Fragment>
                 {filterAct.map((data, index) => (
-                  <CardActiDept act={data} onDelete={onDeleteAct}  />
+                  <CardActiDept act={data} onDelete={onDeleteAct} />
                 ))}
               </Fragment>
             ) : (

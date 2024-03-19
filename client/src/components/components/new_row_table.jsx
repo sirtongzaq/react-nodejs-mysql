@@ -130,10 +130,6 @@ export default function NewRowTable({
     onCloseModal();
   }, [handleDataTable]);
 
-  useEffect(() => {
-    console.log("formDataTable", formDataTable);
-  }, [formDataTable]);
-
   return (
     <Fragment>
       {formDataTable.map((formData, index) => (

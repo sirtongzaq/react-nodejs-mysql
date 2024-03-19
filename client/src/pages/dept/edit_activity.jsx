@@ -67,7 +67,6 @@ export default function EditAct() {
             id: data_id,
             newData: i,
           };
-          console.log("body_dia", body_dia);
           try {
             await dataInActService.updateDataInAct(body_dia);
           } catch (error) {
@@ -95,7 +94,7 @@ export default function EditAct() {
           console.log("removeTableDataArrNotInDB");
         }
       }
-      toastNoti.toastsuccess("อัปเดทสำเร็จ");
+      toastNoti.toastsuccess("อัปเดทข้อมูลสำเร็จ");
       setTimeout(() => {
         router.push("/dept");
       }, 2000);
@@ -610,14 +609,14 @@ export default function EditAct() {
             className="btn-submit-activity"
             style={{
               marginBottom: "25px",
-              float:"right"
+              float: "right",
             }}
             onClick={() => {
               setOpenModalCreate(!openModalCreate);
             }}
           >
             เพิ่มแถว
-            <span style={{marginLeft:"5px"}} >
+            <span style={{ marginLeft: "5px" }}>
               <FontAwesomeIcon icon={SolidIcon.faPlus} />
             </span>
           </button>
