@@ -1,6 +1,7 @@
 <div id="badges">
     <h1>วิธีติดตั้ง</h1>
-  <span>โหลด node https://nodejs.org/en/download</span>
+<span>โหลด node https://nodejs.org/en/download</span>
+    </br>
  <span>โหลด mysql https://dev.mysql.com/downloads/installer/</span>
   <ui>
   <span>clone project https://github.com/sirtongzaq/react-nodejs-mysql.git</span>
