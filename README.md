@@ -3,6 +3,7 @@
 <span>โหลด node https://nodejs.org/en/download</span>
     </br>
  <span>โหลด mysql https://dev.mysql.com/downloads/installer/</span>
+      </br>
   <ui>
   <span>clone project https://github.com/sirtongzaq/react-nodejs-mysql.git</span>
   <li>cd server folder and client</li>
