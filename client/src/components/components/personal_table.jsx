@@ -166,7 +166,7 @@ export default function PersonalTable({}) {
         </div>
       </div>
 
-      <div style={{ marginTop: "20px" }}>
+      <div style={{ marginTop: "20px" }} className="actTable">
         <table>
           <thead>
             {table.getHeaderGroups().map((headerG) => (

@@ -37,7 +37,7 @@ export default function EditActMeasure({ measure, handleValue, field, data }) {
 
   return (
     <Fragment>
-      <div>
+      <div className="measure-contriner">
         <CreatableSelect
           isClearable
           options={measureArr}

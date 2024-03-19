@@ -26,12 +26,12 @@ export default function CardActiDept({
             <div className="dept-card">
                 <div className="dept-name" onClick={() => router.push(`/dept/edit_activity?id=${act.act_id}`)}>กิจกรรม {act.act_name}</div>
                 <div className="dept-action">
-                    <div
+                    {/* <div
                         className="dept-edit"
                         onClick={() => router.push(`/dept/edit_activity?id=${act.act_id}`)}
                     >
                         <FontAwesomeIcon icon={SolidIcon.faPen} />
-                    </div>
+                    </div> */}
                     <div
                         onClick={() => {
                             setOpenModal(true);

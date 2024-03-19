@@ -113,6 +113,10 @@ export default function ActInfoTable({
     },
     {
       header: "ลบ/แก้ไข",
+      style: {
+        textAlign: "center",
+        whiteSpace: "unset",
+      },
       cell: ({ row }) => (
         <Fragment>
           <div className="edit-delete-row">
@@ -191,53 +195,55 @@ export default function ActInfoTable({
 
   return (
     <Fragment>
-      <table>
-        <thead>
-          {table.getHeaderGroups().map((headerG) => (
-            <tr key={headerG.id}>
-              {headerG.headers.map((header) => (
-                <th colSpan={header.colSpan}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
+      <div className="actTable">
+        <table>
+          <thead>
+            {table.getHeaderGroups().map((headerG) => (
+              <tr key={headerG.id}>
+                {headerG.headers.map((header) => (
+                  <th colSpan={header.colSpan}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
                         header.column.columnDef.header,
                         header.getContext()
                       )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
 
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cells) => (
-                <td key={cells.id}>
-                  {flexRender(cells.column.columnDef.cell, cells.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cells) => (
+                  <td key={cells.id}>
+                    {flexRender(cells.column.columnDef.cell, cells.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      <Modal open={openModalCreate}>
-        <Box sx={modalStyle.boxStyle}>
-          <button
-            onClick={() => {
-              setOpenModalCreate(!openModalCreate);
-            }}
-            className="close-button-new-role"
-          >
-            X
-          </button>
-          <EditRowTable
-            editTableData={editRow}
-            onChangeDataTable={onChangeDataTable}
-          ></EditRowTable>
-        </Box>
-      </Modal>
+        <Modal open={openModalCreate}>
+          <Box sx={modalStyle.boxAddStyle}>
+            <button
+              onClick={() => {
+                setOpenModalCreate(!openModalCreate);
+              }}
+              className="close-button-new-role"
+            >
+              X
+            </button>
+            <EditRowTable
+              editTableData={editRow}
+              onChangeDataTable={onChangeDataTable}
+            ></EditRowTable>
+          </Box>
+        </Modal>
+      </div>
     </Fragment>
   );
 }

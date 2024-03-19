@@ -97,6 +97,31 @@
   overflow-y: scroll;
 }
 
-.add-table-button{
+.add-table-button {
   float: right;
+}
+
+
+.measure-add-row-modal {
+  .css-15edx0w {
+    width: 80%;
+  }
+}
+
+.page-two-contrainer {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    margin-bottom: 25px;
+    width: 100px;
+    float: right;
+    position: relative;
+    align-self: end;
+  }
+
+  .actTable{
+    overflow-y: hidden !important;
+  }
+
 }

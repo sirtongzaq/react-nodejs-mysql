@@ -626,7 +626,7 @@ export default function AddActDept() {
       )}
       {page == 2 && (
         <Fragment>
-          <div className="actTable">
+          <div className="page-two-contrainer">
             <button
               className="btn-submit-activity"
               style={{
@@ -641,50 +641,52 @@ export default function AddActDept() {
                 <FontAwesomeIcon icon={SolidIcon.faPlus} />
               </span>
             </button>
-            <Modal open={openModalCreate}>
-              <Box sx={modalStyle.boxStyle}>
-                <button
-                  onClick={() => {
-                    setOpenModalCreate(!openModalCreate);
-                  }}
-                  className="close-button-new-role"
-                >
-                  X
-                </button>
-                <NewRowTable
-                  dataInActApproveDestroy={dataInActApproveDestroy}
-                  dataInActConditionNameAccess={dataInActConditionNameAccess}
-                  dataInActConditionToAccess={dataInActConditionToAccess}
-                  dataInActHowToAccess={dataInActHowToAccess}
-                  dataInActLegalBase={dataInActLegalBase}
-                  dataInActName={dataInActName}
-                  dataInActNameAccess={dataInActNameAccess}
-                  dataInActObject={dataInActObject}
-                  dataInActSource={dataInActSource}
-                  dataInActStorage={dataInActStorage}
-                  dataInActSubject={dataInActSubject}
-                  dataInActTimePeriod={dataInActTimePeriod}
-                  dataInActType={dataInActType}
-                  dataInActTypeDetail={dataInActTypeDetail}
-                  dataInActWayDestroy={dataInActWayDestroy}
-                  dataInActWhouseInorg={dataInActWhouseInorg}
-                  dataInActWhouseOutorg={dataInActWhouseOutorg}
-                  handleDataTable={onDataTable}
-                  onCloseModal={onCloseModal}
-                  onTableData={tableData}
-                  actId={actId}
-                />
-              </Box>
-            </Modal>
-            <ActInfoTable
-              formData={formData}
-              onPageChange={onPageChange}
-              currPage={page}
-              newData={tableData}
-              onNewData={onDataTable}
-              actId={actId}
-              handleDeleteIdTable={onDeleteDataTable}
-            ></ActInfoTable>
+              <div className="measure-add-row-modal">
+                <Modal open={openModalCreate}>
+                  <Box sx={modalStyle.boxAddStyle}>
+                    <button
+                      onClick={() => {
+                        setOpenModalCreate(!openModalCreate);
+                      }}
+                      className="close-button-new-role"
+                    >
+                      X
+                    </button>
+                    <NewRowTable
+                      dataInActApproveDestroy={dataInActApproveDestroy}
+                      dataInActConditionNameAccess={dataInActConditionNameAccess}
+                      dataInActConditionToAccess={dataInActConditionToAccess}
+                      dataInActHowToAccess={dataInActHowToAccess}
+                      dataInActLegalBase={dataInActLegalBase}
+                      dataInActName={dataInActName}
+                      dataInActNameAccess={dataInActNameAccess}
+                      dataInActObject={dataInActObject}
+                      dataInActSource={dataInActSource}
+                      dataInActStorage={dataInActStorage}
+                      dataInActSubject={dataInActSubject}
+                      dataInActTimePeriod={dataInActTimePeriod}
+                      dataInActType={dataInActType}
+                      dataInActTypeDetail={dataInActTypeDetail}
+                      dataInActWayDestroy={dataInActWayDestroy}
+                      dataInActWhouseInorg={dataInActWhouseInorg}
+                      dataInActWhouseOutorg={dataInActWhouseOutorg}
+                      handleDataTable={onDataTable}
+                      onCloseModal={onCloseModal}
+                      onTableData={tableData}
+                      actId={actId}
+                    />
+                  </Box>
+                </Modal>
+              <ActInfoTable
+                formData={formData}
+                onPageChange={onPageChange}
+                currPage={page}
+                newData={tableData}
+                onNewData={onDataTable}
+                actId={actId}
+                handleDeleteIdTable={onDeleteDataTable}
+              ></ActInfoTable>
+            </div>
           </div>
         </Fragment>
       )}

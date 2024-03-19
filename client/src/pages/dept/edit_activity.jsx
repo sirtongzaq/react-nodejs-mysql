@@ -621,9 +621,9 @@ export default function EditAct() {
             </span>
           </button>
         </div>
-        <div className="actTable">
+        <div className="edit-table-contrainer">
           <Modal open={openModalCreate}>
-            <Box sx={modalStyle.boxStyle}>
+            <Box sx={modalStyle.boxAddStyle}>
               <button
                 onClick={() => {
                   onCloseModal();

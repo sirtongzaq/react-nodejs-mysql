@@ -2,3 +2,11 @@
   display: flex;
   flex-direction: column;
 }
+
+.edit-table-contrainer{
+  height: 300px;
+  .actTable{
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+}

@@ -6,10 +6,8 @@ import { Fragment } from "react";
 export default function PersonalInfo() {
     return (
         <Fragment>
-            <div>
-                <div>
-                    <PersonalTable></PersonalTable>
-                </div>
+            <div className="personal-contrianer">
+                <PersonalTable></PersonalTable>
             </div>
 
         </Fragment>

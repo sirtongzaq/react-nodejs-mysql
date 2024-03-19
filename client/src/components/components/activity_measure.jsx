@@ -43,7 +43,7 @@ export default function ActMeasure({ measure, handleValue, field }) {
 
   return (
     <Fragment>
-      <div>
+      <div className="measure-contriner">
         <CreatableSelect
           isClearable
           options={measureArr}

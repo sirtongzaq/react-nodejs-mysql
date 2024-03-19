@@ -13,12 +13,12 @@ export default function CardDept({ dept, handleDel }) {
       <div className="dept-card">
         <div className="dept-name"  onClick={()=>router.push(`/dept/activity_dept?id=${dept.dept_id}`)} >{dept.dept_name}</div>
         <div className="dept-action">
-          <div
+          {/* <div
             className="dept-edit"
             onClick={() => router.push(`/dept/edit_dept?id=${dept.dept_id}`)}
           >
             <FontAwesomeIcon icon={SolidIcon.faPen} />
-          </div>
+          </div> */}
           <div
             onClick={() => {
               setOpenModal(true);
