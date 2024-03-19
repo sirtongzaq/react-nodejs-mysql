@@ -18,7 +18,7 @@ export default function LoginPage() {
         username,
         password,
       });
-      router.push("/");
+      router.push("/peronal-info");
     } catch (error) {
       toastNoti.toasterror("Invalid username or password");
     }

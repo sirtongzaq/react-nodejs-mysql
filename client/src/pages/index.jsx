@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function Page() {
-  const router = useRouter()
-  useEffect(()=>{
-    router.push('/dept')
-  },[])
-  return (<></>)
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/peronal-info");
+  }, []);
+  return <></>;
 }
 
 Page.getLayout = function getLayout(page) {

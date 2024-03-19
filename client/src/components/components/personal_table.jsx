@@ -74,35 +74,9 @@ export default function PersonalTable({}) {
   //     setFilterTable(searchValue);
   // };
 
-  //   const searchPersonalData = async () => {
-  //     try {
-  //       const res = await dataInActService.searchPersonal(searchValue);
-  //       if (res) {
-  //         const dataArr = [];
-  //         for (let item of res) {
-  //           const newObj = {
-  //             id: item.data_id,
-  //             p_data_name: item.p_data_name,
-  //             p_data_storage: item.p_data_storage,
-  //             p_data_name_access: item.p_data_name_access,
-  //             p_data_approve_destroy: item.p_data_approve_destroy,
-  //             p_data_way_destroy: item.p_data_way_destroy,
-  //             act_name: item.act_name,
-  //             dept_name: item.dept_name,
-  //           };
-  //           dataArr.push(newObj);
-  //         }
-  //         setData(dataArr);
-  //       }
-  //     } catch (e) {
-  //       console.log("error", e);
-  //       setData([]);
-  //     }
-  //   };
-
-  const getPersonalData = async () => {
+  const searchPersonalData = async () => {
     try {
-      const res = await dataInActService.getPersonal();
+      const res = await dataInActService.searchPersonal(searchValue);
       if (res) {
         const dataArr = [];
         for (let item of res) {
@@ -126,22 +100,48 @@ export default function PersonalTable({}) {
     }
   };
 
+  // const getPersonalData = async () => {
+  //   try {
+  //     const res = await dataInActService.getPersonal();
+  //     if (res) {
+  //       const dataArr = [];
+  //       for (let item of res) {
+  //         const newObj = {
+  //           id: item.data_id,
+  //           p_data_name: item.p_data_name,
+  //           p_data_storage: item.p_data_storage,
+  //           p_data_name_access: item.p_data_name_access,
+  //           p_data_approve_destroy: item.p_data_approve_destroy,
+  //           p_data_way_destroy: item.p_data_way_destroy,
+  //           act_name: item.act_name,
+  //           dept_name: item.dept_name,
+  //         };
+  //         dataArr.push(newObj);
+  //       }
+  //       setData(dataArr);
+  //     }
+  //   } catch (e) {
+  //     console.log("error", e);
+  //     setData([]);
+  //   }
+  // };
+
   const onDeleteSearch = () => {
     setFilterTable("");
     setSearchValue("");
   };
 
-  // useEffect(() => {
-  //   searchPersonalData();
-  // }, [searchValue]);
-
   useEffect(() => {
-    setFilterTable(searchValue);
+    searchPersonalData();
   }, [searchValue]);
 
-  useEffect(() => {
-    getPersonalData();
-  }, []);
+  // useEffect(() => {
+  //   setFilterTable(searchValue);
+  // }, [searchValue]);
+
+  // useEffect(() => {
+  //   getPersonalData();
+  // }, []);
   return (
     <Fragment>
       <div className="dept-search">
