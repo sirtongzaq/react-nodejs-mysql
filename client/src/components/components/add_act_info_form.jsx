@@ -1,3 +1,4 @@
+import actService from "@/services/actservice";
 import React, { Fragment, use, useEffect, useMemo, useState } from "react";
 
 export default function AddActInfoForm({
@@ -8,6 +9,7 @@ export default function AddActInfoForm({
   formDataInfo,
 }) {
   const [formData, setFormData] = useState({
+    act_id: "",
     act_name: "",
     datacontroller_firstname: "",
     datacontroller_lastname: "",
@@ -29,6 +31,28 @@ export default function AddActInfoForm({
 
   const [previousFormData, setPreviousFormData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+
+  const getActLength = async () => {
+    try {
+      const res = await actService.getAct();
+      if (res.length > 0) {
+        const lastIndex = res.length - 1;
+        const lastData = res[lastIndex];
+        const actIdFilter = lastData.act_id + 1;
+        setFormData((prevState) => ({
+          ...prevState,
+          act_id: actIdFilter,
+        }));
+      } else {
+        setFormData((prevState) => ({
+          ...prevState,
+          act_id: 1,
+        }));
+      }
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,6 +77,7 @@ export default function AddActInfoForm({
 
   useEffect(() => {
     setCurrentPage(currPage);
+    getActLength();
   }, [currPage]);
 
   useEffect(() => {
@@ -213,7 +238,6 @@ export default function AddActInfoForm({
                 value={formData.dpo_number}
                 onChange={handleChange}
                 required
-
               />
             </label>
             <label>

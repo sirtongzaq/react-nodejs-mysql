@@ -56,7 +56,9 @@ export default function ActivityDept() {
     try {
       await actService.delActFromId(id);
       console.log("delete", id);
+      // router.reload();
       getActivity();
+      getDept();
       toastNoti.toastsuccess("ลบกิจกรรมสำเร็จ");
     } catch (err) {
       console.log("err==>", err);

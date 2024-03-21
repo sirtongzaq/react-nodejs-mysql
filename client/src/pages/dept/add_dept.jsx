@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Layout from "@/components/templates/layout";
 import authService from "@/services/authservice";
 import depService from "@/services/deptservice";
@@ -8,9 +8,27 @@ import { useRouter } from "next/router";
 
 export default function AddDept() {
   const router = useRouter();
+  const [deptId, setDeptId] = useState(0);
+  const getDeptLength = async () => {
+    try {
+      const res = await depService.getDep();
+      if (res.length) {
+        const lastIndex = res.length - 1;
+        const lastData = res[lastIndex];
+        const deptIdFilter = lastData.dept_id + 1;
+        setDeptId(deptIdFilter);
+      } else {
+        setDeptId(1);
+      }
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
   const handleSubmit = async (e, deptName) => {
     const body = {
       dept_name: deptName,
+      dept_id: deptId,
     };
     e.preventDefault();
     try {
@@ -24,6 +42,11 @@ export default function AddDept() {
       toastNoti.toasterror("Department name already taken");
     }
   };
+
+  useEffect(() => {
+    getDeptLength();
+  }, []);
+
   return (
     <Fragment>
       <AddDeptForm handleSubmit={handleSubmit} />

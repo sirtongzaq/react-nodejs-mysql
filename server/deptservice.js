@@ -4,28 +4,32 @@ const db = require("./db");
 const router = express.Router();
 
 router.post("/create", async (req, res) => {
-  const { dept_name } = req.body;
-  const checkQuery = `SELECT * FROM departments WHERE dept_name = ?`;
-  db.query(checkQuery, [dept_name], async (err, result) => {
+  const { dept_id, dept_name } = req.body;
+  const checkQuery = `SELECT * FROM departments WHERE dept_id = ?`;
+  db.query(checkQuery, [dept_id], async (err, result) => {
     if (err) {
-      console.error("Error checking dept_name:", err);
-      res.status(500).json({ message: "Error checking dept_name" });
+      console.error("Error checking dept_id:", err);
+      res.status(500).json({ message: "Error checking dept_id" });
       return;
     }
     if (result.length > 0) {
-      console.log("Department already exists");
-      res.status(401).json({ message: "Department already exists" });
+      console.log("Department with the provided ID already exists");
+      res
+        .status(401)
+        .json({ message: "Department with the provided ID already exists" });
       return;
     }
-    const insertQuery = `INSERT INTO departments (dept_name) VALUES (?)`;
-    db.query(insertQuery, [dept_name], (err, result) => {
+    const insertQuery = `INSERT INTO departments (dept_id, dept_name) VALUES (?, ?)`;
+    db.query(insertQuery, [dept_id, dept_name], (err, result) => {
       if (err) {
         console.error("Error inserting departments data:", err);
         res.status(500).json({ message: "Error inserting departments data" });
         return;
       }
-      console.log("departments data inserted successfully");
-      res.status(200).json({ message: "User data inserted successfully" });
+      console.log("Department data inserted successfully");
+      res
+        .status(200)
+        .json({ message: "Department data inserted successfully" });
     });
   });
 });

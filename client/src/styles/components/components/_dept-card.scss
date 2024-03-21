@@ -1,39 +1,42 @@
 .dept-card {
-    background-color: $card;
-    border-radius: 10px;
-    padding-block: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-block: 10px;
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-    &:hover{
-        background-color: $card_hover;
-    }
+  background-color: $card;
+  border-radius: 10px;
+  padding-block: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-block: 10px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  &:hover {
+    background-color: $card_hover;
+  }
 }
 
 .dept-action {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.dept-name{
-    padding-left: 10px;
-    width: 100%;
+.dept-name {
+  padding-left: 10px;
+  width: 100%;
 }
 
 .dept-delete,
-.dept-edit{
-    padding-right: 20px;
-    cursor: pointer;
+.dept-edit {
+  padding-right: 20px;
+  cursor: pointer;
+  color: $primary_4;
+  &:hover {
+    color: $primary_1;
+  }
 }
 
-.dept-delete{
-    color: $red;
-    &:hover{
-        color: $red_hover;
-    }
-
+.dept-delete {
+  color: $red;
+  &:hover {
+    color: $red_hover;
+  }
 }

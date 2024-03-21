@@ -28,12 +28,12 @@ export default function RegisterPage() {
         user_firstname,
         user_lastname,
       });
-      toastNoti.toastsuccess("Account registered successfully");
+      toastNoti.toastsuccess("สมัครสมาชิกสำเร็จ");
       setTimeout(() => {
         router.push("/login");
       }, 2000);
     } catch (error) {
-      toastNoti.toasterror("Username is already taken");
+      toastNoti.toasterror("ชื่อผู้ใช้ถูกใช้แล้ว");
     }
   };
 

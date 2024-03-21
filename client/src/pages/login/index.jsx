@@ -20,7 +20,7 @@ export default function LoginPage() {
       });
       router.push("/peronal-info");
     } catch (error) {
-      toastNoti.toasterror("Invalid username or password");
+      toastNoti.toasterror("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
     }
   };
 

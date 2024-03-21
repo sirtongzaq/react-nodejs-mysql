@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/create", async (req, res) => {
   const {
+    act_id,
     act_name,
     datacontroller_firstname,
     datacontroller_lastname,
@@ -23,7 +24,8 @@ router.post("/create", async (req, res) => {
     recordreviewer_firstname,
     recordreviewer_lastname,
   } = req.body;
-  const insertQuery = `INSERT INTO activitys (act_name,
+  const insertQuery = `INSERT INTO activitys (act_id,
+      act_name,
       datacontroller_firstname,
       datacontroller_lastname,
       datacontroller_email,
@@ -40,10 +42,11 @@ router.post("/create", async (req, res) => {
       dpo_number,
       recordreviewer_firstname,
       recordreviewer_lastname) 
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
   db.query(
     insertQuery,
     [
+      act_id,
       act_name,
       datacontroller_firstname,
       datacontroller_lastname,
@@ -125,20 +128,45 @@ router.get("/getactivitybydept", async (req, res) => {
 
 router.delete("/delete", async (req, res) => {
   const { id } = req.query;
-  const deleteQuery = `DELETE FROM activitys WHERE act_id= ?`;
-  db.query(deleteQuery, [id], (err, result) => {
+  const deleteActivityQuery = `DELETE FROM activitys WHERE act_id = ?`;
+
+  db.query(deleteActivityQuery, [id], (err, activityResult) => {
     if (err) {
-      console.error("Error deleting activitys:", err);
-      res.status(500).json({ message: "Error deleting activitys" });
-      return;
+      console.error("Error deleting activity:", err);
+      return res.status(500).json({ message: "Error deleting activity" });
     }
-    if (result.affectedRows > 0) {
-      res.status(200).json({
-        message: "Activities deleted successfully",
+
+    if (activityResult.affectedRows === 0) {
+      return res.status(404).json({ message: "Activity not found" });
+    }
+
+    const deleteMeasuresQuery = `DELETE FROM measures WHERE act_id = ?`;
+    db.query(deleteMeasuresQuery, [id], (err, measuresResult) => {
+      if (err) {
+        console.error("Error deleting measures:", err);
+        return res.status(500).json({ message: "Error deleting measures" });
+      }
+
+      const deleteDataInactivityQuery = `DELETE FROM datainactivity WHERE act_id = ?`;
+      db.query(deleteDataInactivityQuery, [id], (err, dataResult) => {
+        if (err) {
+          console.error("Error deleting data inactivity:", err);
+          return res
+            .status(500)
+            .json({ message: "Error deleting data inactivity" });
+        }
+
+        let message;
+        if (measuresResult.affectedRows > 0 || dataResult.affectedRows > 0) {
+          message =
+            "Activity and associated measures/data inactivity deleted successfully";
+        } else {
+          message =
+            "Activity deleted successfully, no associated measures/data inactivity";
+        }
+        res.status(200).json({ message });
       });
-    } else {
-      res.status(404).json({ message: "Activities not found" });
-    }
+    });
   });
 });
 
