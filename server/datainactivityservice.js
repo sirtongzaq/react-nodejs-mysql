@@ -179,9 +179,11 @@ router.get("/peronalsearch", async (req, res) => {
     return res.status(400).json({ message: "Name parameter is missing" });
   }
 
-  const query = `SELECT data_id, act_id, p_data_name, p_data_storage, p_data_name_access, p_data_approve_destroy, p_data_way_destroy FROM datainactivity WHERE p_data_name = ?`;
+  const query = `SELECT data_id, act_id, p_data_name, p_data_storage, p_data_name_access, p_data_approve_destroy, p_data_way_destroy FROM datainactivity WHERE p_data_name LIKE ?`;
 
-  db.query(query, [name], (err, result) => {
+  const parameterizedName = `%${name}%`;
+
+  db.query(query, [parameterizedName], (err, result) => {
     if (err) {
       console.error("Error executing query:", err);
       return res.status(500).json({ message: "Internal Server Error" });
