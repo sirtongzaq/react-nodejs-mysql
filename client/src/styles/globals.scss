@@ -76,22 +76,14 @@ body {
   position: relative;
 }
 
-// @media only screen and (max-width: 550px) {
-//   .main-layout {
-//     grid-template-columns: 1fr;
-//     grid-template-rows: 56px 1fr 0.1fr;
-//     grid-template-areas:
-//       "hnav"
-//       "ct"
-//       "aside";
-//   }
-// }
+
 
 table {
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 300%;
-  table-layout: fixed;
+  table-layout: auto;
+  // border-collapse: collapse;
 }
 
 table td,
@@ -115,12 +107,9 @@ tfoot td {
   text-align: center;
   background-color: $primary_1;
   color: white;
+  // overflow: hidden;
+  // word-wrap: break-word;
 }
-
-// .css-15edx0w {
-//   width: 80% !important;
-// }
-
 
 .css-t3ipsp-control {
   border-color: $primary_1 !important;
@@ -130,12 +119,30 @@ tfoot td {
   }
 }
 
-.css-1nmdiq5-menu{
-  :first-child{
+.css-1nmdiq5-menu {
+  :first-child {
     background-color: $primary_1 !important;
-    color: #fff;;
+    color: #fff;
+    ;
     // &:hover{
     //   background-color: $primary_2 !important;
     // }
+  }
+}
+
+textarea {
+  resize: none;
+  background-color: rgba(5, 6, 15, 0.0392156863);
+  border-radius: 0.5rem;
+  padding-inline: 10px;
+  padding-block: 10px;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  outline: none;
+  width: 95%;
+  overflow-y: auto;
+
+  &:focus{
+    border-color: $primary_1;
   }
 }
