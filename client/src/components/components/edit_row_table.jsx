@@ -32,30 +32,30 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
   };
 
   const handleSubmit = (e) => {
-      e.preventDefault();
-      onChangeDataTable(...formDataTable)
-      // setFormDataTable([
-      //     {
-      //         // act_id: actId,
-      //         p_data_name: "",
-      //         p_data_subject: "",
-      //         p_data_source: "",
-      //         p_data_type_detail: "",
-      //         p_data_type: "",
-      //         p_data_object: "",
-      //         p_data_legal_base: "",
-      //         p_data_time_period: "",
-      //         p_data_storage: "",
-      //         p_data_name_access: "",
-      //         p_data_condition_name_access: "",
-      //         p_data_how_to_access: "",
-      //         p_data_condition_to_access: "",
-      //         p_data_whouse_inorg: "",
-      //         p_data_whouse_outorg: "",
-      //         p_data_way_destroy: "",
-      //         p_data_approve_destroy: "",
-      //     },
-      // ]);
+    e.preventDefault();
+    onChangeDataTable(...formDataTable)
+    // setFormDataTable([
+    //     {
+    //         // act_id: actId,
+    //         p_data_name: "",
+    //         p_data_subject: "",
+    //         p_data_source: "",
+    //         p_data_type_detail: "",
+    //         p_data_type: "",
+    //         p_data_object: "",
+    //         p_data_legal_base: "",
+    //         p_data_time_period: "",
+    //         p_data_storage: "",
+    //         p_data_name_access: "",
+    //         p_data_condition_name_access: "",
+    //         p_data_how_to_access: "",
+    //         p_data_condition_to_access: "",
+    //         p_data_whouse_inorg: "",
+    //         p_data_whouse_outorg: "",
+    //         p_data_way_destroy: "",
+    //         p_data_approve_destroy: "",
+    //     },
+    // ]);
   };
 
 
@@ -76,8 +76,9 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
       <form key={index} onSubmit={(e) => handleSubmit(e, index)} className="add-new-row-form">
         <div className="add-new-row-form-card">
           <label>ข้อมูลส่วนบุคคล ที่มีการเก็บรวม (ข้อมูลที่ประมวลผล)
-            <input
+            <textarea
               type="text"
+              rows={5}
               name="p_data_name"
               value={formData.p_data_name}
               onChange={(e) => handleInputChange(e, index)}
@@ -88,9 +89,10 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             เจ้าของข้อมูลส่วนบุคคล
-            <input
+            <textarea
               type="text"
               name="p_data_subject"
+              rows={5}
               value={formData.p_data_subject}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="เจ้าของข้อมูลส่วนบุคคล"
@@ -99,9 +101,10 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             ได้รับข้อมูลจาก
-            <input
+            <textarea
               type="text"
               name="p_data_source"
+              rows={5}
               value={formData.p_data_source}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ได้รับข้อมูลจาก"
@@ -110,10 +113,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             รูปแบบของข้อมูล
-            <input
+            <textarea
               type="text"
               name="p_data_type"
               value={formData.p_data_type}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="รูปแบบของข้อมูล"
             />
@@ -121,20 +125,22 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             ประเภทข้อมูลส่วนบุคคล
-            <input
+            <textarea
               type="text"
               name="p_data_type_detail"
               value={formData.p_data_type_detail}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ประเภทข้อมูลส่วนบุคคล"
             />
           </label>
           <label>
             วัตถุประสงค์การเก็บรวบรวมข้อมูล
-            <input
+            <textarea
               type="text"
               name="p_data_object"
               value={formData.p_data_object}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="วัตถุประสงค์การเก็บรวบรวมข้อมูล"
             />
@@ -142,10 +148,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             ฐานทางกฎหมายสำหรับประมวลผลข้อมูลส่วนบุคคล
-            <input
+            <textarea
               type="text"
               name="p_data_legal_base"
               value={formData.p_data_legal_base}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ฐานทางกฎหมายสำหรับประมวลผลข้อมูลส่วนบุคคล"
             />
@@ -153,10 +160,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             ระยะเวลาการจัดเก็บข้อมูลส่วนบุคค
-            <input
+            <textarea
               type="text"
               name="p_data_time_period"
               value={formData.p_data_time_period}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ระยะเวลาการจัดเก็บข้อมูลส่วนบุคค"
             />
@@ -164,10 +172,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             แหล่งจัดเก็บข้อมูลส่วนบุคคล
-            <input
+            <textarea
               type="text"
               name="p_data_storage"
               value={formData.p_data_storage}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="แหล่งจัดเก็บข้อมูลส่วนบุคคล"
             />
@@ -175,10 +184,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             บุคคลที่มีสิทธิเข้าถึงข้อมูล
-            <input
+            <textarea
               type="text"
               name="p_data_name_access"
               value={formData.p_data_name_access}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="บุคคลที่มีสิทธิเข้าถึงข้อมูล"
             />
@@ -186,10 +196,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             เงื่อนไขเกี่ยวกับบุคคลที่มีสิทธิเข้าถึงข้อมูล
-            <input
+            <textarea
               type="text"
               name="p_data_condition_name_access"
               value={formData.p_data_condition_name_access}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="เงื่อนไขเกี่ยวกับบุคคลที่มีสิทธิเข้าถึงข้อมูล"
             />
@@ -197,10 +208,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             วิธีการเข้าถึงข้อมูลส่วนบุคคล
-            <input
+            <textarea
               type="text"
               name="p_data_how_to_access"
               value={formData.p_data_how_to_access}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="วิธีการเข้าถึงข้อมูลส่วนบุคคล"
             />
@@ -208,10 +220,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             เงื่อนไขในการเข้าถึงข้อมูล
-            <input
+            <textarea
               type="text"
               name="p_data_condition_to_access"
               value={formData.p_data_condition_to_access}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="เงื่อนไขในการเข้าถึงข้อมูล"
             />
@@ -219,10 +232,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             ข้อมูลส่วนบุคคลถูกใช้โดยตำแหน่งใดบ้าง
-            <input
+            <textarea
               type="text"
               name="p_data_whouse_inorg"
               value={formData.p_data_whouse_inorg}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ข้อมูลส่วนบุคคลถูกใช้โดยตำแหน่งใดบ้าง"
             />
@@ -230,10 +244,11 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             ข้อมูลส่วนบุคคลถูกส่งต่อ/เปิดเผยให้ใครบ้าง
-            <input
+            <textarea
               type="text"
               name="p_data_whouse_outorg"
               value={formData.p_data_whouse_outorg}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ข้อมูลส่วนบุคคลถูกส่งต่อ/เปิดเผยให้ใครบ้าง"
             />
@@ -241,21 +256,24 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
 
           <label>
             วิธีการทำลายข้อมูลส่วนบุคคล
-            <input
+            <textarea
               type="text"
               name="p_data_way_destroy"
               value={formData.p_data_way_destroy}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="วิธีการทำลายข้อมูลส่วนบุคคล"
+              style={{ height: "auto" }}
             />
           </label>
 
           <label>
             ผู้อนุมัติการทำลายข้อมูลส่วนบุคคบ
-            <input
+            <textarea
               type="text"
               name="p_data_approve_destroy"
               value={formData.p_data_approve_destroy}
+              rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ผู้อนุมัติการทำลายข้อมูลส่วนบุคคบ"
             />
