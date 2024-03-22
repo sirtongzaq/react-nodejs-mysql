@@ -22,7 +22,7 @@ export default function Header({ logout, user }) {
     <Fragment>
       <div className="header-container">
         <h1
-          style={{ color: "white" }}
+          style={{ color: "white",cursor:"pointer" }}
           onClick={() => {
             routeHome();
           }}

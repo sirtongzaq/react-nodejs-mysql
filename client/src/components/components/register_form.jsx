@@ -78,7 +78,7 @@ export default function RegisterForm({ handleRegister, handleBack, error }) {
             <FontAwesomeIcon className="icon" icon={SolidIcon.faEnvelope} />
 
             <input
-              type="text"
+              type="email"
               id="username"
               placeholder="อีเมล"
               value={userEmail}

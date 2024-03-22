@@ -120,20 +120,23 @@ export default function ActInfoTable({
       cell: ({ row }) => (
         <Fragment>
           <div className="edit-delete-row">
-            <span
+            <button
               className="edit-row-table"
               onClick={() => {
                 handleClickEdit(row.index);
               }}
+
+              style={{border:"none"}}
             >
               <FontAwesomeIcon icon={SolidIcon.faPen} />
-            </span>
-            <span
+            </button>
+            <button
               className="delete-row-table"
               onClick={() => handleDeleteRow(row.index)}
+              style={{border:"none"}}
             >
               <FontAwesomeIcon icon={SolidIcon.faTrash} />
-            </span>
+            </button>
           </div>
         </Fragment>
       ),
