@@ -51,6 +51,7 @@ export default function ActMeasure({ measure, handleValue, field }) {
           onChange={handleSelectChange}
           onCreateOption={handleCreate}
           value={selectValue}
+          required={true}
         />
       </div>
     </Fragment>

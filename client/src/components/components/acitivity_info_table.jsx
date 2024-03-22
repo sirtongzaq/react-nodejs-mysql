@@ -126,14 +126,14 @@ export default function ActInfoTable({
                 handleClickEdit(row.index);
               }}
 
-              style={{border:"none"}}
+              style={{border:"none",background:"none"}}
             >
               <FontAwesomeIcon icon={SolidIcon.faPen} />
             </button>
             <button
               className="delete-row-table"
               onClick={() => handleDeleteRow(row.index)}
-              style={{border:"none"}}
+              style={{border:"none",background:"none"}}
             >
               <FontAwesomeIcon icon={SolidIcon.faTrash} />
             </button>

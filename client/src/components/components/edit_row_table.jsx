@@ -83,7 +83,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               value={formData.p_data_name}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ข้อมูลส่วนบุคคล ที่มีการเก็บรวม (ข้อมูลที่ประมวลผล)"
-              required
+              // required
             />
           </label>
 

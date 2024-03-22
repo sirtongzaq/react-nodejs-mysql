@@ -44,6 +44,7 @@ export default function InputNewRow({ data, handleValue, field }) {
           onChange={handleSelectChange}
           onCreateOption={handleCreate}
           value={selectValue}
+          required
         />
       </div>
     </Fragment>

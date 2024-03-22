@@ -45,6 +45,7 @@ export default function EditActMeasure({ measure, handleValue, field, data }) {
           onChange={handleSelectChange}
           onCreateOption={handleCreate}
           value={selectValue}
+          required={true}
         />
       </div>
     </Fragment>
