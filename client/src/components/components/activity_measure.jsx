@@ -23,37 +23,38 @@ export default function ActMeasure({ measure, handleValue, field }) {
   };
 
   const handleCreate = () => {
-    const newOPtion = setMeasureOptions((prev) => [
-      ...prev,
-      { value: newValueOption, label: newValueOption },
-    ]);
-    setSelectValue({ value: newValueOption, label: newValueOption });
-    handleValue(newValueOption, field);
-  };
+    if (newValueOption.trim() !== "") { // เช็คว่า newValueOption ไม่เป็นค่าว่างหรือไม่
+      const newOPtion = setMeasureOptions((prev) => [
+        ...prev,
+        { value: newValueOption, label: newValueOption },
+      ]);
+      setSelectValue({ value: newValueOption, label: newValueOption });
+      handleValue(newValueOption, field);}
+    };
 
-  useEffect(() => {
-    setMeasureArr(measure);
-  }, [measure]);
+    useEffect(() => {
+      setMeasureArr(measure);
+    }, [measure]);
 
-  // useEffect(()=>{
-  //     filterOr()
-  //     filtertech()
-  //     filterPhy()
-  // },[measureArr])
+    // useEffect(()=>{
+    //     filterOr()
+    //     filtertech()
+    //     filterPhy()
+    // },[measureArr])
 
-  return (
-    <Fragment>
-      <div className="measure-contriner">
-        <CreatableSelect
-          isClearable
-          options={measureArr}
-          onInputChange={handleInputChage}
-          onChange={handleSelectChange}
-          onCreateOption={handleCreate}
-          value={selectValue}
-          required={true}
-        />
-      </div>
-    </Fragment>
-  );
-}
+    return (
+      <Fragment>
+        <div className="measure-contriner">
+          <CreatableSelect
+            isClearable
+            options={measureArr}
+            onInputChange={handleInputChage}
+            onChange={handleSelectChange}
+            onCreateOption={handleCreate}
+            value={selectValue}
+            required={true}
+          />
+        </div>
+      </Fragment>
+    );
+  }

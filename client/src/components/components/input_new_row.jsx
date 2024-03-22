@@ -22,8 +22,12 @@ export default function InputNewRow({ data, handleValue, field }) {
   };
 
   const handleCreate = () => {
-    setSelectValue({ value: newValueOption, label: newValueOption });
-    handleValue(newValueOption, field);
+    if (newValueOption.trim() !== "") {
+      setSelectValue({ value: newValueOption, label: newValueOption });
+      handleValue(newValueOption, field);
+    } else {
+      console.log("กรุณากรอกข้อมูล");
+    }
   };
 
   useEffect(() => {

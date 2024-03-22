@@ -1,5 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import InputNewRow from "./input_new_row";
+import { toast } from "react-toastify";
+import toastNoti from "./toast";
 
 export default function NewRowTable({
   handleDataTable,
@@ -48,28 +50,6 @@ export default function NewRowTable({
     },
   ]);
 
-  const [formDataTable2, setFormDataTable2] = useState([
-    {
-      act_id: actId,
-      p_data_name: "",
-      p_data_subject: "",
-      p_data_source: "",
-      p_data_type_detail: "",
-      p_data_type: "",
-      p_data_object: "",
-      p_data_legal_base: "",
-      p_data_time_period: "",
-      p_data_storage: "",
-      p_data_name_access: "",
-      p_data_condition_name_access: "",
-      p_data_how_to_access: "",
-      p_data_condition_to_access: "",
-      p_data_whouse_inorg: "",
-      p_data_whouse_outorg: "",
-      p_data_way_destroy: "",
-      p_data_approve_destroy: "",
-    },
-  ]);
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
@@ -80,8 +60,16 @@ export default function NewRowTable({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTableData([...tableData, ...formDataTable]);
 
+    const isFormEmpty = formDataTable.some((data) => {
+      return Object.values(data).some(value => typeof value === 'string' && value.trim() === '');
+    });
+
+    if (isFormEmpty) {
+      toastNoti.toasterror("กรุณากรอกให้ข้อมูลให้ครบทุกช่อง")
+      return; // Exit early if form is not valid
+    }
+    setTableData([...tableData, ...formDataTable]);
     setFormDataTable([
       {
         act_id: actId,
@@ -105,6 +93,7 @@ export default function NewRowTable({
       },
     ]);
   };
+
 
   const onDataInAct = (value, name) => {
     if (value) {

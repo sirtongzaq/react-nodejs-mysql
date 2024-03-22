@@ -83,7 +83,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               value={formData.p_data_name}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ข้อมูลส่วนบุคคล ที่มีการเก็บรวม (ข้อมูลที่ประมวลผล)"
-              // required
+              required
             />
           </label>
 
@@ -96,6 +96,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               value={formData.p_data_subject}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="เจ้าของข้อมูลส่วนบุคคล"
+              required
             />
           </label>
 
@@ -108,6 +109,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               value={formData.p_data_source}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ได้รับข้อมูลจาก"
+              required
             />
           </label>
 
@@ -120,6 +122,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="รูปแบบของข้อมูล"
+              required
             />
           </label>
 
@@ -132,6 +135,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ประเภทข้อมูลส่วนบุคคล"
+              required
             />
           </label>
           <label>
@@ -143,6 +147,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="วัตถุประสงค์การเก็บรวบรวมข้อมูล"
+              required
             />
           </label>
 
@@ -155,6 +160,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ฐานทางกฎหมายสำหรับประมวลผลข้อมูลส่วนบุคคล"
+              required
             />
           </label>
 
@@ -167,6 +173,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ระยะเวลาการจัดเก็บข้อมูลส่วนบุคค"
+              required
             />
           </label>
 
@@ -179,6 +186,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="แหล่งจัดเก็บข้อมูลส่วนบุคคล"
+              required
             />
           </label>
 
@@ -191,6 +199,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="บุคคลที่มีสิทธิเข้าถึงข้อมูล"
+              required
             />
           </label>
 
@@ -203,6 +212,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="เงื่อนไขเกี่ยวกับบุคคลที่มีสิทธิเข้าถึงข้อมูล"
+              required
             />
           </label>
 
@@ -215,6 +225,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="วิธีการเข้าถึงข้อมูลส่วนบุคคล"
+              required
             />
           </label>
 
@@ -227,6 +238,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="เงื่อนไขในการเข้าถึงข้อมูล"
+              required
             />
           </label>
 
@@ -239,6 +251,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ข้อมูลส่วนบุคคลถูกใช้โดยตำแหน่งใดบ้าง"
+              required
             />
           </label>
 
@@ -251,6 +264,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ข้อมูลส่วนบุคคลถูกส่งต่อ/เปิดเผยให้ใครบ้าง"
+              required
             />
           </label>
 
@@ -264,6 +278,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               onChange={(e) => handleInputChange(e, index)}
               placeholder="วิธีการทำลายข้อมูลส่วนบุคคล"
               style={{ height: "auto" }}
+              required
             />
           </label>
 
@@ -276,6 +291,7 @@ export default function EditRowTable({ editTableData, onChangeDataTable }) {
               rows={5}
               onChange={(e) => handleInputChange(e, index)}
               placeholder="ผู้อนุมัติการทำลายข้อมูลส่วนบุคคบ"
+              required
             />
           </label>
 
