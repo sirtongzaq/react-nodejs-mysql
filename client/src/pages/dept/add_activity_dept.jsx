@@ -63,18 +63,28 @@ export default function AddActDept() {
 
   const submitData = async () => {
     try {
-      await actService.createAct(formDataInfo);
-      for (let i of tableData) {
-        await dataInActService.createDataInAct(i);
+      let hasEmptyValue = false;
+      for (const key in measureForm) {
+        if (measureForm[key] === "") {
+          toastNoti.toasterror("กรุณากรอกข้อมูลในฟอร์มทุกช่อง");
+          hasEmptyValue = true;
+          break;
+        }
       }
-      await MeasuresService.createMeasures(measureForm);
-      toastNoti.toastsuccess("เพิ่มกิจกรรมสำเร็จ");
-      setTimeout(() => {
-        router.push("/dept");
-      }, 2000);
+      if (!hasEmptyValue) {
+        await actService.createAct(formDataInfo);
+        for (let i of tableData) {
+          await dataInActService.createDataInAct(i);
+        }
+        await MeasuresService.createMeasures(measureForm);
+        toastNoti.toastsuccess("เพิ่มกิจกรรมสำเร็จ");
+        setTimeout(() => {
+          router.push("/dept");
+        }, 2000);
+      }
     } catch (e) {
       console.log("error", e);
-      toastNoti.toasterror("กรุณากรอกข้อมูลในฟอร์มทุกช่อง");
+      toastNoti.toasterror("ไม่สามารถเชื่อมต่อกับ server ได้");
     }
   };
 
@@ -86,6 +96,10 @@ export default function AddActDept() {
       }));
     } else {
       console.log("noDataMeasure");
+      setMeasureForm((prevState) => ({
+        ...prevState,
+        [name]: "",
+      }));
     }
   };
 
@@ -164,6 +178,14 @@ export default function AddActDept() {
   };
 
   const prevPage = () => {
+    if (page === 3) {
+      setMeasureForm({
+        act_id: actId,
+        meas_org: "",
+        meas_technical: "",
+        meas_physic: "",
+      });
+    }
     setPage(page - 1);
   };
 
@@ -561,8 +583,11 @@ export default function AddActDept() {
   useEffect(() => {
     if (actId > 0) {
       setMeasureForm((prevState) => ({
-        ...prevState,
+        ...prevState[0],
         act_id: actId,
+        meas_org: "",
+        meas_technical: "",
+        meas_physic: "",
       }));
     }
   }, [actId]);

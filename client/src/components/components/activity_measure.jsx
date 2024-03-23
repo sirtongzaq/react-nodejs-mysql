@@ -2,15 +2,9 @@ import MeasuresService from "@/services/measuresservice";
 import { Fragment, useEffect, useState } from "react";
 import CreatableSelect from "react-select/creatable";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
 export default function ActMeasure({ measure, handleValue, field }) {
-  const [measureOptions, setMeasureOptions] = useState(options);
   const [newValueOption, setNewValueOption] = useState("");
-  const [selectValue, setSelectValue] = useState({});
+  const [selectValue, setSelectValue] = useState([]);
   const [measureArr, setMeasureArr] = useState([]);
 
   const handleInputChage = (value) => {
@@ -23,38 +17,38 @@ export default function ActMeasure({ measure, handleValue, field }) {
   };
 
   const handleCreate = () => {
-    if (newValueOption.trim() !== "") { // เช็คว่า newValueOption ไม่เป็นค่าว่างหรือไม่
-      const newOPtion = setMeasureOptions((prev) => [
-        ...prev,
-        { value: newValueOption, label: newValueOption },
-      ]);
+    if (newValueOption.trim() !== "") {
+      // เช็คว่า newValueOption ไม่เป็นค่าว่างหรือไม่
+
       setSelectValue({ value: newValueOption, label: newValueOption });
-      handleValue(newValueOption, field);}
-    };
+      handleValue(newValueOption, field);
+    }
+  };
 
-    useEffect(() => {
-      setMeasureArr(measure);
-    }, [measure]);
+  useEffect(() => {
+    setMeasureArr(measure);
+    setSelectValue([]);
+  }, [measure]);
 
-    // useEffect(()=>{
-    //     filterOr()
-    //     filtertech()
-    //     filterPhy()
-    // },[measureArr])
+  // useEffect(()=>{
+  //     filterOr()
+  //     filtertech()
+  //     filterPhy()
+  // },[measureArr])
 
-    return (
-      <Fragment>
-        <div className="measure-contriner">
-          <CreatableSelect
-            isClearable
-            options={measureArr}
-            onInputChange={handleInputChage}
-            onChange={handleSelectChange}
-            onCreateOption={handleCreate}
-            value={selectValue}
-            required={true}
-          />
-        </div>
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <div className="measure-contriner">
+        <CreatableSelect
+          isClearable
+          options={measureArr}
+          onInputChange={handleInputChage}
+          onChange={handleSelectChange}
+          onCreateOption={handleCreate}
+          value={selectValue}
+          required={true}
+        />
+      </div>
+    </Fragment>
+  );
+}
