@@ -39,8 +39,7 @@ export default function CardActiDept({ act, onDelete, userRole }) {
               setOpenModalDuplicate(true);
             }}
             style={{
-              display:
-                userRole === "User" || userRole === "Editor" ? "none" : "block",
+              display: userRole === "User" ? "none" : "block",
             }}
           >
             <FontAwesomeIcon icon={SolidIcon.faCopy} />
