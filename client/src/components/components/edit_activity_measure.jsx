@@ -2,7 +2,13 @@ import MeasuresService from "@/services/measuresservice";
 import { Fragment, useEffect, useState } from "react";
 import CreatableSelect from "react-select/creatable";
 
-export default function EditActMeasure({ measure, handleValue, field, data }) {
+export default function EditActMeasure({
+  measure,
+  handleValue,
+  field,
+  data,
+  userRole,
+}) {
   const [newValueOption, setNewValueOption] = useState("");
   const [selectValue, setSelectValue] = useState({});
   const [measureArr, setMeasureArr] = useState([]);
@@ -46,6 +52,7 @@ export default function EditActMeasure({ measure, handleValue, field, data }) {
           onCreateOption={handleCreate}
           value={selectValue}
           required={true}
+          isDisabled={userRole === "User" ? true : false}
         />
       </div>
     </Fragment>

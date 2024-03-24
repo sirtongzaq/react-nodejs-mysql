@@ -6,10 +6,17 @@ export default function LoginForm({ handleLogin, handleRegister }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const loginUser = (e) => {
+    e.preventDefault();
+    handleLogin(e, username, password);
+    setUsername("");
+    setPassword("");
+  };
+
   return (
     <Fragment>
       <div className="login-container">
-        <form onSubmit={(e) => handleLogin(e, username, password)}>
+        <form onSubmit={loginUser}>
           <div className="group-header">ROPA</div>
           <div className="group">
             {/* <svg

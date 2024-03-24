@@ -8,7 +8,7 @@ const createTables = {
           user_email VARCHAR(100) NOT NULL,
           user_firstname VARCHAR(100) NOT NULL,
           user_lastname VARCHAR(100) NOT NULL,
-          user_role VARCHAR(100) DEFAULT 'User',
+          user_role VARCHAR(100) DEFAULT 'Waiting',
           PRIMARY KEY (user_id)
         )
       `;

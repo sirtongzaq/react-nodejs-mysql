@@ -9,17 +9,25 @@ import authService from "@/services/authservice";
 import actService from "@/services/actservice";
 import depService from "@/services/deptservice";
 import toastNoti from "@/components/components/toast";
-import ActMeasure from "@/components/components/activity_measure";
-import ActInfoTable from "@/components/components/acitivity_info_table";
-import MeasuresService from "@/services/measuresservice";
+
 export default function ActivityDept() {
   const router = useRouter();
-  const { id, name } = router.query;
+  const { id } = router.query;
   const [activity, setActivity] = useState([]);
   const [dept, setDept] = useState([]);
   const [filterAct, setFilterAct] = useState([]);
   const [onSearch, setOnSearch] = useState(false);
-  const [actId, setId] = useState("");
+  const [user, setUser] = useState([]);
+  const [userRole, setUserRole] = useState([]);
+
+  const getUserFromToken = async (userToken) => {
+    const res = await authService.getUserFromToken(userToken);
+    if (res) {
+      setUser(res);
+    } else {
+      setUser("noUser");
+    }
+  };
 
   const getDept = async () => {
     try {
@@ -66,6 +74,24 @@ export default function ActivityDept() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login");
+    } else {
+      getUserFromToken(token);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      const userRole = user?.user?.user_role;
+      setUserRole(userRole);
+    } else {
+      router.push("/login");
+    }
+  }, [user]);
+
+  useEffect(() => {
     setDept(dept);
   }, [dept]);
 
@@ -108,7 +134,11 @@ export default function ActivityDept() {
             {filterAct.length > 0 ? (
               <Fragment>
                 {filterAct.map((data, index) => (
-                  <CardActiDept act={data} onDelete={onDeleteAct} />
+                  <CardActiDept
+                    act={data}
+                    onDelete={onDeleteAct}
+                    userRole={userRole}
+                  />
                 ))}
               </Fragment>
             ) : (
@@ -123,7 +153,11 @@ export default function ActivityDept() {
               <Fragment>
                 {activity.map((data, index) => (
                   <Fragment>
-                    <CardActiDept act={data} onDelete={onDeleteAct} />
+                    <CardActiDept
+                      act={data}
+                      onDelete={onDeleteAct}
+                      userRole={userRole}
+                    />
                   </Fragment>
                 ))}
               </Fragment>

@@ -5,7 +5,7 @@ import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
 import { Box, Modal } from "@mui/material";
 import modalStyle from "./modalstyle";
 import DuplAct from "./duplicate_act";
-export default function CardActiDept({ act, onDelete }) {
+export default function CardActiDept({ act, onDelete, userRole }) {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   const [openModalDuplicate, setOpenModalDuplicate] = useState(false);
@@ -38,6 +38,10 @@ export default function CardActiDept({ act, onDelete }) {
             onClick={() => {
               setOpenModalDuplicate(true);
             }}
+            style={{
+              display:
+                userRole === "User" || userRole === "Editor" ? "none" : "block",
+            }}
           >
             <FontAwesomeIcon icon={SolidIcon.faCopy} />
           </div>
@@ -46,6 +50,10 @@ export default function CardActiDept({ act, onDelete }) {
               setOpenModal(true);
             }}
             className="dept-delete"
+            style={{
+              display:
+                userRole === "User" || userRole === "Editor" ? "none" : "block",
+            }}
           >
             <FontAwesomeIcon icon={SolidIcon.faTrash} />
           </div>

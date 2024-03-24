@@ -36,6 +36,10 @@ export default function Layout({ children, getUserByToken }) {
       localStorage.removeItem("token");
       router.push("/login");
     } else if (user && user.userExp) {
+      if (user?.user?.user_role == "Waiting") {
+        localStorage.removeItem("token");
+        router.push("/login");
+      }
       const expirationTime = user.userExp * 1000;
       const currentTime = Date.now();
       const timeDifference = expirationTime - currentTime;

@@ -7,11 +7,7 @@ export default function Header({ logout, user }) {
   const [userRole, setUserRole] = useState([]);
 
   const routeHome = () => {
-    if (userRole == "User") {
-      router.push("/peronal-info");
-    } else {
-      router.push("/");
-    }
+    router.push("/");
   };
 
   useEffect(() => {
@@ -22,7 +18,7 @@ export default function Header({ logout, user }) {
     <Fragment>
       <div className="header-container">
         <h1
-          style={{ color: "white",cursor:"pointer" }}
+          style={{ color: "white", cursor: "pointer" }}
           onClick={() => {
             routeHome();
           }}
@@ -31,17 +27,15 @@ export default function Header({ logout, user }) {
         </h1>
 
         <div className="header-menu">
-          <div
-            className="header-dept"
-            style={{
-              display: userRole == "User" ? "none" : "block",
-            }}
-            onClick={() => router.push("/dept")}
-          >
+          <div className="header-dept" onClick={() => router.push("/dept")}>
             แผนกในหน่วยงาน
           </div>
           <div
             className="header-profile"
+            style={{
+              display:
+                userRole === "User" || userRole === "Editor" ? "none" : "block",
+            }}
             onClick={() => {
               router.push("/peronal-info");
             }}

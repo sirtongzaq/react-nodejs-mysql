@@ -5,13 +5,18 @@ import modalStyle from "./modalstyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as SolidIcon from "@fortawesome/free-solid-svg-icons";
 
-export default function CardDept({ dept, handleDel }) {
+export default function CardDept({ dept, handleDel, userRole }) {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   return (
     <Fragment>
       <div className="dept-card">
-        <div className="dept-name"  onClick={()=>router.push(`/dept/activity_dept?id=${dept.dept_id}`)} >{dept.dept_name}</div>
+        <div
+          className="dept-name"
+          onClick={() => router.push(`/dept/activity_dept?id=${dept.dept_id}`)}
+        >
+          {dept.dept_name}
+        </div>
         <div className="dept-action">
           {/* <div
             className="dept-edit"
@@ -24,6 +29,10 @@ export default function CardDept({ dept, handleDel }) {
               setOpenModal(true);
             }}
             className="dept-delete"
+            style={{
+              display:
+                userRole === "User" || userRole === "Editor" ? "none" : "block",
+            }}
           >
             <FontAwesomeIcon icon={SolidIcon.faTrash} />
           </div>

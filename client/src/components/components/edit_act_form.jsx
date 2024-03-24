@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 
-export default function EditActForm({ act, handleChangeData }) {
+export default function EditActForm({ act, handleChangeData, userRole }) {
   const [actForm, setActform] = useState([]);
 
   const handleChange = (e, index) => {
@@ -44,6 +44,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.act_name}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -65,6 +66,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.recorder_firstname}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -75,6 +77,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.recorder_lastname}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
             </div>
@@ -88,6 +91,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.datacontroller_firstname}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -98,6 +102,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.datacontroller_lastname}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -108,6 +113,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.datacontroller_email}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -118,6 +124,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.datacontroller_number}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -128,6 +135,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.datacontroller_contact_place}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
             </div>
@@ -141,6 +149,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.dpo_firstname}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -151,6 +160,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.dpo_lastname}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -161,6 +171,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.dpo_email}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -171,6 +182,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.dpo_number}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -181,6 +193,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.dpo_contact_place}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
             </div>
@@ -194,6 +207,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.recordreviewer_firstname}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
               <label>
@@ -204,6 +218,7 @@ export default function EditActForm({ act, handleChangeData }) {
                   value={formData.recordreviewer_lastname}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  disabled={userRole === "User"}
                 />
               </label>
             </div>

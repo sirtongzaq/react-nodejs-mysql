@@ -50,6 +50,17 @@ export default function EditAct() {
   const [dataInActWayDestroy, setDataInActWayDestroy] = useState([]);
   const [dataInActWhouseInorg, setDataInActWhouseInorg] = useState([]);
   const [dataInActWhouseOutorg, setDataInActWhouseOutorg] = useState([]);
+  const [user, setUser] = useState([]);
+  const [userRole, setUserRole] = useState([]);
+
+  const getUserFromToken = async (userToken) => {
+    const res = await authService.getUserFromToken(userToken);
+    if (res) {
+      setUser(res);
+    } else {
+      setUser("noUser");
+    }
+  };
 
   const submitData = async () => {
     try {
@@ -559,6 +570,24 @@ export default function EditAct() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login");
+    } else {
+      getUserFromToken(token);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      const userRole = user?.user?.user_role;
+      setUserRole(userRole);
+    } else {
+      router.push("/login");
+    }
+  }, [user]);
+
+  useEffect(() => {
     if (id) {
       getActbyId();
       getInfoActbyId();
@@ -601,6 +630,7 @@ export default function EditAct() {
           <EditActForm
             act={act}
             handleChangeData={onChangeDataAct}
+            userRole={userRole}
           ></EditActForm>
         </div>
         <h1>รายละเอียดข้อมูลส่วนบุคคล</h1>
@@ -610,6 +640,7 @@ export default function EditAct() {
             style={{
               marginBottom: "25px",
               float: "right",
+              display: userRole === "User" ? "none" : "block",
             }}
             onClick={() => {
               setOpenModalCreate(!openModalCreate);
@@ -661,6 +692,7 @@ export default function EditAct() {
             newData={infoAct}
             onNewData={onChangeDataTable}
             handleDeleteIdTable={onDeleteDataTable}
+            userRole={userRole}
           />
         </div>
         <div className="edit-measure-contrainer">
@@ -671,6 +703,7 @@ export default function EditAct() {
             handleValue={onDataMeasure}
             data={measureAct[0]?.meas_org}
             field={"meas_org"}
+            userRole={userRole}
           />
 
           <span>มาตรการเชิงเทคนิค (Technical Measures)</span>
@@ -679,6 +712,7 @@ export default function EditAct() {
             handleValue={onDataMeasure}
             data={measureAct[0]?.meas_technical}
             field={"meas_technical"}
+            userRole={userRole}
           />
 
           <span>มาตรการทางกายภาพ (Physical Measures)</span>
@@ -687,6 +721,7 @@ export default function EditAct() {
             handleValue={onDataMeasure}
             data={measureAct[0]?.meas_physic}
             field={"meas_physic"}
+            userRole={userRole}
           />
         </div>
         <div className="flex-row">
@@ -700,6 +735,7 @@ export default function EditAct() {
           </button>
           <button
             className="btn-submit-activity"
+            style={{ display: userRole === "User" ? "none" : "block" }}
             onClick={() => {
               submitData();
             }}

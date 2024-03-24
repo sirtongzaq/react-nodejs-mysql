@@ -17,6 +17,7 @@ export default function Dept() {
   const [onSearch, setOnSearch] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [user, setUser] = useState([]);
+  const [userRole, setUserRole] = useState([]);
 
   const getUserFromToken = async (userToken) => {
     const res = await authService.getUserFromToken(userToken);
@@ -39,9 +40,7 @@ export default function Dept() {
   useEffect(() => {
     if (user) {
       const userRole = user?.user?.user_role;
-      if(userRole === "User"){
-        router.push("/peronal-info");
-      }
+      setUserRole(userRole);
     } else {
       router.push("/login");
     }
@@ -111,6 +110,7 @@ export default function Dept() {
               filterDept.map((d) => (
                 <p key={d.dept_id}>
                   <CardDept
+                    userRole={userRole}
                     dept={d}
                     handleDel={() => {
                       delDep(d.dept_id);
@@ -127,7 +127,11 @@ export default function Dept() {
             {dept.length > 0 ? (
               dept.map((d) => (
                 <p key={d.dept_id}>
-                  <CardDept dept={d} handleDel={() => delDep(d.dept_id)} />
+                  <CardDept
+                    userRole={userRole}
+                    dept={d}
+                    handleDel={() => delDep(d.dept_id)}
+                  />
                 </p>
               ))
             ) : (

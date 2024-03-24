@@ -17,6 +17,7 @@ export default function ActInfoTable({
   newData,
   onNewData,
   handleDeleteIdTable,
+  userRole,
 }) {
   const columns = [
     {
@@ -125,15 +126,22 @@ export default function ActInfoTable({
               onClick={() => {
                 handleClickEdit(row.index);
               }}
-
-              style={{border:"none",background:"none"}}
+              style={{
+                border: "none",
+                background: "none",
+                display: userRole === "User" ? "none" : "block",
+              }}
             >
               <FontAwesomeIcon icon={SolidIcon.faPen} />
             </button>
             <button
               className="delete-row-table"
               onClick={() => handleDeleteRow(row.index)}
-              style={{border:"none",background:"none"}}
+              style={{
+                border: "none",
+                background: "none",
+                display: userRole === "User" ? "none" : "block",
+              }}
             >
               <FontAwesomeIcon icon={SolidIcon.faTrash} />
             </button>
@@ -208,9 +216,9 @@ export default function ActInfoTable({
                     {header.isPlaceholder
                       ? null
                       : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                   </th>
                 ))}
               </tr>
@@ -222,7 +230,10 @@ export default function ActInfoTable({
               <tr key={row.id}>
                 {row.getVisibleCells().map((cells) => (
                   <td key={cells.id}>
-                    {flexRender(cells.column.columnDef.cell, cells.getContext())}
+                    {flexRender(
+                      cells.column.columnDef.cell,
+                      cells.getContext()
+                    )}
                   </td>
                 ))}
               </tr>
