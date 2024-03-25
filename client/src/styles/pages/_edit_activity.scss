@@ -15,10 +15,12 @@
 
 
 .edit-measure-contrainer {
+  
 
-.measure-contriner .css-13cymwt-control{
-  height: fit-content !important;
-}
+
+  .measure-contriner .css-13cymwt-control {
+    height: fit-content !important;
+  }
 
   .css-1dimb5e-singleValue {
     grid-area: 1 / 1 / 2 / 3 !important;
@@ -33,4 +35,37 @@
 
   }
 
+}
+
+
+
+.text-area-dropdown-btn {
+  display: flex;
+  textarea{
+    background-color: white;
+  }
+}
+
+.dropdown-container {
+  width: 97%;
+  background-color: $primary_2;
+  // padding-block: 10px;
+  // padding-inline: 5px;
+  margin-block: 10px;
+  
+}
+
+.drop-down-menu {
+  background-color: $primary_2;
+  border: 1px solid $primary_1;
+  padding: 10px;
+  // border-radius: 0.5rem;
+  margin-block: 10px;
+  white-space: pre-wrap;
+  
+
+  &:hover {
+    background-color: $primary_1;
+    color: white;
+  }
 }

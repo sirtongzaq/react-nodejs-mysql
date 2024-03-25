@@ -567,18 +567,15 @@ export default function AddActDept() {
         value: ele.meas_physic,
         label: ele.meas_physic,
       };
-      if (!uniqueValues.includes(ele.meas_technical)) {
+      if (!uniqueValues.includes(ele.meas_physic)) {
         option.push(opt);
-        uniqueValues.push(ele.meas_technical);
+        uniqueValues.push(ele.meas_physic);
       }
     });
 
     setPhyMearue(option);
   };
 
-  useEffect(() => {
-    // console.log("formData", formData);
-  }, [formData]);
 
   useEffect(() => {
     if (actId > 0) {

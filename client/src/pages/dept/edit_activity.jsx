@@ -224,9 +224,9 @@ export default function EditAct() {
         value: ele.meas_physic,
         label: ele.meas_physic,
       };
-      if (!uniqueValues.includes(ele.meas_technical)) {
+      if (!uniqueValues.includes(ele.meas_physic)) {
         option.push(opt);
-        uniqueValues.push(ele.meas_technical);
+        uniqueValues.push(ele.meas_physic);
       }
     });
     setPhyMearue(option);
@@ -696,33 +696,40 @@ export default function EditAct() {
           />
         </div>
         <div className="edit-measure-contrainer">
-          <h1>รายละเอียดมาตรการของกิจกรรม</h1>
-          <span>มาตรการเชิงองค์กร (Organizational Measures)</span>
-          <EditActMeasure
-            measure={orMeasure}
-            handleValue={onDataMeasure}
-            data={measureAct[0]?.meas_org}
-            field={"meas_org"}
-            userRole={userRole}
-          />
+          <div style={{ marginBlock: "20px" }}>
+            <h1>รายละเอียดมาตรการของกิจกรรม</h1>
+            <span>มาตรการเชิงองค์กร (Organizational Measures)</span>
+            <EditActMeasure
+              measure={orMeasure}
+              handleValue={onDataMeasure}
+              data={measureAct[0]?.meas_org}
+              field={"meas_org"}
+              userRole={userRole}
+            />
+          </div>
 
-          <span>มาตรการเชิงเทคนิค (Technical Measures)</span>
-          <EditActMeasure
-            measure={techMeasure}
-            handleValue={onDataMeasure}
-            data={measureAct[0]?.meas_technical}
-            field={"meas_technical"}
-            userRole={userRole}
-          />
+          <div style={{ marginBlock: "20px" }}>
+            <span>มาตรการเชิงเทคนิค (Technical Measures)</span>
+            <EditActMeasure
+              measure={techMeasure}
+              handleValue={onDataMeasure}
+              data={measureAct[0]?.meas_technical}
+              field={"meas_technical"}
+              userRole={userRole}
+            />
+          </div>
 
-          <span>มาตรการทางกายภาพ (Physical Measures)</span>
-          <EditActMeasure
-            measure={phyMeasure}
-            handleValue={onDataMeasure}
-            data={measureAct[0]?.meas_physic}
-            field={"meas_physic"}
-            userRole={userRole}
-          />
+          <div style={{ marginBlock: "20px"}}>
+            <span>มาตรการทางกายภาพ (Physical Measures)</span>
+            <EditActMeasure
+              measure={phyMeasure}
+              handleValue={onDataMeasure}
+              data={measureAct[0]?.meas_physic}
+              field={"meas_physic"}
+              userRole={userRole}
+            />
+          </div>
+
         </div>
         <div className="flex-row">
           <button
