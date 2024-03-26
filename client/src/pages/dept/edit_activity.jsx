@@ -51,7 +51,7 @@ export default function EditAct() {
   const [dataInActWhouseInorg, setDataInActWhouseInorg] = useState([]);
   const [dataInActWhouseOutorg, setDataInActWhouseOutorg] = useState([]);
   const [user, setUser] = useState([]);
-  const [userRole, setUserRole] = useState([]);
+  const [userRole, setUserRole] = useState("");
 
   const getUserFromToken = async (userToken) => {
     const res = await authService.getUserFromToken(userToken);

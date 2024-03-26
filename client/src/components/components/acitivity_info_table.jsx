@@ -19,147 +19,153 @@ export default function ActInfoTable({
   handleDeleteIdTable,
   userRole,
 }) {
-  const columns = [
-    {
-      header: "ข้อมูลส่วนบุคคล ที่มีการเก็บรวม (ข้อมูลที่ประมวลผล)",
-      accessorKey: "p_data_name",
-    },
-    {
-      header: "เจ้าของข้อมูลส่วนบุคคล",
-      accessorKey: "p_data_subject",
-    },
+  const columns = useMemo(() => [{
+    header: "ข้อมูลส่วนบุคคล ที่มีการเก็บรวม (ข้อมูลที่ประมวลผล)",
+    accessorKey: "p_data_name",
+  },
+  {
+    header: "เจ้าของข้อมูลส่วนบุคคล",
+    accessorKey: "p_data_subject",
+  },
 
-    {
-      header: "ได้รับข้อมูลจาก",
-      accessorKey: "p_data_source",
-    },
+  {
+    header: "ได้รับข้อมูลจาก",
+    accessorKey: "p_data_source",
+  },
 
-    {
-      header: "รูปแบบของข้อมูล",
-      accessorKey: "p_data_type_detail",
-    },
+  {
+    header: "รูปแบบของข้อมูล",
+    accessorKey: "p_data_type_detail",
+  },
 
-    {
-      header: "ประเภทข้อมูลส่วนบุคคล",
-      accessorKey: "p_data_type",
-    },
-    {
-      header: "วัตถุประสงค์การเก็บรวบรวมข้อมูล",
-      accessorKey: "p_data_object",
-    },
-    {
-      header: "ฐานทางกฎหมายสำหรับประมวลผลข้อมูลส่วนบุคคล",
-      accessorKey: "p_data_legal_base",
-    },
-    {
-      header: "ระยะเวลาการจัดเก็บข้อมูลส่วนบุคคล",
-      accessorKey: "p_data_time_period",
-    },
-    {
-      header: "แหล่งจัดเก็บข้อมูลส่วนบุคคล",
-      accessorKey: "p_data_storage",
-    },
-    {
-      header: "สิทธิและวิธีการเข้าถึงข้อมูลส่วนบุคคล",
-      columns: [
-        {
-          header: "บุคคลที่มีสิทธิเข้าถึงข้อมูล",
-          accessorKey: "p_data_name_access",
-          style: {
-            textAlign: "center",
-            whiteSpace: "unset",
-          },
+  {
+    header: "ประเภทข้อมูลส่วนบุคคล",
+    accessorKey: "p_data_type",
+  },
+  {
+    header: "วัตถุประสงค์การเก็บรวบรวมข้อมูล",
+    accessorKey: "p_data_object",
+  },
+  {
+    header: "ฐานทางกฎหมายสำหรับประมวลผลข้อมูลส่วนบุคคล",
+    accessorKey: "p_data_legal_base",
+  },
+  {
+    header: "ระยะเวลาการจัดเก็บข้อมูลส่วนบุคคล",
+    accessorKey: "p_data_time_period",
+  },
+  {
+    header: "แหล่งจัดเก็บข้อมูลส่วนบุคคล",
+    accessorKey: "p_data_storage",
+  },
+  {
+    header: "สิทธิและวิธีการเข้าถึงข้อมูลส่วนบุคคล",
+    columns: [
+      {
+        header: "บุคคลที่มีสิทธิเข้าถึงข้อมูล",
+        accessorKey: "p_data_name_access",
+        style: {
+          textAlign: "center",
+          whiteSpace: "unset",
         },
-        {
-          header: "เงื่อนไขเกี่ยวกับบุคคลที่มีสิทธิเข้าถึงข้อมูล",
-          accessorKey: "p_data_condition_name_access",
-          style: {
-            textAlign: "center",
-            whiteSpace: "unset",
-          },
-        },
-        {
-          header: "วิธีการเข้าถึงข้อมูลส่วนบุคคล",
-          accessorKey: "p_data_how_to_access",
-          style: {
-            textAlign: "center",
-            whiteSpace: "unset",
-          },
-        },
-        {
-          header: "เงื่อนไขในการเข้าถึงข้อมูล",
-          accessorKey: "p_data_condition_to_access",
-          style: {
-            textAlign: "center",
-            whiteSpace: "unset",
-          },
-        },
-      ],
-    },
-    {
-      header: "ข้อมูลส่วนบุคคลถูกใช้โดยตำแหน่งใดบ้าง",
-      accessorKey: "p_data_whouse_inorg",
-    },
-    {
-      header: "ข้อมูลส่วนบุคคลถูกส่งต่อ/เปิดเผยให้ใครบ้าง",
-      accessorKey: "p_data_whouse_outorg",
-    },
-    {
-      header: "วิธีการทำลายข้อมูลส่วนบุคคล",
-      accessorKey: "p_data_way_destroy",
-    },
-    {
-      header: "ผู้อนุมัติการทำลายข้อมูลส่วนบุคคบ",
-      accessorKey: "p_data_approve_destroy",
-    },
-    {
-      header: "ลบ/แก้ไข",
-      style: {
-        textAlign: "center",
-        whiteSpace: "unset",
       },
-      cell: ({ row }) => (
-        <Fragment>
-          <div className="edit-delete-row">
-            <button
-              className="edit-row-table"
-              onClick={() => {
-                handleClickEdit(row.index);
-              }}
-              style={{
-                border: "none",
-                background: "none",
-                display: userRole === "User" ? "none" : "block",
-              }}
-            >
-              <FontAwesomeIcon icon={SolidIcon.faPen} />
-            </button>
-            <button
-              className="delete-row-table"
-              onClick={() => handleDeleteRow(row.index)}
-              style={{
-                border: "none",
-                background: "none",
-                display: userRole === "User" ? "none" : "block",
-              }}
-            >
-              <FontAwesomeIcon icon={SolidIcon.faTrash} />
-            </button>
-          </div>
-        </Fragment>
-      ),
+      {
+        header: "เงื่อนไขเกี่ยวกับบุคคลที่มีสิทธิเข้าถึงข้อมูล",
+        accessorKey: "p_data_condition_name_access",
+        style: {
+          textAlign: "center",
+          whiteSpace: "unset",
+        },
+      },
+      {
+        header: "วิธีการเข้าถึงข้อมูลส่วนบุคคล",
+        accessorKey: "p_data_how_to_access",
+        style: {
+          textAlign: "center",
+          whiteSpace: "unset",
+        },
+      },
+      {
+        header: "เงื่อนไขในการเข้าถึงข้อมูล",
+        accessorKey: "p_data_condition_to_access",
+        style: {
+          textAlign: "center",
+          whiteSpace: "unset",
+        },
+      },
+    ],
+  },
+  {
+    header: "ข้อมูลส่วนบุคคลถูกใช้โดยตำแหน่งใดบ้าง",
+    accessorKey: "p_data_whouse_inorg",
+  },
+  {
+    header: "ข้อมูลส่วนบุคคลถูกส่งต่อ/เปิดเผยให้ใครบ้าง",
+    accessorKey: "p_data_whouse_outorg",
+  },
+  {
+    header: "วิธีการทำลายข้อมูลส่วนบุคคล",
+    accessorKey: "p_data_way_destroy",
+  },
+  {
+    header: "ผู้อนุมัติการทำลายข้อมูลส่วนบุคคล",
+    accessorKey: "p_data_approve_destroy",
+  },
+  {
+    header: "ลบ/แก้ไข",
+    style: {
+      textAlign: "center",
+      whiteSpace: "unset",
     },
-  ];
+    show: true,
+    cell: ({ row }) => (
+      <Fragment>
+        <div className="edit-delete-row">
+          <button
+            className="edit-row-table"
+            onClick={() => {
+              handleClickEdit(row.index);
+            }}
+            style={{
+              border: "none",
+              background: "none",
+              display: userRole === "User" ? "none" : "block",
+            }}
+          >
+            <FontAwesomeIcon icon={SolidIcon.faPen} />
+          </button>
+          <button
+            className="delete-row-table"
+            onClick={() => handleDeleteRow(row.index)}
+            style={{
+              border: "none",
+              background: "none",
+              display: userRole === "User" ? "none" : "block",
+            }}
+          >
+            <FontAwesomeIcon icon={SolidIcon.faTrash} />
+          </button>
+        </div>
+      </Fragment>
+    ),
+  },])
+
 
   const [removeArryDataId, setRemoveArryDataId] = useState([]);
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [editRow, setEditRow] = useState([]);
   const [data, setData] = useState(newData);
   const [editIndex, setIndexEdit] = useState(0);
+  const [role, setRole] = useState(userRole)
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    // initialState: {
+    //   columnVisibility: {
+    //     "ลบ/แก้ไข": (role === "User" ? false : true)
+    //   }
+    // }
   });
 
   const handleClickEdit = (index) => {
@@ -193,6 +199,10 @@ export default function ActInfoTable({
   };
 
   useEffect(() => {
+   setRole(userRole);
+  }, [userRole]);
+
+  useEffect(() => {
     setData(newData);
   }, [newData]);
 
@@ -203,6 +213,7 @@ export default function ActInfoTable({
   useEffect(() => {
     handleDeleteIdTable(removeArryDataId);
   }, [removeArryDataId]);
+
 
   return (
     <Fragment>
@@ -216,9 +227,9 @@ export default function ActInfoTable({
                     {header.isPlaceholder
                       ? null
                       : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
                   </th>
                 ))}
               </tr>
