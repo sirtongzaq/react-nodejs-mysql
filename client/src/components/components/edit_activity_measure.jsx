@@ -92,9 +92,16 @@ export default function EditActMeasure({
           isDisabled={userRole === "User" ? true : false}
         />
       </div> */}
-      <div style={{ display: userRole === "User" ? "none" : "block" }}>
+      <div>
         <div className="text-area-dropdown-btn">
-          <textarea name="" id="" cols="30" rows="10" value={selectValue.value} onClick={onFocusClick} onChange={handleTextareaChange} onFocus={onFocusClick} onBlur={onBlurClick}></textarea>
+          <textarea name="" id="" cols="30" rows="10"
+            value={selectValue.value}
+            onClick={onFocusClick}
+            onChange={handleTextareaChange}
+            onFocus={onFocusClick}
+            onBlur={onBlurClick}
+            disabled={userRole == "User"}
+          />
           {/* <div onClick={() => clearText()}>
             X
           </div> */}
@@ -103,7 +110,7 @@ export default function EditActMeasure({
           </div> */}
         </div>
 
-        {isShowDropDown && (
+        {(isShowDropDown && userRole != "User") && (
           <div className="dropdown-container" >
             <div className="menu-container">
               {measureArr.map((option, index) => (
